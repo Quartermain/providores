@@ -27,7 +27,7 @@ defined('_JEXEC') or die;
 
   <body>
 
-    <?php $this->loadBlock ('header') ?>
+    <?php $this->loadBlock ('header-home') ?>
     
     <?php $this->loadBlock ('mainnav') ?>
     
