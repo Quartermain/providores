@@ -19,7 +19,6 @@ class JConfig {
 	public $dbprefix = 'i8a13_';
 	public $live_site = '';
 	public $secret = 'DwXA3GCL8Ol06G6p';
-	public $test = 'test';
 	public $gzip = '0';
 	public $error_reporting = 'default';
 	public $helpurl = 'http://help.joomla.org/proxy/index.php?option=com_help&amp;keyref=Help{major}{minor}:{keyref}';
