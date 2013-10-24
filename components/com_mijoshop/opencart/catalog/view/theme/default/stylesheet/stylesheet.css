@@ -1685,17 +1685,17 @@ ul.box-filter > li ul {
 #module_cart .empty {
     text-align: center;
 }
-.box_oc .box-product .image img{border: 0;padding:0;}
-.box_oc .box-product > div {
+.home  .home .box_oc .box-product .image img{border: 0;padding:0;}
+.home  .home .box_oc .box-product > div {
 	
 	position: relative;margin:0;padding: 0 0 1px 1px;display:block;float:left;width: 162px;min-height: 162px;
 }
-.box_oc .box-product > div:hover .name {
+.home  .home .box_oc .box-product > div:hover .name {
 	opacity: 1;
 	
 }
-.box_oc .box-product > div  .name a {color:white;font-size: 18px;margin-top: 10px}
-.box_oc .box-product > div  .name{
+.home  .home .box_oc .box-product > div  .name a {color:white;font-size: 18px;margin-top: 10px}
+.home .home .box_oc .box-product > div  .name{
     background: rgba(0,0,0,0.7);
     border-bottom: 2px solid #fa9215;
     bottom: 0;
