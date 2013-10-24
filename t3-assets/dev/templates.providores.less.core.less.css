@@ -9,11 +9,11 @@ body {
   margin: 0;
 }
 a {
-  color: #07b;
+  color: #f29400;
   text-decoration: none;
 }
 a:hover {
-  color: #00466f;
+  color: #a66500;
   text-decoration: underline;
 }
 img {
@@ -174,7 +174,7 @@ table.contentpaneopen {
   border-radius: 4px;
 }
 .star {
-  color: #fc0;
+  color: #f29400;
 }
 .red {
   color: #c00;

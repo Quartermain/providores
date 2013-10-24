@@ -160,7 +160,7 @@ div.tagspopular ul li a {
 div.tagspopular ul li a:hover,
 div.tagspopular ul li a:focus,
 div.tagspopular ul li a:active {
-  background: #00466f;
+  background: #a66500;
   color: #fff;
   text-decoration: none;
 }
@@ -179,6 +179,6 @@ div.tagssimilar ul li a {
 div.tagssimilar ul li a:hover,
 div.tagssimilar ul li a:focus,
 div.tagssimilar ul li a:active {
-  color: #00466f;
+  color: #a66500;
 }
 
