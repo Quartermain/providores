@@ -1,0 +1,369 @@
+/* standard form style table */
+div.col { float: left; }
+div.width-45 { width: 45%; }
+div.width-55 { width: 55%; }
+div.width-50 { width: 50%; }
+div.width-70 { width: 70%; }
+div.width-30 { width: 30%; }
+div.width-60 { width: 60%; }
+div.width-40 { width: 40%; }
+
+table.admintable td.key,
+table.admintable td.paramlist_key {
+	background-color: #f6f6f6;
+	text-align: right;
+	width: 140px;
+	color: #666;
+	font-weight: bold;
+	border-bottom: 1px solid #e9e9e9;
+	border-right: 1px solid #e9e9e9;
+}
+
+table.paramlist td.paramlist_description {
+	background-color: #f6f6f6;
+	text-align: left;
+	width: 170px;
+	color: #333;
+	font-weight: normal;
+	border-bottom: 1px solid #e9e9e9;
+	border-right: 1px solid #e9e9e9;
+}
+
+table.admintable td.key.vtop { vertical-align: top; }
+
+table.adminform {
+	background-color: #f9f9f9;
+	border: solid 1px #d5d5d5;
+	width: 100%;
+	border-collapse: collapse;
+	margin: 8px 0 10px 0;
+	margin-bottom: 15px;
+	width: 100%;
+}
+table.adminform.nospace { margin-bottom: 0; }
+table.adminform tr.row0 { background-color: #f9f9f9; }
+table.adminform tr.row1 { background-color: #eeeeee; }
+
+table.adminform th {
+	font-size: 11px;
+	padding: 6px 2px 4px 4px;
+	text-align: left;
+	height: 25px;
+	color: #000;
+	background-repeat: repeat;
+}
+table.adminform td { padding: 3px; text-align: left; }
+
+table.adminform td.filter{
+	text-align: left;
+}
+
+table.adminform td.helpMenu{
+	text-align: right;
+}
+
+/*fieldset.adminform { border: 1px solid #ccc; margin: 0 10px 10px 10px; }*/
+
+table.noshow   		 { width: 100%; min-width: 500px !important; border-collapse: collapse; padding: 0; margin: 0; }
+table.noshow tr 		 { vertical-align: top; }
+table.noshow td 		 { min-width: 250px !important; }
+table.noshow fieldset { margin: 5px 7px; }
+
+/** general **/
+table.adminlist thead th.whitebuttons input {
+	background-color: #fff;
+}
+
+/** general **/
+table.admintable td.key2 {
+	background-color:#F6F6F6;
+	border-bottom:1px solid #E9E9E9;
+	border-right:1px solid #E9E9E9;
+	color:#666666;
+	font-weight:bold;
+	text-align:left;
+    padding-left: 5px;
+    vertical-align: middle;
+    height: 22px;
+	width:180px;
+}
+
+table.admintable td.value2 {
+    padding-left: 7px;
+}
+
+table.admintable span.hasTip {
+    padding-right: 18px;
+	background: url(../images/icon-14-tooltip.png) no-repeat 100% 55%;
+}
+
+/* Field set */
+.mijosearch_fieldset_admin {
+	float: left;
+	width: 95%;
+	border: solid 1px #ccc !important;
+	padding: 10px;
+}
+
+/** header icons **/
+
+body.com_mijosearch .page-title {background:url(../images/toolbar.png) no-repeat 0 50%;padding-left:210px;}
+@media (max-width: 767px) { body.com_mijosearch .page-title {background:url(../images/toolbar.png) no-repeat center center;padding-left:0; text-indent: -800px} }
+
+.icon-32-save1 { background-image: url(../images/icon-32-save1.png); }
+.icon-32-apply1 { background-image: url(../images/icon-32-apply1.png); }
+.icon-32-cancel1 { background-image: url(../images/icon-32-cancel1.png); }
+.icon-32-new1 { background-image: url(../images/icon-32-new1.png); }
+.icon-32-edit1 { background-image: url(../images/icon-32-edit1.png); }
+.icon-32-cache  { background-image: url(../images/icon-32-popup-cache.png); }
+.icon-32-help1  { background-image: url(../images/icon-32-popup-help1.png); }
+.icon-32-uninstall  { background-image: url(../images/icon-32-uninstall.png); }
+.icon-32-publish1  { background-image: url(../images/icon-32-publish1.png); }
+.icon-32-unpublish1  { background-image: url(../images/icon-32-unpublish1.png); }
+
+/** toolbar **/
+table.toolbar1 {
+	border-collapse: collapse;
+	padding: 0;
+	margin: 0;
+}
+
+table.toolbar1 td {
+	padding: 1px 1px 1px 4px;
+	text-align: center;
+	color: #666;
+	height: 48px;
+}
+
+table.toolbar1 td.desc {
+	padding: 1px 10px 1px 4px;
+	text-align: left;
+	float: left-center;
+	color: #666;
+	height: 48px;
+}
+
+table.toolbar1 td.divider {
+	border-right: 1px solid #eee;
+	width: 5px;
+}
+
+table.toolbar1 span {
+	float: none;
+	width: 32px;
+	height: 32px;
+	margin: 0 auto;
+	display: block;
+}
+
+table.toolbar1 a {
+	display: block; float: left;
+	white-space: nowrap;
+	border: 1px solid #fbfbfb;
+	padding: 1px 5px;
+	cursor: pointer;
+}
+
+table.toolbar1 a:hover {
+	border-left: 1px solid #eee;
+	border-top: 1px solid #eee;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	text-decoration: none;
+	color: #0B55C4;
+}
+
+/** autocompleter **/
+.ac_results {
+	padding: 0px;
+	border: 1px solid black;
+	background-color: white;
+	overflow: hidden;
+	z-index: 99999;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.ac_results li {
+	margin: 0px;
+	padding: 2px 5px;
+	cursor: default;
+	display: block;
+	/* 
+	if width will be 100% horizontal scrollbar will apear 
+	when scroll mode will be used
+	*/
+	/*width: 100%;*/
+	font: menu;
+	font-size: 12px;
+	/* 
+	it is very important, if line-height not setted or setted 
+	in relative units scroll will be broken in firefox
+	*/
+	line-height: 16px;
+	overflow: hidden;
+}
+
+.ac_loading {
+	background: white url(../images/indicator.gif) right center no-repeat;
+}
+
+.ac_odd {
+	background-color: #eee;
+}
+
+.ac_over {
+	background-color: #0A246A;
+	color: white;
+}
+
+/* Controls */
+.form-horizontal .control-group:after {
+    clear: none !important;
+}
+.form-horizontal .control-group:before, .form-horizontal .control-group:after {
+    content: normal !important;
+}
+
+.form-horizontal .controls {
+    margin-left: 200px !important;
+}
+
+/* Divs */
+.fltlft {
+    float: left;
+}
+
+.fltrt {
+    float: right;
+}
+
+fieldset.adminform {
+    margin: 0px 10px;
+}
+
+/* Tabs */
+dl.tabs {
+    margin-bottom: 18px;
+    border-bottom: 1px solid #dddddd;
+    display: table;
+    line-height: 0;
+    clear: both;
+}
+
+dl.tabs dt h3 {
+    font-size: 1em;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+dt.tabs {
+    float: left;
+    line-height: 18px;
+    margin-bottom: -1px;
+}
+
+dt.tabs a {
+    display: block;
+    padding: 8px 12px;
+    margin-right: 2px;
+    line-height: 18px;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+}
+
+dt.tabs a:hover {
+    background-color: #eeeeee;
+    text-decoration: none;
+    border-color: #eeeeee #eeeeee #dddddd;
+}
+
+dl.tabs dt.open a,
+dl.tabs dt.open a:hover {
+    background-color: #ffffff;
+    border-color: #dddddd #dddddd transparent;
+    border-style: solid;
+    border-width: 1px;
+    color: #555555;
+    cursor: default;
+}
+
+/* Sliders */
+div.panel {
+    /*background: none repeat scroll 0 0 white;*/
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    margin-bottom: 3px;
+}
+
+div.panel h3 {
+    font-size: 1em;
+    margin: 0px;
+}
+
+div.panel h3 a {
+    display: block;
+    padding: 5px 0px 5px 10px;
+}
+
+/* Icons */
+.cpanel, #cpanel { clear:both; margin:-1px 0 8px; padding:8px 0; position:relative; z-index:0; min-height: 95px; }
+.cpanel, #cpanel div.icon-wrapper { float:left; display: block !important; width: auto !important; height :auto!important; line-height:12px !important; background-image: none !important; }
+
+.cpanel div.icon,
+#cpanel div.icon {
+    float: left;
+    margin: 0px 15px 0px 0px;
+    text-align: center;
+}
+
+.cpanel div.icon a,
+#cpanel div.icon a {
+    background-color: #FFFFFF;
+    background-position: -30px center;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    color: #565656;
+    display: block;
+    float: left;
+    height: 97px;
+    text-decoration: none;
+    transition-duration: 0.8s;
+    transition-property: background-position, -moz-border-radius-bottomleft, -moz-box-shadow;
+    vertical-align: middle;
+    width: 108px;
+}
+
+.cpanel div.icon a:hover,
+#cpanel div.icon a:hover,
+.cpanel div.icon a:focus,
+#cpanel div.icon a:focus,
+.cpanel div.icon a:active,
+#cpanel div.icon a:active {
+    border-bottom-left-radius: 50% 20px;
+    box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+}
+
+.cpanel img,
+#cpanel img {
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+.cpanel span,
+#cpanel span {
+    display: block;
+    text-align: center;
+}
+
+/* Date selector */
+.input-append {
+    display: inline;
+}

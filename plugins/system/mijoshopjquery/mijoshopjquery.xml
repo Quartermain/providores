@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+	<name>System - MijoShop jQuery</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>May 2013</creationDate>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>http://mijosoft.com</authorUrl>
+	<copyright>Copyright (C) Mijosoft LLC, mijosoft.com</copyright>
+	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+	<version>1.0.0</version>
+	<description><![CDATA[jQuery libraries required for MijoShop. Don't unpublish this plugin unless you know what you're doing.]]></description>
+	
+	<files>
+		<filename plugin="mijoshopjquery">mijoshopjquery.php</filename>
+		<filename>script.php</filename>
+		<folder>mijoshopjquery</folder>
+	</files>
+	
+	<scriptfile>script.php</scriptfile>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="only_mijoshop" type="radio" class="btn-group" default="1" label="Only if MijoShop" description="Load the following libraries only viewing any MijoShop module or page.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="load_ui" type="list" default="1" label="Load jQuery UI" description="Load UI library of jQuery.">
+					<option value="0">No</option>
+					<option value="1">Both sides</option>
+					<option value="2">Only Front-end</option>
+					<option value="3">Only Back-end</option>
+				</field>
+                <field name="load_migrate" type="radio" class="btn-group" default="0" label="Load jQuery Migration" description="Load jQuery migration script for jQuery 1.9 compatibility.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="load_cookie" type="radio" class="btn-group" default="0" label="Load Cookie" description="Load Cookie library of jQuery.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="load_colorbox" type="radio" class="btn-group" default="1" label="Load Colorbox" description="Load Colorbox library of jQuery.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="load_cycle" type="radio" class="btn-group" default="1" label="Load Cycle" description="Load Cycle library of jQuery.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="load_jcarousel" type="radio" class="btn-group" default="1" label="Load jCarousel" description="Load jCarousel library of jQuery.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="load_nivo_slider" type="radio" class="btn-group" default="1" label="Load Nivo Slider" description="Load Nivo Slider library of jQuery.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

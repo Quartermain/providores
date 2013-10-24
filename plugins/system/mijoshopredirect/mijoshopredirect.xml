@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5.0" type="plugin" group="system" method="upgrade">
+	<name>System - MijoShop Redirect</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>October 2012</creationDate>
+	<copyright>Copyright (C) Mijosoft LLC, mijosoft.com</copyright>
+	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>http://mijosoft.com</authorUrl>
+	<version>1.0.0</version>
+	<description>This plugin makes some required redirects for MijoShop and allows you to redirect imported data from AceShop, Virtuemart, HikaShop, redSHOP, Tienda and JoomShopping to MijoShop.</description>
+	
+	<files>
+		<filename plugin="mijoshopredirect">mijoshopredirect.php</filename>
+	</files>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="aceshop" type="radio" class="btn-group" default="0" label="Redirect AceShop" description="Redirect AceShop links to MijoShop links.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="virtuemart" type="radio" class="btn-group" default="0" label="Redirect VirtueMart" description="Redirect VirtueMart links to MijoShop links.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="hikashop" type="radio" class="btn-group" default="0" label="Redirect HikaShop" description="Redirect HikaShop links to MijoShop links.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="redshop" type="radio" class="btn-group" default="0" label="Redirect redSHOP" description="Redirect redSHOP links to MijoShop links.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="tienda" type="radio" class="btn-group" default="0" label="Redirect Tienda" description="Redirect Tienda links to MijoShop links.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="joomshopping" type="radio" class="btn-group" default="0" label="Redirect JoomShopping" description="Redirect JoomShopping links to MijoShop links.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="mijosearch_ext" version="1.5.0" method="upgrade">
+	<name>Banners</name>
+	<author>Mijosoft LLC</author>
+    <creationDate>February 2013</creationDate>
+    <copyright>(C) 2009-2013 Mijosoft LLC</copyright>
+    <license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+    <authorEmail>info@mijosoft.com</authorEmail>
+    <authorUrl>www.mijosoft.com</authorUrl>
+    <version>2.0.0</version>
+	<description>Banners extension for MijoSearch.</description>
+	<client>2</client>
+	<files>
+		<filename mijosearch_ext="com_banners">com_banners.php</filename>
+	</files>
+	
+	<fields>
+		<field client="2" name="category" 	 type="category"  jtext="COM_MIJOSEARCH_FIELDS_CATEGORY" filter="1"/>
+		<field client="2" name="name" type="checkbox" jtext="COM_MIJOSEARCH_FIELDS_TITLE" value="1" />
+		<field client="2" name="description" type="checkbox" jtext="COM_MIJOSEARCH_FIELDS_DESC" value="1" />
+	</fields>
+
+	<config>
+		<fields name="params">
+			<fieldset name="extension">
+				<field name="search_categories" type="radio" class="btn-group" default="1" label="COM_MIJOSEARCH_PARAMS_SEARCH_CATEGORIES" description="COM_MIJOSEARCH_PARAMS_SEARCH_CATEGORIES_HELP">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field type="spacer" />
+				<field name="category" type="radio" class="btn-group" default="1" label="COM_MIJOSEARCH_PARAMS_CATEGORY" description="COM_MIJOSEARCH_PARAMS_CATEGORY_HELP">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="name" type="list" default="1" label="COM_MIJOSEARCH_FIELDS_TITLE" description="COM_MIJOSEARCH_PARAMS_FIELD_HELP">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+					<option value="2">COM_MIJOSEARCH_PARAMS_YES_BUT_HIDE</option>
+				</field>
+				<field name="description" type="list" default="1" label="COM_MIJOSEARCH_FIELDS_DESC" description="COM_MIJOSEARCH_PARAMS_FIELD_HELP">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+					<option value="2">COM_MIJOSEARCH_PARAMS_YES_BUT_HIDE</option>
+				</field>
+				<field name="exclude_itemid" type="textarea" cols="50" rows="2" default="" label="Exclude items (per ID)" description="Enter item IDs which will be exluded from the search process. Seperate them by comma." />
+				<field name="exclude_catid" type="textarea" cols="50" rows="2" default="" label="Exclude categories (per ID)" description="Enter category IDs which will be exluded from the search process. Seperate them by comma." />
+			</fieldset>
+		</fields>
+	</config>
+</install>

@@ -1,0 +1,2676 @@
+<modification>
+	<id>MijoShop - Back-end modifications</id>
+	<version>1.2.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>mijosoft.com</author>
+
+    <file name="admin/controller/catalog/product.php">
+        <operation error="skip">
+            <search position="after" index="1" offset="2"><![CDATA[
+            if (isset($this->request->get['filter_price'])) {
+            ]]></search>
+            <add><![CDATA[
+            //filter category start//
+            if (isset($this->request->get['filter_category'])) {
+                $url .= '&filter_category=' . $this->request->get['filter_category'];
+            }
+            //filter category end//
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" index="2" offset="2"><![CDATA[
+            if (isset($this->request->get['filter_price'])) {
+            ]]></search>
+            <add><![CDATA[
+            //filter category start//
+            if (isset($this->request->get['filter_category'])) {
+                $url .= '&filter_category=' . $this->request->get['filter_category'];
+            }
+            //filter category end//
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" index="4" offset="2"><![CDATA[
+            if (isset($this->request->get['filter_price'])) {
+            ]]></search>
+            <add><![CDATA[
+            //filter category start//
+            if (isset($this->request->get['filter_category'])) {
+                $url .= '&filter_category=' . $this->request->get['filter_category'];
+            }
+            //filter category end//
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" index="5" offset="4"><![CDATA[
+            if (isset($this->request->get['filter_price'])) {
+            ]]></search>
+            <add><![CDATA[
+            //filter category start//
+            if (isset($this->request->get['filter_category'])) {
+                $filter_category = $this->request->get['filter_category'];
+            } else {
+                $filter_category = NULL;
+            }
+            //filter category end//
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" index="6" offset="2"><![CDATA[
+            if (isset($this->request->get['filter_price'])) {
+            ]]></search>
+            <add><![CDATA[
+            //filter category start//
+            if (isset($this->request->get['filter_category'])) {
+                $url .= '&filter_category=' . $this->request->get['filter_category'];
+            }
+            //filter category end//
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[
+            'filter_price'	  => $filter_price,
+            ]]></search>
+            <add><![CDATA[
+            //filter category start//
+            'filter_category' => $filter_category,
+            // End
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" index="1"><![CDATA[
+            $results = $this->model_catalog_product->getProducts($data);
+            ]]></search>
+            <add><![CDATA[
+            //filter category start//
+            $this->load->model('catalog/category');
+            $this->data['categories'] = $this->model_catalog_category->getCategories(0);
+            //filter category end//
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[
+            if ($result['image'] && file_exists(DIR_IMAGE . $result['image'])) {
+            ]]></search>
+            <add><![CDATA[
+            //filter category start//
+            $category =  $this->model_catalog_product->getProductCategories($result['product_id']);
+            //filter category end//
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[
+            'price'      => $result['price'],
+            ]]></search>
+            <add><![CDATA[
+            //filter category start//
+            'category'   => $category,
+            //filter category end//
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[
+            $this->data['column_name'] = $this->language->get('column_name');
+            ]]></search>
+            <add><![CDATA[
+            // Add
+            $this->data['column_category'] = $this->language->get('column_category');
+            // End add
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[
+            $this->data['sort_model'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.model' . $url, 'SSL');
+            ]]></search>
+            <add><![CDATA[
+        //filter category start//
+        $this->data['sort_category'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p2c.category' . $url, 'SSL');
+        //filter category end//
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" index="8" offset="2"><![CDATA[
+            if (isset($this->request->get['filter_price'])) {
+            ]]></search>
+            <add><![CDATA[
+            // Add
+            if (isset($this->request->get['filter_category'])) {
+                $url .= '&filter_category=' . $this->request->get['filter_category'];
+            }
+            // End add
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[
+            $this->data['filter_price'] = $filter_price;
+            ]]></search>
+            <add><![CDATA[
+            // Add
+            $this->data['filter_category'] = $filter_category;
+            // End add
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="9"><![CDATA[
+            if (isset($this->request->get['filter_name'])) {
+            ]]></search>
+            <add><![CDATA[
+            // Add
+            //filter category start//
+            if (isset($this->request->get['filter_category'])) {
+                $url .= '&filter_category=' . $this->request->get['filter_category'];
+            }
+            //filter category end//
+            ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_filter'] = $this->language->get('button_filter');]]></search>
+            <add><![CDATA[
+        $this->data['button_enable'] = $this->language->get('button_enable');
+        $this->data['button_disable'] = $this->language->get('button_disable');
+            ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_remove'] = $this->language->get('button_remove');]]></search>
+            <add><![CDATA[
+        $this->data['button_savenew'] = $this->language->get('button_savenew');
+        $this->data['button_saveclose'] = $this->language->get('button_saveclose');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->model_catalog_product->addProduct($this->request->post);]]></search>
+            <add><![CDATA[
+            $product_id = $this->model_catalog_product->addProduct($this->request->post);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/product/update', 'product_id='.$product_id.'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/product/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[$this->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/product/update', 'product_id='.$this->request->get['product_id'].'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/product/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/catalog/category.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_repair'] = $this->language->get('button_repair');]]></search>
+            <add><![CDATA[
+        $this->data['button_enable'] = $this->language->get('button_enable');
+        $this->data['button_disable'] = $this->language->get('button_disable');
+        $this->data['button_filter'] = $this->language->get('button_filter');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['column_action'] = $this->language->get('column_action');]]></search>
+            <add><![CDATA[
+        $this->data['column_status'] = $this->language->get('column_status');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA['selected'    => isset($this->request->post['selected']) && in_array($result['category_id'], $this->request->post['selected']),]]></search>
+            <add><![CDATA[              'status'      => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA['start' => ($page - 1) * $this->config->get('config_admin_limit'),]]></search>
+            <add><![CDATA[            'filter_name' => $filter_name,
+            'filter_status' => $filter_status,
+            'filter_sortorder' => $filter_sortorder,]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['pagination'] = $pagination->render();]]></search>
+            <add><![CDATA[
+        $this->data['filter_name'] = $filter_name;
+        $this->data['filter_status'] = $filter_status;
+        $this->data['filter_sortorder'] = $filter_sortorder;
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['text_no_results'] = $this->language->get('text_no_results');]]></search>
+            <add><![CDATA[
+        $this->data['text_enabled'] = $this->language->get('text_enabled');
+        $this->data['text_disabled'] = $this->language->get('text_disabled');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[protected function getList() {]]></search>
+            <add><![CDATA[
+        if (isset($this->request->get['filter_name'])) {
+            $filter_name = $this->request->get['filter_name'];
+        } else {
+            $filter_name = null;
+        }
+
+        if (isset($this->request->get['filter_status'])) {
+            $filter_status = $this->request->get['filter_status'];
+        } else {
+            $filter_status = null;
+        }
+
+        if (isset($this->request->get['filter_sortorder'])) {
+            $filter_sortorder = $this->request->get['filter_sortorder'];
+        } else {
+            $filter_sortorder = null;
+        }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" index="4"><![CDATA[$url = '';]]></search>
+            <add><![CDATA[
+        if (isset($this->request->get['filter_name'])) {
+            $url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+        }
+
+        if (isset($this->request->get['filter_status'])) {
+            $url .= '&filter_status=' . $this->request->get['filter_status'];
+        }
+
+        if (isset($this->request->get['filter_sortorder'])) {
+            $url .= '&filter_sortorder=' . $this->request->get['filter_sortorder'];
+        }
+            ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_cancel'] = $this->language->get('button_cancel');]]></search>
+            <add><![CDATA[
+        $this->data['button_savenew'] = $this->language->get('button_savenew');
+        $this->data['button_saveclose'] = $this->language->get('button_saveclose');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->model_catalog_category->addCategory($this->request->post);]]></search>
+            <add><![CDATA[
+            $category_id = $this->model_catalog_category->addCategory($this->request->post);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->redirect($this->url->link('catalog/category', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/category/update', 'category_id='.$category_id.'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/category/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[$this->redirect($this->url->link('catalog/category', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/category/update', 'category_id='.$this->request->get['category_id'].'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/category/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/catalog/manufacturer.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_cancel'] = $this->language->get('button_cancel');]]></search>
+            <add><![CDATA[
+        $this->data['button_savenew'] = $this->language->get('button_savenew');
+        $this->data['button_saveclose'] = $this->language->get('button_saveclose');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->model_catalog_manufacturer->addManufacturer($this->request->post);]]></search>
+            <add><![CDATA[
+        $manufacturer_id = $this->model_catalog_manufacturer->addManufacturer($this->request->post);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->redirect($this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/manufacturer/update', 'manufacturer_id='.$manufacturer_id.'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/manufacturer/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[$this->redirect($this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/manufacturer/update', 'manufacturer_id='.$this->request->get['manufacturer_id'].'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/manufacturer/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/catalog/review.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_delete'] = $this->language->get('button_delete');]]></search>
+            <add><![CDATA[
+        $this->data['button_enable'] = $this->language->get('button_enable');
+        $this->data['button_disable'] = $this->language->get('button_disable');
+            ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_cancel'] = $this->language->get('button_cancel');]]></search>
+            <add><![CDATA[
+        $this->data['button_savenew'] = $this->language->get('button_savenew');
+        $this->data['button_saveclose'] = $this->language->get('button_saveclose');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->model_catalog_review->addReview($this->request->post);]]></search>
+            <add><![CDATA[
+            $review_id = $this->model_catalog_review->addReview($this->request->post);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->redirect($this->url->link('catalog/review', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/review/update', 'review_id='.$review_id.'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/review/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[$this->redirect($this->url->link('catalog/review', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/review/update', 'review_id='.$this->request->get['review_id'].'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/review/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/catalog/information.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_delete'] = $this->language->get('button_delete');]]></search>
+            <add><![CDATA[
+        $this->data['button_enable'] = $this->language->get('button_enable');
+        $this->data['button_disable'] = $this->language->get('button_disable');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['column_action'] = $this->language->get('column_action');]]></search>
+            <add><![CDATA[$this->data['column_status'] = $this->language->get('column_status');]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA['selected'       => isset($this->request->post['selected']) && in_array($result['information_id'], $this->request->post['selected']),]]></search>
+            <add><![CDATA['status'      => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_cancel'] = $this->language->get('button_cancel');]]></search>
+            <add><![CDATA[
+        $this->data['button_savenew'] = $this->language->get('button_savenew');
+        $this->data['button_saveclose'] = $this->language->get('button_saveclose');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->model_catalog_information->addInformation($this->request->post);]]></search>
+            <add><![CDATA[
+            $information_id = $this->model_catalog_information->addInformation($this->request->post);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->redirect($this->url->link('catalog/information', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/information/update', 'information_id='.$information_id.'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/information/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[$this->redirect($this->url->link('catalog/information', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/information/update', 'information_id='.$this->request->get['information_id'].'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/information/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/catalog/filter.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_remove'] = $this->language->get('button_remove');]]></search>
+            <add><![CDATA[
+        $this->data['button_savenew'] = $this->language->get('button_savenew');
+        $this->data['button_saveclose'] = $this->language->get('button_saveclose');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->model_catalog_filter->addFilter($this->request->post);]]></search>
+            <add><![CDATA[
+            $filter_group_id = $this->model_catalog_filter->addFilter($this->request->post);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->redirect($this->url->link('catalog/filter', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/filter/update', 'filter_group_id='.$filter_group_id.'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/filter/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[$this->redirect($this->url->link('catalog/filter', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/filter/update', 'filter_group_id='.$this->request->get['filter_group_id'].'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/filter/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/catalog/attribute.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_cancel'] = $this->language->get('button_cancel');]]></search>
+            <add><![CDATA[
+        $this->data['button_savenew'] = $this->language->get('button_savenew');
+        $this->data['button_saveclose'] = $this->language->get('button_saveclose');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->model_catalog_attribute->addAttribute($this->request->post);]]></search>
+            <add><![CDATA[
+            $attribute_id = $this->model_catalog_attribute->addAttribute($this->request->post);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->redirect($this->url->link('catalog/attribute', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/attribute/update', 'attribute_id='.$attribute_id.'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/attribute/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[$this->redirect($this->url->link('catalog/attribute', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/attribute/update', 'attribute_id='.$this->request->get['attribute_id'].'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/attribute/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/catalog/attribute_group.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_cancel'] = $this->language->get('button_cancel');]]></search>
+            <add><![CDATA[
+        $this->data['button_savenew'] = $this->language->get('button_savenew');
+        $this->data['button_saveclose'] = $this->language->get('button_saveclose');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->model_catalog_attribute_group->addAttributeGroup($this->request->post);]]></search>
+            <add><![CDATA[
+            $attribute_group_id = $this->model_catalog_attribute_group->addAttributeGroup($this->request->post);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->redirect($this->url->link('catalog/attribute_group', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/attribute_group/update', 'attribute_group_id='.$attribute_group_id.'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/attribute_group/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[$this->redirect($this->url->link('catalog/attribute_group', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/attribute_group/update', 'attribute_group_id='.$this->request->get['attribute_group_id'].'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/attribute_group/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/catalog/option.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[public function upload() {]]></search>
+            <add><![CDATA[
+        if(!isset($_SERVER['HTTP_REFERER']) or (strpos($_SERVER['HTTP_REFERER'] , HTTP_SERVER) === false  and strpos($_SERVER['HTTP_REFERER'] , HTTPS_SERVER) === false)){
+            return;
+        }
+            ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_remove'] = $this->language->get('button_remove');]]></search>
+            <add><![CDATA[
+        $this->data['button_savenew'] = $this->language->get('button_savenew');
+        $this->data['button_saveclose'] = $this->language->get('button_saveclose');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->model_catalog_option->addOption($this->request->post);]]></search>
+            <add><![CDATA[
+            $option_id = $this->model_catalog_option->addOption($this->request->post);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->redirect($this->url->link('catalog/option', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/option/update', 'option_id='.$option_id.'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/option/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[$this->redirect($this->url->link('catalog/option', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/option/update', 'option_id='.$this->request->get['option_id'].'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/option/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/catalog/download.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_upload'] = $this->language->get('button_upload');]]></search>
+            <add><![CDATA[
+        $this->data['button_savenew'] = $this->language->get('button_savenew');
+        $this->data['button_saveclose'] = $this->language->get('button_saveclose');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->model_catalog_download->addDownload($this->request->post);]]></search>
+            <add><![CDATA[
+            $download_id = $this->model_catalog_download->addDownload($this->request->post);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->redirect($this->url->link('catalog/download', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/download/update', 'download_id='.$download_id.'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/download/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[$this->redirect($this->url->link('catalog/download', 'token=' . $this->session->data['token'] . $url, 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('catalog/download/update', 'download_id='.$this->request->get['download_id'].'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('catalog/download/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/controller/" name="module/*.php,shipping/*.php,payment/*.php,total/*.php,feed/*.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['heading_title'] = $this->language->get('heading_title');]]></search>
+            <add><![CDATA[
+        $this->data['button_savenew'] = $this->language->get('button_savenew');
+        $this->data['button_saveclose'] = $this->language->get('button_saveclose');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" index="1"><![CDATA[$this->session->data['success'] = $this->language->get('text_success');]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                $route = JRequest::getString('route');
+                $this->redirect($this->url->link($route, 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/controller/extension/" name="shipping.php,payment.php,total.php,feed.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['column_action'] = $this->language->get('column_action');]]></search>
+            <add><![CDATA[
+        $this->data['button_enable'] = $this->language->get('button_enable');
+        $this->data['button_disable'] = $this->language->get('button_disable');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['extensions'][] = array(]]></search>
+            <add><![CDATA[                    'extension'  => $extension,]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/setting/store.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_delete'] = $this->language->get('button_delete');]]></search>
+            <add><![CDATA[
+        $this->data['button_lang_sync'] = $this->language->get('button_lang_sync');
+        $this->data['button_fix_lang_ids'] = $this->language->get('button_fix_lang_ids');
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/common/header.php">
+        <operation error="skip">
+            <search position="before"><![CDATA[$this->data['text_zone']]]></search>
+            <add><![CDATA[		$this->data['text_vqmod_manager'] = $this->language->get('text_vqmod_manager');]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[$this->data['zone']]]></search>
+            <add><![CDATA[			$this->data['vqmod_manager'] = $this->url->link('module/vqmod_manager', 'token=' . $this->session->data['token'], 'SSL');]]></add>
+        </operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[$this->data['text_zone']]]></search>
+			<add><![CDATA[          $this->data['text_themeeditor'] = $this->language->get('text_themeeditor');]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[$this->data['feed']]]></search>
+			<add><![CDATA[          $this->data['themeeditor'] = $this->url->link('tool/themeeditor', 'token=' . $this->session->data['token'], 'SSL');]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[$this->data['logged'] = sprintf($this->language->get('text_logged'), $this->user->getUserName());]]></search>
+			<add><![CDATA[$this->data['logged'] = $this->language->get('text_logged');]]></add>
+		</operation>
+		<operation error="skip">
+            <search position="before"><![CDATA[$this->data['text_user']]]></search>
+            <add><![CDATA[        $this->data['text_upgrade'] = $this->language->get('text_upgrade');]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[$this->data['user']]]></search>
+            <add><![CDATA[          $this->data['upgrade'] = $this->url->link('common/upgrade', 'token=' . $this->session->data['token'], 'SSL');]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[$this->data['text_system']]]></search>
+            <add><![CDATA[        $this->data['text_support_oc'] = $this->language->get('text_support_oc');]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[$this->data['tax_class']]]></search>
+            <add><![CDATA[          $this->data['support'] = $this->url->link('common/support', '', 'SSL');]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/setting/setting.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$server = HTTPS_CATALOG;]]></search>
+            <add><![CDATA[$server = HTTPS_CATALOG.'components/com_mijoshop/opencart/';]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$server = HTTP_CATALOG;]]></search>
+            <add><![CDATA[$server = HTTP_CATALOG.'components/com_mijoshop/opencart/';]]></add>
+        </operation>
+		<operation error="skip">
+            <search position="before"><![CDATA[$this->template = 'setting/setting.tpl';]]></search>
+            <add><![CDATA[
+        if (isset($this->request->post['config_mijoshop'])) {
+            $this->data['config_mijoshop'] = $this->request->post['config_mijoshop'];
+        } else {
+            $this->data['config_mijoshop'] = $this->config->get('config_mijoshop');
+        }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['tab_server'] = $this->language->get('tab_server');]]></search>
+            <add><![CDATA[
+        $this->data['entry_mijoshop_pid'] = $this->language->get('entry_mijoshop_pid');
+        $this->data['entry_mijoshop_enable_vqmod_cache'] = $this->language->get('entry_mijoshop_enable_vqmod_cache');
+        $this->data['entry_mijoshop_show_header'] = $this->language->get('entry_mijoshop_show_header');
+        $this->data['entry_mijoshop_show_footer'] = $this->language->get('entry_mijoshop_show_footer');
+        $this->data['entry_mijoshop_show_cats_menu'] = $this->language->get('entry_mijoshop_show_cats_menu');
+        $this->data['entry_mijoshop_trigger_content_plg'] = $this->language->get('entry_mijoshop_trigger_content_plg');
+        $this->data['entry_mijoshop_fix_ie_cache'] = $this->language->get('entry_mijoshop_fix_ie_cache');
+        $this->data['entry_mijoshop_mijoshop_display'] = $this->language->get('entry_mijoshop_mijoshop_display');
+        $this->data['entry_mijoshop_button_class'] = $this->language->get('entry_mijoshop_button_class');
+        $this->data['entry_mijoshop_comments'] = $this->language->get('entry_mijoshop_comments');
+        $this->data['entry_mijoshop_mijosef_integration'] = $this->language->get('entry_mijoshop_mijosef_integration');
+        $this->data['entry_mijoshop_acymailling_register'] = $this->language->get('entry_mijoshop_acymailling_register');
+        $this->data['entry_mijoshop_acymailling_checkout'] = $this->language->get('entry_mijoshop_acymailling_checkout');
+        $this->data['entry_mijoshop_check_j_block_status'] = $this->language->get('entry_mijoshop_check_j_block_status');
+            ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_cancel'] = $this->language->get('button_cancel');]]></search>
+            <add><![CDATA[
+        $this->data['button_savenew'] = $this->language->get('button_savenew');
+        $this->data['button_saveclose'] = $this->language->get('button_saveclose');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->redirect($this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('setting/setting', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('setting/store/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/setting/store.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->data['button_cancel'] = $this->language->get('button_cancel');]]></search>
+            <add><![CDATA[
+        $this->data['button_savenew'] = $this->language->get('button_savenew');
+        $this->data['button_saveclose'] = $this->language->get('button_saveclose');
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->redirect($this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('setting/store/update', 'store_id='.$store_id.'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('setting/store/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[$this->redirect($this->url->link('setting/store', 'token=' . $this->session->data['token'] . '&store_id=' . $this->request->get['store_id'], 'SSL'));]]></search>
+            <add><![CDATA[
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'save') {
+                 $this->redirect($this->url->link('setting/store/update', 'store_id='.$this->request->get['store_id'].'&token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+
+            if (isset($this->request->post['button']) and $this->request->post['button'] == 'new') {
+                 $this->redirect($this->url->link('setting/store/insert', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/module/vqmod_manager.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->redirect($this->url->link('extension/module']]></search>
+            <add><![CDATA[$this->redirect($this->url->link('module/vqmod_manager']]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace" offset="3"><![CDATA[if (!class_exists('ZipArchive')) {]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->document->addStyle('view/stylesheet/vqmod_manager.css');]]></search>
+            <add><![CDATA[MijoShop::get('base')->addHeader(JPATH_MIJOSHOP_OC.'/admin/view/stylesheet/vqmod_manager.css');
+		]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/sale/customer.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[index.php?route=]]></search>
+            <add><![CDATA[index.php?option=com_mijoshop&route=]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/sale/customer_group.php">
+        <operation error="skip">
+            <search position="before"><![CDATA[$this->template = 'sale/customer_group_form.tpl';]]></search>
+            <add><![CDATA[        $jgroup_tree =  MijoShop::get('user')->getJoomlaUserGroups();
+        $jgroup_id = MijoShop::get('user')->getJGroupIdOfCGroup($this->request->get['customer_group_id']);
+        $this->data['jgroups'] = JHTML::_('select.genericlist', $jgroup_tree, 'jgroup_id', 'size="1"', 'value', 'text', $jgroup_id);
+	]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/sale/order.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->session->data['token'] . '&order_id=' . $this->request->get['order_id'] . '&page={page}']]></search>
+            <add><![CDATA[$this->session->data['token'] . '&format=raw&tmpl=component&order_id=' . $this->request->get['order_id'] . '&page={page}']]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace" offset="6"><![CDATA[
+                    if ($this->request->post['payment_method'] == '') {
+            ]]></search>
+            <add><![CDATA[
+
+                    ]]></add>
+        </operation>
+		<operation error="skip">
+			<search position="after"><![CDATA[public function upload() {]]></search>
+			<add><![CDATA[
+        if(!isset($_SERVER['HTTP_REFERER']) or (strpos($_SERVER['HTTP_REFERER'] , HTTP_SERVER) === false  and strpos($_SERVER['HTTP_REFERER'] , HTTPS_SERVER) === false)){
+            return;
+        }
+            ]]></add>
+		</operation>
+    </file>
+
+    <file name="admin/controller/user/user_permission.php">
+        <operation error="skip">
+            <search position="before"><![CDATA[$this->template = 'user/user_group_form.tpl';]]></search>
+            <add><![CDATA[        $jgroup_tree =  MijoShop::get('user')->getJoomlaUserGroups();
+        $jgroup_id = MijoShop::get('user')->getJGroupIdOfUGroup($this->request->get['user_group_id']);
+        $this->data['jgroups'] = JHTML::_('select.genericlist', $jgroup_tree, 'jgroup_id', 'size="1"', 'value', 'text', $jgroup_id);
+	]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/language/*/*.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$_['button_submit']                 = 'Submit';]]></search>
+            <add><![CDATA[
+$_['button_enable']          = 'Enable';
+$_['button_disable']         = 'Disable';
+$_['button_savenew']         = 'Save & New';
+$_['button_saveclose']       = 'Save & Close';
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/language/*/catalog/product.php">
+       <operation error="skip">
+           <search position="after"><![CDATA[
+           $_['column_image']           = 'Image';
+           ]]></search>
+           <add><![CDATA[
+        // Add
+        $_['column_category']        = 'Category';
+        // End add
+           ]]></add>
+       </operation>
+   	</file>
+
+    <file name="admin/language/*/catalog/category.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$_['column_action']          = 'Action';]]></search>
+            <add><![CDATA[$_['column_status']          = 'Status';]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/language/*/catalog/information.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$_['heading_title']     = 'Information';]]></search>
+            <add><![CDATA[$_['column_status']          = 'Status';]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/language/*/common/header.php">
+        <operation error="skip">
+            <search position="before"><![CDATA[$_['text_zone']]]></search>
+            <add><![CDATA[$_['text_vqmod_manager']               = 'vQmod Manager';]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[$_['text_zone']]]></search>
+            <add><![CDATA[$_['text_themeeditor']               = 'Theme Editor';]]></add>
+        </operation>
+		<operation error="skip">
+            <search position="before"><![CDATA[$_['text_users']]]></search>
+            <add><![CDATA[$_['text_upgrade']                     = 'Upgrade';]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[$_['text_system'] ]]></search>
+            <add><![CDATA[$_['text_support_oc']                  = 'Support';]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/language/*/shipping/usps.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$_['text_domestic_00']      = 'First-Class Mail Package';]]></search>
+            <add><![CDATA[$_['text_domestic_00']      = 'First-Class Mail Parsel';]]></add>
+        </operation>
+    </file>
+	
+	<file name="admin/language/english/module/vqmod_manager.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[VQMod]]></search>
+			<add><![CDATA[vQmod]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)]]></search>
+			<add><![CDATA[GNU GPL]]></add>
+		</operation>
+	</file>
+	
+    <file name="admin/language/*/setting/setting.php">
+        <operation error="skip">
+            <search position="before"><![CDATA[?>]]></search>
+            <add><![CDATA[
+//Mijoshop
+$_['entry_mijoshop_pid']                    = 'Personal ID';
+$_['entry_mijoshop_enable_vqmod_cache']     = 'Enable vQmod Cache';
+$_['entry_mijoshop_show_header']            = 'Show header widgets';
+$_['entry_mijoshop_show_footer']            = 'Show footer links';
+$_['entry_mijoshop_show_cats_menu']         = 'Show categories menu';
+$_['entry_mijoshop_trigger_content_plg']    = 'Load Plugins';
+$_['entry_mijoshop_fix_ie_cache']           = 'Fix IE caching issues';
+$_['entry_mijoshop_mijoshop_display']       = 'Default Product Display';
+$_['entry_mijoshop_button_class']           = 'Button CSS class';
+$_['entry_mijoshop_comments']               = 'Enable comments';
+$_['entry_mijoshop_check_j_block_status']   = 'Check Joomla activation status';
+$_['entry_mijoshop_mijosef_integration']    = 'Enable MijoSEF integration';
+$_['entry_mijoshop_acymailling_register']   = 'Add to AcyMailing list after registration';
+$_['entry_mijoshop_acymailling_checkout']   = 'Add to AcyMailing list after checkout';
+$_['error_language_no_in_db']               = 'Language wasn`t found in MijoShop database';
+$_['error_language_wrong_language_code']    = ' : Wrong language code';
+$_['error_language_no_directory']           = ' : Language wasn`t found in MijoShop Library or Joomla';
+$_['success_language_updated']              = ' : Language was updated';
+            ]]></add>
+        </operation>
+    </file>
+    <file name="admin/language/*/setting/store.php">
+        <operation error="skip">
+            <search position="before"><![CDATA[?>]]></search>
+            <add><![CDATA[
+$_['button_lang_sync']                      = 'Synchronize Languages';
+$_['button_fix_lang_ids']                   = 'Fix Language IDs';
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/model/catalog/category.php">
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[if ($data['keyword']) {]]></search>
+            <add><![CDATA[        MijoShop::get('mijosef')->store($data['mijosef'], $category_id);
+]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[if ($data['keyword']) {]]></search>
+            <add><![CDATA[        MijoShop::get('mijosef')->store($data['mijosef']);
+]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[if (isset($data['keyword'])) {]]></search>
+            <add><![CDATA[        $def_lang_id = Mijoshop::get('opencart')->get('config')->get('config_language_id');
+        $data['keyword'] = empty($data['keyword']) ? MijoShop::get('router')->generateAlias($data['category_description'][$def_lang_id]['name']) : $data['keyword'];]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[if ($data['keyword']) {]]></search>
+            <add><![CDATA[        $def_lang_id = Mijoshop::get('opencart')->get('config')->get('config_language_id');
+        $data['keyword'] = empty($data['keyword']) ? MijoShop::get('router')->generateAlias($data['category_description'][$def_lang_id]['name']) : $data['keyword'];]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[public function addCategory($data) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeCategorySave', array(&$data, true)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->cache->delete('category');]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopAfterCategorySave', array(&$data, &$category_id, true)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[public function editCategory($category_id, $data) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeCategorySave', array(&$data, &$category_id, false)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[$this->cache->delete('category');]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopAfterCategorySave', array(&$data, &$category_id, false)); ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after"><![CDATA[public function deleteCategory($category_id) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeCategoryDelete', array(&$category_id)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="3"><![CDATA[$this->cache->delete('category');]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopAfterCategoryDelete', array(&$category_id)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$sql = "SELECT cp.category_id AS category_id, GROUP_CONCAT(cd1.name ORDER BY cp.level SEPARATOR ' &gt; ') AS name, c.parent_id, c.sort_order FROM " . DB_PREFIX . "category_path cp LEFT JOIN " . DB_PREFIX . "category c ON (cp.category_id = c.category_id) LEFT JOIN " . DB_PREFIX . "category_description cd1 ON (cp.path_id = cd1.category_id) LEFT JOIN " . DB_PREFIX . "category_description cd2 ON (cp.category_id = cd2.category_id) WHERE cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'";]]></search>
+            <add><![CDATA[$sql = "SELECT cp.category_id AS category_id, GROUP_CONCAT(cd1.name ORDER BY cp.level SEPARATOR ' &gt; ') AS name, c.parent_id, c.status, c.sort_order FROM " . DB_PREFIX . "category_path cp LEFT JOIN " . DB_PREFIX . "category c ON (cp.category_id = c.category_id) LEFT JOIN " . DB_PREFIX . "category_description cd1 ON (cp.path_id = cd1.category_id) LEFT JOIN " . DB_PREFIX . "category_description cd2 ON (cp.category_id = cd2.category_id) WHERE cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'";]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[$sql .= " GROUP BY cp.category_id ORDER BY name";]]></search>
+            <add><![CDATA[
+        if (isset($data['filter_status']) and !is_null($data['filter_status'])) {
+            $sql .= " AND c.status = '".$data['filter_status']."'";
+        }
+
+        if (isset($data['filter_sortorder']) and !is_null($data['filter_sortorder'])) {
+            $sql .= " AND c.sort_order = '".$data['filter_sortorder']."'";
+        }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" index="1"><![CDATA[$this->cache->delete('category');]]></search>
+            <add><![CDATA[
+        return $category_id;
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/model/catalog/information.php">
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[if ($data['keyword']) {]]></search>
+            <add><![CDATA[        MijoShop::get('mijosef')->store($data['mijosef'], $information_id);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[if ($data['keyword']) {]]></search>
+            <add><![CDATA[        MijoShop::get('mijosef')->store($data['mijosef']);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[if (isset($data['keyword'])) {]]></search>
+            <add><![CDATA[        $def_lang_id = Mijoshop::get('opencart')->get('config')->get('config_language_id');
+        $data['keyword'] = empty($data['keyword']) ? MijoShop::get('router')->generateAlias($data['information_description'][$def_lang_id]['title']) : $data['keyword'];]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[if ($data['keyword']) {]]></search>
+            <add><![CDATA[        $def_lang_id = Mijoshop::get('opencart')->get('config')->get('config_language_id');
+        $data['keyword'] = empty($data['keyword']) ? MijoShop::get('router')->generateAlias($data['information_description'][$def_lang_id]['title']) : $data['keyword'];]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after" index="1"><![CDATA[$this->cache->delete('information');]]></search>
+            <add><![CDATA[        return $information_id;
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/model/catalog/filter.php">
+        <operation error="skip">
+            <search position="after" index="1" offset ="4"><![CDATA[foreach ($filter['filter_description'] as $language_id => $filter_description) {]]></search>
+            <add><![CDATA[        return $filter_group_id;
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/model/catalog/attribute.php">
+        <operation error="skip">
+            <search position="after" index="1" offset ="2"><![CDATA[foreach ($data['attribute_description'] as $language_id => $value) {]]></search>
+            <add><![CDATA[        return $attribute_id;
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/model/catalog/attribute_group.php">
+        <operation error="skip">
+            <search position="after" index="1" offset ="2"><![CDATA[foreach ($data['attribute_group_description'] as $language_id => $value) {]]></search>
+            <add><![CDATA[        return $attribute_group_id;
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/model/catalog/option.php">
+        <operation error="skip">
+            <search position="after" index="1" offset ="4"><![CDATA[foreach ($option_value['option_value_description'] as $language_id => $option_value_description) {]]></search>
+            <add><![CDATA[        return $option_id;
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/model/catalog/download.php">
+        <operation error="skip">
+            <search position="after" index="1" offset ="2"><![CDATA[foreach ($data['download_description'] as $language_id => $value) {]]></search>
+            <add><![CDATA[        return $download_id;
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/model/catalog/manufacturer.php">
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[if ($data['keyword']) {]]></search>
+            <add><![CDATA[        MijoShop::get('mijosef')->store($data['mijosef'], $manufacturer_id);
+]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[if ($data['keyword']) {]]></search>
+            <add><![CDATA[        MijoShop::get('mijosef')->store($data['mijosef']);
+]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[if (isset($data['keyword'])) {]]></search>
+            <add><![CDATA[        $data['keyword'] = empty($data['keyword']) ? MijoShop::get('router')->generateAlias($data['name']) : $data['keyword'];]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[if ($data['keyword']) {]]></search>
+            <add><![CDATA[        $data['keyword'] = empty($data['keyword']) ? MijoShop::get('router')->generateAlias($data['name']) : $data['keyword'];]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[public function addManufacturer($data) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeManufacturerSave', array(&$data, true)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->cache->delete('manufacturer');]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopAfterManufacturerSave', array(&$data, &$manufacturer_id, true)); ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after"><![CDATA[public function editManufacturer($manufacturer_id, $data) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeManufacturerSave', array(&$data, &$manufacturer_id, false)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[$this->cache->delete('manufacturer');]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopAfterManufacturerSave', array(&$data, &$manufacturer_id, false)); ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after"><![CDATA[public function deleteManufacturer($manufacturer_id) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeManufacturerDelete', array(&$manufacturer_id)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="3"><![CDATA[$this->cache->delete('manufacturer');]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopAfterManufacturerDelete', array(&$manufacturer_id)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" index="1"><![CDATA[$this->cache->delete('manufacturer');]]></search>
+            <add><![CDATA[		return $manufacturer_id; ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/model/catalog/product.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$product_option_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "'");]]></search>
+            <add><![CDATA[$product_option_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_option po LEFT JOIN `" . DB_PREFIX . "option` o ON (po.option_id = o.option_id) LEFT JOIN " . DB_PREFIX . "option_description od ON (o.option_id = od.option_id) WHERE po.product_id = '" . (int)$product_id . "' AND od.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY o.sort_order");]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA['product_option_id'    => $product_option['product_option_id'],]]></search>
+            <add><![CDATA['name' => $product_option['name'],
+			'type' => $product_option['type'],
+			]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[
+            $sql = "SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)";
+            ]]></search>
+            <add><![CDATA[
+            // Add
+            // $sql = "SELECT p.*,pd.*,p2c.product_id product_id2 FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'" ;
+            $sql = "SELECT p.*,pd.*,p2c.product_id product_id2 FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id)" ;
+            // End add
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[
+            $sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id)";
+            ]]></search>
+            <add><![CDATA[
+            // Add
+            // $sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id)";
+            $sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category p3c ON (p.product_id = p3c.product_id)";            // End add
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[
+            if (isset($data['filter_quantity']) && !is_null($data['filter_quantity'])) {
+            ]]></search>
+            <add><![CDATA[
+            // Add Category Filter
+            if (isset($data['filter_category']) && !is_null($data['filter_category'])) {
+                $lGroup = False ;
+                $sql .= " AND p2c.category_id = '" . $this->db->escape($data['filter_category']) . "'";
+            }else{
+                $lGroup = True ;
+            }
+            // End add
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[
+            'p.price',
+            ]]></search>
+            <add><![CDATA[
+            // add
+            'p2c.category_id',
+            // end
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[
+            $sql = "SELECT COUNT(DISTINCT p.product_id) AS total FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)";
+            ]]></search>
+            <add><![CDATA[
+            // Add
+            $sql = "SELECT count(distinct p.product_id) AS total FROM " . DB_PREFIX . "product p
+                    LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)
+                    LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id)";
+            // End add
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" index="2" offset="2"><![CDATA[
+            if (!empty($data['filter_price'])) {
+            ]]></search>
+            <add><![CDATA[
+            // Add
+            if (isset($data['filter_category']) && !is_null($data['filter_category'])) {
+               $sql .= " AND p2c.category_id = '" . $this->db->escape($data['filter_category']) . "'";
+            }
+            // End add
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[if ($data['keyword']) {]]></search>
+            <add><![CDATA[        MijoShop::get('mijosef')->store($data['mijosef'], $product_id);
+]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[if ($data['keyword']) {]]></search>
+            <add><![CDATA[        MijoShop::get('mijosef')->store($data['mijosef']);
+]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[if (isset($data['keyword'])) {]]></search>
+            <add><![CDATA[        $def_lang_id = Mijoshop::get('opencart')->get('config')->get('config_language_id');
+        $data['keyword'] = empty($data['keyword']) ? MijoShop::get('router')->generateAlias($data['product_description'][$def_lang_id]['name']) : $data['keyword'];]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[if ($data['keyword']) {]]></search>
+            <add><![CDATA[        $def_lang_id = Mijoshop::get('opencart')->get('config')->get('config_language_id');
+        $data['keyword'] = empty($data['keyword']) ? MijoShop::get('router')->generateAlias($data['product_description'][$def_lang_id]['name']) : $data['keyword'];]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[public function addProduct($data) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeProductSave', array(&$data, true)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->cache->delete('product');]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopAfterProductSave', array(&$data, &$product_id, true)); ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after"><![CDATA[public function editProduct($product_id, $data) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeProductSave', array(&$data, &$product_id, false)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[$this->cache->delete('product');]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopAfterProductSave', array(&$data, &$product_id, false)); ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after"><![CDATA[public function deleteProduct($product_id) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeProductDelete', array(&$product_id)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="3"><![CDATA[$this->cache->delete('product');]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopAfterProductDelete', array(&$product_id)); ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="before" index="1"><![CDATA[$this->cache->delete('product');]]></search>
+            <add><![CDATA[
+        return $product_id;
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/model/catalog/review.php">
+        <operation error="skip">
+            <search position="after" index="1"><![CDATA[$this->cache->delete('product');]]></search>
+            <add><![CDATA[
+        return $this->db->getLastId();
+            ]]></add>
+        </operation>
+    </file>
+
+	<file name="admin/model/sale/customer.php">
+		<operation error="skip">
+			<search position="before" index="1"><![CDATA[if (isset($data['address'])) {]]></search>
+			<add><![CDATA[		MijoShop::get('user')->createJUserFromO($data, $customer_id);
+		]]></add>
+		</operation>
+        <operation error="skip">
+			<search position="replace"><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int)$data['newsletter'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', status = '" . (int)$data['status'] . "', date_added = NOW()");]]></search>
+			<add><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int)$data['newsletter'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', password = '" . $this->db->escape(md5($data['password'])) . "', status = '" . (int)$data['status'] . "', date_added = NOW()");]]></add>
+		</operation>
+        <operation error="skip">
+			<search position="replace" index="1"><![CDATA[$this->db->query("UPDATE " . DB_PREFIX . "customer SET salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "' WHERE customer_id = '" . (int)$customer_id . "'");]]></search>
+			<add><![CDATA[        	$this->db->query("UPDATE " . DB_PREFIX . "customer SET password = '" . $this->db->escape(md5($data['password'])) . "' WHERE customer_id = '" . (int)$customer_id . "'");]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[public function editCustomer($customer_id, $data) {]]></search>
+            <add><![CDATA[		MijoShop::get('user')->updateJUserFromO(MijoShop::get('user')->getJUserIdFromOCustomer($customer_id), $data, $customer_id);
+		]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[public function deleteCustomer($customer_id) {]]></search>
+            <add><![CDATA[		MijoShop::get('user')->deleteJUserFromO($customer_id);
+		]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" index="1"><![CDATA[if ($customer_info) {]]></search>
+            <add><![CDATA[            MijoShop::get('user')->approveJUserFromO($customer_id);
+		]]></add>
+        </operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[$message .= $store_url . "\n\n";]]></search>
+			<add><![CDATA[$message .= str_replace('/administrator', '', $this->url->link('account/login', '', 'SSL')) . "\n\n";]]></add>
+		</operation>
+
+	</file>
+
+    <file name="admin/model/sale/customer_group.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$customer_group_id = $this->db->getLastId();]]></search>
+            <add><![CDATA[
+        $this->db->query("INSERT INTO " . DB_PREFIX . "jgroup_cgroup_map SET jgroup_id = '" . (int)$data['jgroup_id'] . "', cgroup_id = '" . (int)$customer_group_id . "'");]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[public function editCustomerGroup($customer_group_id, $data) {]]></search>
+            <add><![CDATA[        $this->db->query("UPDATE " . DB_PREFIX . "jgroup_cgroup_map SET jgroup_id = '" . (int)$data['jgroup_id'] . "' WHERE cgroup_id = '" . (int)$customer_group_id . "'");
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[public function deleteCustomerGroup($customer_group_id) {]]></search>
+            <add><![CDATA[        $this->db->query("DELETE FROM " . DB_PREFIX . "jgroup_cgroup_map WHERE cgroup_id = '" . (int)$customer_group_id . "'");
+            ]]></add>
+        </operation>
+    </file>
+
+	<file name="admin/model/sale/order.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[public function addOrder($data) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeOrderSave', array(&$data, &$data['products'], &$data['vouchers'], &$data['totals'], true)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->db->query("UPDATE `" . DB_PREFIX . "order` SET total = '" . (float)$total . "', affiliate_id = '" . (int)$affiliate_id . "', commission = '" . (float)$commission . "' WHERE order_id = '" . (int)$order_id . "'");]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopAfterOrderSave', array(&$data, &$data['products'], &$data['vouchers'], &$data['totals'], &$order_id, true));]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="after"><![CDATA[public function addOrderHistory($order_id, $data) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeOrderStatusUpdate', array(&$data, &$order_id, &$data['order_status_id'], &$data['notify']));]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[$order_info = $this->getOrder($order_id);]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeOrderStatusUpdate', array(&$data, &$order_id, &$data['order_status_id'], &$data['notify']));]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[public function deleteOrder($order_id) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeOrderDelete', array(&$order_id));	]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[$this->db->query("DELETE FROM " . DB_PREFIX . "affiliate_transaction WHERE order_id = '" . (int)$order_id . "'");]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopAfterOrderDelete', array(&$order_id));		]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[index.php?route=]]></search>
+            <add><![CDATA[index.php?option=com_mijoshop&route=]]></add>
+        </operation>
+	</file>
+	
+	<file name="admin/model/sale/voucher.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$template->data['image'] = HTTP_CATALOG . 'image/' . $voucher_theme_info['image'];]]></search>
+            <add><![CDATA[$template->data['image'] = HTTP_IMAGE . $voucher_theme_info['image'];]]></add>
+        </operation>
+	</file>
+
+    <file name="admin/model/user/user.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->db->query("INSERT INTO `" . DB_PREFIX . "user` SET username = '" . $this->db->escape($data['username']) . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', user_group_id = '" . (int)$data['user_group_id'] . "', status = '" . (int)$data['status'] . "', date_added = NOW()");]]></search>
+            <add><![CDATA[
+        $this->db->query("INSERT INTO `" . DB_PREFIX . "user` SET username = '" . $this->db->escape($data['username']) . "', password = '" . $this->db->escape(md5($data['password'])) . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', user_group_id = '" . (int)$data['user_group_id'] . "', status = '" . (int)$data['status'] . "', date_added = NOW()");
+        $user_id = $this->db->getLastId();
+        MijoShop::get('user')->createJUserFromO($data, $user_id);]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[if ($data['password']) {]]></search>
+            <add><![CDATA[        MijoShop::get('user')->updateJUserFromO(MijoShop::get('user')->getJUserIdFromOUser($user_id, $data['username'], $data['email']), $data, $user_id);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[public function deleteUser($user_id) {]]></search>
+            <add><![CDATA[        MijoShop::get('user')->deleteJUserFromO($user_id, true);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->db->query("UPDATE `" . DB_PREFIX . "user` SET salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "' WHERE user_id = '" . (int)$user_id . "'");]]></search>
+            <add><![CDATA[$this->db->query("UPDATE `" . DB_PREFIX . "user` SET password = '" . $this->db->escape(md5($data['password'])) . "' WHERE user_id = '" . (int)$user_id . "'");]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->db->query("UPDATE `" . DB_PREFIX . "user` SET salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($password)))) . "', code = '' WHERE user_id = '" . (int)$user_id . "'");]]></search>
+            <add><![CDATA[$this->db->query("UPDATE `" . DB_PREFIX . "user` SET password = '" . $this->db->escape(md5($password)) . "', code = '' WHERE user_id = '" . (int)$user_id . "'");]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/model/user/user_group.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "user_group SET name = '" . $this->db->escape($data['name']) . "', permission = '" . (isset($data['permission']) ? serialize($data['permission']) : '') . "'");]]></search>
+            <add><![CDATA[
+        $user_group_id = $this->db->getLastId();
+        $this->db->query("INSERT INTO " . DB_PREFIX . "jgroup_ugroup_map SET jgroup_id = '" . (int)$data['jgroup_id'] . "', ugroup_id = '" . (int)$user_group_id . "'");]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[public function editUserGroup($user_group_id, $data) {]]></search>
+            <add><![CDATA[        $this->db->query("UPDATE " . DB_PREFIX . "jgroup_ugroup_map SET jgroup_id = '" . (int)$data['jgroup_id'] . "' WHERE ugroup_id = '" . (int)$user_group_id . "'");]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[public function deleteUserGroup($user_group_id) {]]></search>
+            <add><![CDATA[        $this->db->query("DELETE FROM " . DB_PREFIX . "jgroup_ugroup_map WHERE ugroup_id = '" . (int)$user_group_id . "'");]]></add>
+        </operation>
+    </file>
+
+	<file name="admin/model/tool/image.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[return HTTPS_CATALOG . 'image/' . $new_image;]]></search>
+            <add><![CDATA[return HTTPS_IMAGE . $new_image;]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[return HTTP_CATALOG . 'image/' . $new_image;]]></search>
+            <add><![CDATA[return HTTP_IMAGE . $new_image;]]></add>
+        </operation>
+    </file>
+	
+	<file name="admin/model/setting/setting.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->db->query("UDPATE " . DB_PREFIX . "setting SET `value` = '" . $this->db->escape($value) . " WHERE `group` = '" . $this->db->escape($group) . "' AND `key` = '" . $this->db->escape($key) . "' AND store_id = '" . (int)$store_id . "'");]]></search>
+            <add><![CDATA[$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '" . $this->db->escape($value) . "' WHERE `group` = '" . $this->db->escape($group) . "' AND `key` = '" . $this->db->escape($key) . "' AND store_id = '" . (int)$store_id . "'");]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->db->query("UDPATE " . DB_PREFIX . "setting SET `value` = '" . $this->db->escape(serialize($value)) . "' WHERE `group` = '" . $this->db->escape($group) . "' AND `key` = '" . $this->db->escape($key) . "' AND store_id = '" . (int)$store_id . "', serialized = '1'");]]></search>
+            <add><![CDATA[$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '" . $this->db->escape(serialize($value)) . "' WHERE `group` = '" . $this->db->escape($group) . "' AND `key` = '" . $this->db->escape($key) . "' AND store_id = '" . (int)$store_id . "' AND serialized = '1'");]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/view/template/catalog/category_form.tpl">
+		<operation error="skip">
+			<search position="after"><![CDATA[<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">]]></search>
+			<add><![CDATA[		<script language="text/javascript">
+			function submitbutton(pressbutton) {
+				<?php foreach ($languages as $language) { ?>
+					<?php echo MijoShop::get('base')->editor()->save("category_description[".$language['language_id']."][description]"); ?>
+				<?php } ?>
+				submitform(pressbutton);
+			}
+		</script>
+		]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[<td><textarea name="category_description[<?php echo $language['language_id']; ?>][description]" id="description<?php echo $language['language_id']; ?>"><?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['description'] : ''; ?></textarea></td>]]></search>
+			<add><![CDATA[<td>
+					<?php
+						$desc = isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['description'] : '';
+						echo MijoShop::get('base')->editor()->display("category_description[".$language['language_id']."][description]", $desc, '97% !important', '320', '50', '11');
+					?>
+				</td>]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="12"><![CDATA[<script type="text/javascript" src="view/javascript/ckeditor/ckeditor.js"></script>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[index.php?route=common/filemanager]]></search>
+            <add><![CDATA[index.php?option=com_mijoshop&format=raw&tmpl=component&route=common/filemanager]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace" offset="3"><![CDATA[<td><?php echo $entry_keyword; ?></td>]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" offset="1"><![CDATA[<td><?php echo $entry_meta_description; ?></td>]]></search>
+            <add><![CDATA[              <tr>
+                  <td><?php echo JText::_('COM_MIJOSHOP_ALIAS'); ?></td>
+                  <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="100" /></td>
+              </tr>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[<a href="#tab-design"><?php echo $tab_design; ?></a>]]></search>
+            <add><![CDATA[<a href="#tab-design"><?php echo $tab_design; ?></a><?php if (MijoShop::get('base')->isMijosefInstalled()) { ?><a href="#tab-mijosef">MijoSEF</a><?php } ?>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[<div id="tab-design">]]></search>
+            <add><![CDATA[
+        <?php if (MijoShop::get('base')->isMijosefInstalled()) { ?>
+        <div id="tab-mijosef">
+            <div id="languagessef" class="htabs">
+                <?php foreach ($languages as $language) { ?>
+                <a href="#languagesef<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
+                <?php } ?>
+            </div>
+            <?php foreach ($languages as $language) { ?>
+            <div id="languagesef<?php echo $language['language_id']; ?>">
+                <table class="form">
+                    <tr>
+                        <td><span class="required">*</span> SEF URL</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][url_sef]" size="100" value="<?php echo MijoShop::get('mijosef')->get('url_sef', 'category', JRequest::getInt('category_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Title</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][title]" size="100" value="<?php echo MijoShop::get('mijosef')->get('title', 'category', JRequest::getInt('category_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Description</td>
+                        <td><textarea class="text_area" name="mijosef[<?php echo $language['language_id']; ?>][description]" cols="57" rows="5"><?php echo MijoShop::get('mijosef')->get('description', 'category', JRequest::getInt('category_id', 0, 'get'), $language['language_id']); ?></textarea>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Keywords</td>
+                        <td><textarea class="text_area" name="mijosef[<?php echo $language['language_id']; ?>][keywords]" cols="57" rows="5"><?php echo MijoShop::get('mijosef')->get('keywords', 'category', JRequest::getInt('category_id', 0, 'get'), $language['language_id']); ?></textarea>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Language</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][lang]" size="30" value="<?php echo MijoShop::get('mijosef')->get('lang', 'category', JRequest::getInt('category_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Robots</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][robots]" size="30" value="<?php echo MijoShop::get('mijosef')->get('robots', 'category', JRequest::getInt('category_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Googlebot </td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][googlebot]" size="30" value="<?php echo MijoShop::get('mijosef')->get('googlebot', 'category', JRequest::getInt('category_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Canonical URL</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][canonical]" size="100" value="<?php echo MijoShop::get('mijosef')->get('canonical', 'category', JRequest::getInt('category_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                </table>
+                <input type="hidden" name="mijosef[<?php echo $language['language_id']; ?>][url_id]" value="<?php echo MijoShop::get('mijosef')->get('url_id', 'category', JRequest::getInt('category_id', 0, 'get'), $language['language_id']); ?>" />
+                <input type="hidden" name="mijosef[<?php echo $language['language_id']; ?>][meta_id]" value="<?php echo MijoShop::get('mijosef')->get('meta_id', 'category', JRequest::getInt('category_id', 0, 'get'), $language['language_id']); ?>" />
+                <input type="hidden" name="mijosef[<?php echo $language['language_id']; ?>][route_var]" value="route=product/category" />
+                <input type="hidden" name="mijosef[<?php echo $language['language_id']; ?>][route_id]" value="path=<?php echo JRequest::getInt('category_id', 0, 'get'); ?>" />
+            </div>
+            <?php } ?>
+        </div>
+        <?php } ?>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[$('#languages a').tabs();]]></search>
+        <add><![CDATA[
+$('#languagessef a').tabs();
+        ]]></add>
+        </operation>
+	</file>
+
+	<file name="admin/view/template/catalog/information_form.tpl">
+		<operation error="skip">
+			<search position="after"><![CDATA[<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">]]></search>
+			<add><![CDATA[		<script language="text/javascript">
+			function submitbutton(pressbutton) {
+				<?php foreach ($languages as $language) { ?>
+					<?php echo MijoShop::get('base')->editor()->save("information_description[".$language['language_id']."][description]"); ?>
+				<?php } ?>
+				submitform(pressbutton);
+			}
+		</script>
+		]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[<textarea name="information_description[<?php echo $language['language_id']; ?>][description]" id="description<?php echo $language['language_id']; ?>"><?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['description'] : ''; ?></textarea>]]></search>
+			<add><![CDATA[
+					<?php
+						$desc = isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['description'] : '';
+						echo MijoShop::get('base')->editor()->display("information_description[".$language['language_id']."][description]", $desc, '97% !important', '320', '50', '11');
+					?>
+					]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="12"><![CDATA[<script type="text/javascript" src="view/javascript/ckeditor/ckeditor.js"></script>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace" offset="3"><![CDATA[<td><?php echo $entry_keyword; ?></td>]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" offset="1"><![CDATA[<td><span class="required">*</span> <?php echo $entry_description; ?></td>]]></search>
+            <add><![CDATA[              <tr>
+                  <td><?php echo JText::_('COM_MIJOSHOP_ALIAS'); ?></td>
+                  <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="100" /></td>
+              </tr>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[<a href="#tab-design"><?php echo $tab_design; ?></a>]]></search>
+            <add><![CDATA[<a href="#tab-design"><?php echo $tab_design; ?></a><?php if (MijoShop::get('base')->isMijosefInstalled()) { ?><a href="#tab-mijosef">MijoSEF</a><?php } ?>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[<div id="tab-design">]]></search>
+            <add><![CDATA[
+        <?php if (MijoShop::get('base')->isMijosefInstalled()) { ?>
+        <div id="tab-mijosef">
+            <div id="languagessef" class="htabs">
+                <?php foreach ($languages as $language) { ?>
+                <a href="#languagesef<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
+                <?php } ?>
+            </div>
+            <?php foreach ($languages as $language) { ?>
+            <div id="languagesef<?php echo $language['language_id']; ?>">
+                <table class="form">
+                    <tr>
+                        <td><span class="required">*</span> SEF URL</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][url_sef]" size="100" value="<?php echo MijoShop::get('mijosef')->get('url_sef', 'information', JRequest::getInt('information_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Title</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][title]" size="100" value="<?php echo MijoShop::get('mijosef')->get('title', 'information', JRequest::getInt('information_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Description</td>
+                        <td><textarea class="text_area" name="mijosef[<?php echo $language['language_id']; ?>][description]" cols="57" rows="5"><?php echo MijoShop::get('mijosef')->get('description', 'information', JRequest::getInt('information_id', 0, 'get'), $language['language_id']); ?></textarea>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Keywords</td>
+                        <td><textarea class="text_area" name="mijosef[<?php echo $language['language_id']; ?>][keywords]" cols="57" rows="5"><?php echo MijoShop::get('mijosef')->get('keywords', 'information', JRequest::getInt('information_id', 0, 'get'), $language['language_id']); ?></textarea>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Language</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][lang]" size="30" value="<?php echo MijoShop::get('mijosef')->get('lang', 'information', JRequest::getInt('information_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Robots</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][robots]" size="30" value="<?php echo MijoShop::get('mijosef')->get('robots', 'information', JRequest::getInt('information_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Googlebot </td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][googlebot]" size="30" value="<?php echo MijoShop::get('mijosef')->get('googlebot', 'information', JRequest::getInt('information_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Canonical URL</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][canonical]" size="100" value="<?php echo MijoShop::get('mijosef')->get('canonical', 'information', JRequest::getInt('information_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                </table>
+                <input type="hidden" name="mijosef[<?php echo $language['language_id']; ?>][url_id]" value="<?php echo MijoShop::get('mijosef')->get('url_id', 'information', JRequest::getInt('information_id', 0, 'get'), $language['language_id']); ?>" />
+                <input type="hidden" name="mijosef[<?php echo $language['language_id']; ?>][meta_id]" value="<?php echo MijoShop::get('mijosef')->get('meta_id', 'information', JRequest::getInt('information_id', 0, 'get'), $language['language_id']); ?>" />
+                <input type="hidden" name="mijosef[<?php echo $language['language_id']; ?>][route_var]" value="route=information/information" />
+                <input type="hidden" name="mijosef[<?php echo $language['language_id']; ?>][route_id]" value="information_id=<?php echo JRequest::getInt('information_id', 0, 'get'); ?>" />
+            </div>
+            <?php } ?>
+        </div>
+        <?php } ?>]]></add>
+        </operation>
+		<operation error="skip">
+            <search position="after"><![CDATA[$('#languages a').tabs();]]></search>
+        <add><![CDATA[
+$('#languagessef a').tabs();
+        ]]></add>
+        </operation>
+	</file>
+
+    <file name="admin/view/template/catalog/manufacturer_form.tpl">
+           <operation error="skip">
+               <search position="replace" offset="3"><![CDATA[<td><?php echo $entry_keyword; ?></td>]]></search>
+               <add><![CDATA[]]></add>
+           </operation>
+        <operation error="skip">
+            <search position="before" offset="1"><![CDATA[<td><?php echo $entry_store; ?></td>]]></search>
+            <add><![CDATA[              <tr>
+                  <td><?php echo JText::_('COM_MIJOSHOP_ALIAS'); ?></td>
+                  <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="100" /></td>
+              </tr>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[<a href="#tab-general"><?php echo $tab_general; ?></a>]]></search>
+            <add><![CDATA[<a href="#tab-general"><?php echo $tab_general; ?></a><?php if (MijoShop::get('base')->isMijosefInstalled()) { ?><a href="#tab-mijosef">MijoSEF</a><?php } ?>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[<div id="tab-general">]]></search>
+            <add><![CDATA[
+        <?php if (MijoShop::get('base')->isMijosefInstalled()) { ?>
+        <div id="tab-mijosef">
+            <table class="form">
+                <tr>
+                    <td><span class="required">*</span> SEF URL</td>
+                    <td><input type="text" name="mijosef[0][url_sef]" size="100" value="<?php echo MijoShop::get('mijosef')->get('url_sef', 'manufacturer', JRequest::getInt('manufacturer_id', 0, 'get'), 0); ?>" />
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;Meta Title</td>
+                    <td><input type="text" name="mijosef[0][title]" size="100" value="<?php echo MijoShop::get('mijosef')->get('title', 'manufacturer', JRequest::getInt('manufacturer_id', 0, 'get'), 0); ?>" />
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;Meta Description</td>
+                    <td><textarea class="text_area" name="mijosef[0][description]" cols="57" rows="5"><?php echo MijoShop::get('mijosef')->get('description', 'manufacturer', JRequest::getInt('manufacturer_id', 0, 'get'), 0); ?></textarea>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;Meta Keywords</td>
+                    <td><textarea class="text_area" name="mijosef[0][keywords]" cols="57" rows="5"><?php echo MijoShop::get('mijosef')->get('keywords', 'manufacturer', JRequest::getInt('manufacturer_id', 0, 'get'), 0); ?></textarea>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;Meta Language</td>
+                    <td><input type="text" name="mijosef[0][lang]" size="30" value="<?php echo MijoShop::get('mijosef')->get('lang', 'manufacturer', JRequest::getInt('manufacturer_id', 0, 'get'), 0); ?>" />
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;Meta Robots</td>
+                    <td><input type="text" name="mijosef[0][robots]" size="30" value="<?php echo MijoShop::get('mijosef')->get('robots', 'manufacturer', JRequest::getInt('manufacturer_id', 0, 'get'), 0); ?>" />
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;Meta Googlebot </td>
+                    <td><input type="text" name="mijosef[0][googlebot]" size="30" value="<?php echo MijoShop::get('mijosef')->get('googlebot', 'manufacturer', JRequest::getInt('manufacturer_id', 0, 'get'), 0); ?>" />
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;Meta Canonical URL</td>
+                    <td><input type="text" name="mijosef[0][canonical]" size="100" value="<?php echo MijoShop::get('mijosef')->get('canonical', 'manufacturer', JRequest::getInt('manufacturer_id', 0, 'get'), 0); ?>" />
+                </tr>
+            </table>
+            <input type="hidden" name="mijosef[0][url_id]" value="<?php echo MijoShop::get('mijosef')->get('url_id', 'manufacturer', JRequest::getInt('manufacturer_id', 0, 'get'), 0); ?>" />
+            <input type="hidden" name="mijosef[0][meta_id]" value="<?php echo MijoShop::get('mijosef')->get('meta_id', 'manufacturer', JRequest::getInt('manufacturer_id', 0, 'get'), 0); ?>" />
+            <input type="hidden" name="mijosef[0][route_var]" value="route=product/manufacturer/info" />
+            <input type="hidden" name="mijosef[0][route_id]" value="manufacturer_id=<?php echo JRequest::getInt('manufacturer_id', 0, 'get'); ?>" />
+        </div>
+        <?php } ?>]]></add>
+        </operation>
+   	</file>
+
+	<file name="admin/view/template/catalog/product_form.tpl">
+		<operation error="skip">
+			<search position="after"><![CDATA[<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">]]></search>
+			<add><![CDATA[		<script language="text/javascript">
+			function submitbutton(pressbutton) {
+				<?php foreach ($languages as $language) { ?>
+					<?php echo MijoShop::get('base')->editor()->save("product_description[".$language['language_id']."][description]"); ?>
+				<?php } ?>
+				submitform(pressbutton);
+			}
+		</script>
+		]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[<td><textarea name="product_description[<?php echo $language['language_id']; ?>][description]" id="description<?php echo $language['language_id']; ?>"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['description'] : ''; ?></textarea></td>]]></search>
+			<add><![CDATA[<td>
+					<?php
+						$desc = isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['description'] : '';
+						echo MijoShop::get('base')->editor()->display("product_description[".$language['language_id']."][description]", $desc, '97% !important', '320', '50', '11');
+					?>
+				</td>]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="12"><![CDATA[<script type="text/javascript" src="view/javascript/ckeditor/ckeditor.js"></script>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=common/filemanager]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&format=raw&tmpl=component&route=common/filemanager]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&route=]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[name="option]]></search>
+			<add><![CDATA[name="option_oc]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[name=\'option\']]></search>
+			<add><![CDATA[name=\'option_oc\']]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace" offset="3"><![CDATA[<td><?php echo $entry_keyword; ?></td>]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" offset="1"><![CDATA[<td><?php echo $entry_meta_description; ?></td>]]></search>
+            <add><![CDATA[              <tr>
+                  <td><?php echo JText::_('COM_MIJOSHOP_ALIAS'); ?></td>
+                  <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="100" /></td>
+              </tr>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[<a href="#tab-design"><?php echo $tab_design; ?></a>]]></search>
+            <add><![CDATA[<a href="#tab-design"><?php echo $tab_design; ?></a><?php if (MijoShop::get('base')->isMijosefInstalled()) { ?><a href="#tab-mijosef">MijoSEF</a><?php } ?>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[<div id="tab-design">]]></search>
+            <add><![CDATA[
+        <?php if (MijoShop::get('base')->isMijosefInstalled()) { ?>
+        <div id="tab-mijosef">
+            <div id="languagessef" class="htabs">
+                <?php foreach ($languages as $language) { ?>
+                <a href="#languagesef<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
+                <?php } ?>
+            </div>
+            <?php foreach ($languages as $language) { ?>
+            <div id="languagesef<?php echo $language['language_id']; ?>">
+                <table class="form">
+                    <tr>
+                        <td><span class="required">*</span> SEF URL</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][url_sef]" size="100" value="<?php echo MijoShop::get('mijosef')->get('url_sef', 'product', JRequest::getInt('product_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Title</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][title]" size="100" value="<?php echo MijoShop::get('mijosef')->get('title', 'product', JRequest::getInt('product_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Description</td>
+                        <td><textarea class="text_area" name="mijosef[<?php echo $language['language_id']; ?>][description]" cols="57" rows="5"><?php echo MijoShop::get('mijosef')->get('description', 'product', JRequest::getInt('product_id', 0, 'get'), $language['language_id']); ?></textarea>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Keywords</td>
+                        <td><textarea class="text_area" name="mijosef[<?php echo $language['language_id']; ?>][keywords]" cols="57" rows="5"><?php echo MijoShop::get('mijosef')->get('keywords', 'product', JRequest::getInt('product_id', 0, 'get'), $language['language_id']); ?></textarea>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Language</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][lang]" size="30" value="<?php echo MijoShop::get('mijosef')->get('lang', 'product', JRequest::getInt('product_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Robots</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][robots]" size="30" value="<?php echo MijoShop::get('mijosef')->get('robots', 'product', JRequest::getInt('product_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Googlebot </td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][googlebot]" size="30" value="<?php echo MijoShop::get('mijosef')->get('googlebot', 'product', JRequest::getInt('product_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Meta Canonical URL</td>
+                        <td><input type="text" name="mijosef[<?php echo $language['language_id']; ?>][canonical]" size="100" value="<?php echo MijoShop::get('mijosef')->get('canonical', 'product', JRequest::getInt('product_id', 0, 'get'), $language['language_id']); ?>" />
+                    </tr>
+                </table>
+                <input type="hidden" name="mijosef[<?php echo $language['language_id']; ?>][url_id]" value="<?php echo MijoShop::get('mijosef')->get('url_id', 'product', JRequest::getInt('product_id', 0, 'get'), $language['language_id']); ?>" />
+                <input type="hidden" name="mijosef[<?php echo $language['language_id']; ?>][meta_id]" value="<?php echo MijoShop::get('mijosef')->get('meta_id', 'product', JRequest::getInt('product_id', 0, 'get'), $language['language_id']); ?>" />
+                <input type="hidden" name="mijosef[<?php echo $language['language_id']; ?>][route_var]" value="route=product/product" />
+                <input type="hidden" name="mijosef[<?php echo $language['language_id']; ?>][route_id]" value="product_id=<?php echo JRequest::getInt('product_id', 0, 'get'); ?>" />
+            </div>
+            <?php } ?>
+        </div>
+        <?php } ?>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[$('#languages a').tabs();]]></search>
+        <add><![CDATA[
+$('#languagessef a').tabs();
+        ]]></add>
+        </operation>
+	</file>
+
+    <file name="admin/view/template/catalog/product_list.tpl">
+        <operation error="skip">
+            <search position="before"><![CDATA[
+            <td class="left"><?php if ($sort == 'pd.name') { ?>
+            ]]></search>
+            <add><![CDATA[              <td class="left">ID</td>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[
+            <td class="left"><?php if ($sort == 'p.price') { ?>
+            ]]></search>
+            <add><![CDATA[
+              <td class="left"><?php if ($sort == 'p2c.category_id') { ?>
+                <a href="<?php echo $sort_category; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_category; ?></a>
+                <?php } else { ?>
+                <a href="<?php echo $sort_category; ?>"><?php echo $column_category; ?></a>
+                <?php } ?></td>
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[<td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>]]></search>
+            <add><![CDATA[              <td></td>
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[
+            <td><input type="text" name="filter_model" value="<?php echo $filter_model; ?>" /></td>
+            ]]></search>
+            <add><![CDATA[
+            <td ><select name="filter_category" style="width: 18em;" >
+            <option value="*"></option>
+            <?php foreach ($categories as $category) { ?>
+            <?php if ($category['category_id']==$filter_category) { ?>
+            <option value="<?php echo $category['category_id']; ?>" selected="selected"><?php echo $category['name']; ?></option>
+            <?php } else { ?>
+            <option value="<?php echo $category['category_id']; ?>"><?php echo $category['name']; ?></option>
+            <?php } ?>
+            <?php } ?>
+            </td>
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[<td class="left"><?php echo $product['name']; ?></td>]]></search>
+            <add><![CDATA[              <td class="left"><?php echo $product['product_id']; ?></td>
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[
+            <td class="left"><?php if ($product['special']) { ?>
+            ]]></search>
+            <add><![CDATA[
+            <td class="left">
+            <?php foreach ($categories as $category) { ?>
+            <?php if (in_array($category['category_id'], $product['category'])) { ?>
+            <?php echo $category['name'];?><br>
+            <?php } ?> <?php } ?>
+            </td>
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[
+            <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
+            ]]></search>
+            <add><![CDATA[
+            <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[
+            var filter_price = $('input[name=\'filter_price\']').attr('value');
+            ]]></search>
+            <add><![CDATA[
+            var filter_category = $('select[name=\'filter_category\']').attr('value');
+
+            if (filter_category != '*') {
+            url += '&filter_category=' + encodeURIComponent(filter_category);
+            }
+
+            ]]></add>
+        </operation>
+    </file>
+
+	<file name="admin/view/template/common/filemanager.tpl">
+		<operation error="skip">
+			<search position="before"><![CDATA[<?php if ($fckeditor) { ?>]]></search>
+			<add><![CDATA[		<?php $fckeditor = false; ?>]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&format=raw&tmpl=component&route=]]></add>
+		</operation>
+	</file>
+	<!--<file name="admin/view/template/common/filemanager.tpl">
+		<operation error="skip">
+			<search position="replace"><![CDATA[$(]]></search>
+			<add><![CDATA[jQuery(]]></add>
+		</operation>
+	</file>
+	<file name="admin/view/template/common/filemanager.tpl">
+		<operation error="skip">
+			<search position="replace"><![CDATA[$.]]></search>
+			<add><![CDATA[jQuery.]]></add>
+		</operation>
+	</file>-->
+	
+	<file name="admin/view/template/common/header.tpl">
+		<operation error="skip">
+			<search position="replace" offset="11"><![CDATA[<?php echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n"; ?>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[<link rel="stylesheet" type="text/css" href="view/stylesheet/stylesheet.css" />]]></search>
+			<add><![CDATA[<?php MijoShop::get('base')->addHeader(JPATH_MIJOSHOP_OC . '/admin/view/stylesheet/stylesheet.css'); ?>]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[<link rel="<?php echo $style['rel']; ?>" type="text/css" href="<?php echo $style['href']; ?>" media="<?php echo $style['media']; ?>" />]]></search>
+			<add><![CDATA[	<?php JHTML::stylesheet(basename($style['href']), str_replace(basename($style['href']), '', 'components/com_mijoshop/opencart/admin/'.$style['href'])); ?>]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="5"><![CDATA[<script type="text/javascript" src="view/javascript/jquery/jquery-1.7.1.min.js"></script>]]></search>
+			<add><![CDATA[<?php MijoShop::get('base')->addHeader(JPATH_MIJOSHOP_OC . '/admin/view/javascript/common.js', false); ?>]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[<script type="text/javascript" src="<?php echo $script; ?>"></script>]]></search>
+			<add><![CDATA[	<?php JHTML::script(basename($script), str_replace(basename($script), '', 'components/com_mijoshop/opencart/admin/'.$script)); ?>]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[</head>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="5"><![CDATA[<div class="div1">]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after"><![CDATA[<li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>]]></search>
+			<add><![CDATA[		  <li><a class="parent">Migration Tools</a>
+			<ul>
+             <li><a href="<?php echo MijoShop::get('router')->route('index.php?option=com_mijoshop&route=tool/virtuemart'); ?>">VirtueMart</a></li>
+             <li><a href="<?php echo MijoShop::get('router')->route('index.php?option=com_mijoshop&route=tool/hikashop'); ?>">HikaShop</a></li>
+             <li><a href="<?php echo MijoShop::get('router')->route('index.php?option=com_mijoshop&route=tool/redshop'); ?>">redSHOP</a></li>
+             <li><a href="<?php echo MijoShop::get('router')->route('index.php?option=com_mijoshop&route=tool/tienda'); ?>">Tienda</a></li>
+			 <li><a href="<?php echo MijoShop::get('router')->route('index.php?option=com_mijoshop&route=tool/joomshopping'); ?>">JoomShopping</a></li>
+             <li><a href="<?php echo MijoShop::get('router')->route('index.php?option=com_mijoshop&route=tool/rokquickcart'); ?>">RokQuickCart</a></li>
+             <li><a href="<?php echo MijoShop::get('router')->route('index.php?option=com_mijoshop&route=tool/aceshop'); ?>">AceShop</a></li>
+			 <li><a href="<?php echo MijoShop::get('router')->route('index.php?option=com_mijoshop&route=tool/joocart'); ?>">JooCart</a></li>
+             <li><a href="<?php echo MijoShop::get('router')->route('index.php?option=com_mijoshop&route=tool/ayelshop'); ?>">AyelShop</a></li>
+            </ul>
+		  </li>
+		  ]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="6"><![CDATA[<li id="help"><a class="top"><?php echo $text_help; ?></a>]]></search>
+			<add><![CDATA[<?php if (MijoShop::get('base')->isAdmin('joomla') and $this->user->hasPermission('access','common/upgrade')) { ?><li id="upgrade"><a href="<?php echo $this->url->link('common/upgrade', 'token=' . $this->session->data['token'], 'SSL'); ?>" class="top"><?php echo $text_upgrade ?></a><?php } ?>
+			<?php if (MijoShop::get('base')->isAdmin('joomla') and $this->user->hasPermission('access','common/support')) { ?><li id="support"><a href="<?php echo $this->data['support'] = $this->url->link('common/support', '', 'SSL'); ?>" class="top"><?php echo $text_support_oc; ?></a><?php } ?>
+			]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[<li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>]]></search>
+            <add><![CDATA[          <li><a href="<?php echo $vqmod_manager; ?>"><?php echo $text_vqmod_manager; ?></a></li>]]></add>
+        </operation>
+        <!--<operation error="skip">
+            <search position="before"><![CDATA[<div id="container">]]></search>
+            <add><![CDATA[<script type="text/javascript">
+jQuery(document).ready(function() {
+	jQuery('.list tbody tr:even td').css('background-color', '#f4f4f8');
+	jQuery('.list tbody tr').hover(function() {
+		jQuery(this).children('td').css('background-color', '#e7efef');
+	}, function() {
+		jQuery(this).children('td').css('background-color', '#ffffff');
+		jQuery('.list tbody tr:even td').css('background-color', '#f4f4f8');
+	});
+});
+</script>
+]]></add>
+        </operation>-->
+		<operation error="skip">
+			<search position="after"><![CDATA[<li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>]]></search>
+			<add><![CDATA[          <li><a href="<?php echo $themeeditor; ?>"><?php echo $text_themeeditor; ?></a></li>]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/view/template/common/footer.tpl">
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[<div id="footer"><?php echo $text_footer; ?></div>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/view/template/common/home.tpl">
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[<!--[if IE]>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&route=]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/view/template/common/login.tpl">
+		<operation error="skip">
+			<search position="replace"><![CDATA[<div class="content" style="min-height: 150px; overflow: hidden;">]]></search>
+			<add><![CDATA[<div class="content" style="min-height: 150px;">]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/view/template/feed/*.tpl">
+		<operation error="skip">
+			<search position="replace"><![CDATA[<?php echo $data_feed; ?>]]></search>
+			<add><![CDATA[<?php echo $data_feed.'&format=raw&tmpl=component'; ?>]]></add>
+		</operation>
+	</file>
+
+    <file name="admin/view/template/localisation/order_status_list.tpl">
+        <operation error="skip">
+            <search position="before"><![CDATA[<td class="right"><?php echo $column_action; ?></td>]]></search>
+            <add><![CDATA[              <td class="center">ID</td>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[<td class="right"><?php foreach ($order_status['action'] as $action) { ?>]]></search>
+            <add><![CDATA[              <td class="center"><?php echo $order_status['order_status_id']; ?></td>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[<td class="center" colspan="3"><?php echo $text_no_results; ?></td>]]></search>
+            <add><![CDATA[<td class="center" colspan="4"><?php echo $text_no_results; ?></td>]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/view/template/module/vqmod_manager.tpl">
+        <operation error="skip">
+            <search position="replace"><![CDATA[<select multiple="multiple" size="7" id="vqcache">]]></search>
+            <add><![CDATA[<select multiple="multiple" size="20" id="vqcache" style="min-width:500px;">]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace" offset="4" index="1"><![CDATA[<table class="form">]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[<div id="tab-scripts">]]></search>
+            <add><![CDATA[      <table class="form">
+        <tr>
+          <td><?php echo $entry_upload; ?>&nbsp;<input type="file" name="vqmod_file" /><input type="submit" name="upload" value="<?php echo $text_upload; ?>" /></td>
+        </tr>
+      </table>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace" offset="4"><![CDATA[<td><a class="about" onclick="window.open('http://forum.opencart.com/viewtopic.php?t=36235');">http://forum.opencart.com/viewtopic.php?t=36235</a></td>]]></search>
+            <add><![CDATA[<td><a class="about" onclick="window.open('http://forum.opencart.com/viewtopic.php?t=36235');">http://forum.opencart.com/viewtopic.php?t=36235</a></td>]]></add>
+        </operation>
+    </file>
+	
+	<file name="admin/view/template/module/welcome.tpl">
+		<operation error="skip">
+			<search position="after"><![CDATA[<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">]]></search>
+			<add><![CDATA[		<script language="text/javascript">
+			function submitbutton(pressbutton) {
+				<?php
+					$module_row = 1;
+					foreach ($modules as $module) {
+						foreach ($languages as $language) {
+							echo MijoShop::get('base')->editor()->save("welcome_module[".$module_row."][description][".$language['language_id']."]");
+						}
+						
+						$module_row++;
+					} 
+				?>
+				submitform(pressbutton);
+			}
+		</script>
+		]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[<td><textarea name="welcome_module[<?php echo $module_row; ?>][description][<?php echo $language['language_id']; ?>]" id="description-<?php echo $module_row; ?>-<?php echo $language['language_id']; ?>"><?php echo isset($module['description'][$language['language_id']]) ? $module['description'][$language['language_id']] : ''; ?></textarea></td>]]></search>
+			<add><![CDATA[				<td>
+					<?php
+						$desc = isset($module['description'][$language['language_id']]) ? $module['description'][$language['language_id']] : '';
+						echo MijoShop::get('base')->editor()->display("welcome_module[".$module_row."][description][".$language['language_id']."]", $desc, '97% !important', '320', '50', '11'); 
+					?>
+				</td>]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="15"><![CDATA[<script type="text/javascript" src="view/javascript/ckeditor/ckeditor.js"></script>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="11"><![CDATA[$('#form').append(html);]]></search>
+			<add><![CDATA[$('#form').append(html);]]></add>
+		</operation>
+	</file>
+
+    <file name="admin/view/template/localisation/geo_zone_form.tpl">
+        <operation error="skip">
+            <search position="replace"><![CDATA[index.php?route=localisation/geo_zone/zone]]></search>
+            <add><![CDATA[index.php?option=com_mijoshop&route=localisation/geo_zone/zone&format=raw&tmpl=component]]></add>
+        </operation>
+    </file>
+	
+	<file name="admin/view/template/sale/contact.tpl">
+		<operation error="skip">
+			<search position="replace"><![CDATA[<td><textarea name="message"></textarea></td>]]></search>
+			<add><![CDATA[<td><?php echo MijoShop::get('base')->editor()->display("message", "", '97% !important', '320', '50', '11'); ?></td>]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="11"><![CDATA[<script type="text/javascript" src="view/javascript/ckeditor/ckeditor.js"></script>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[onclick="send(]]></search>
+			<add><![CDATA[onclick="sendEmail(]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[function send(url) {]]></search>
+			<add><![CDATA[function sendEmail(url) {
+    <?php echo MijoShop::get('base')->editor()->save("message"); ?>
+    ]]></add>
+		</operation>
+        <operation error="skip">
+			<search position="replace"><![CDATA[$('textarea[name=\'message\']').html(CKEDITOR.instances.message.getData());]]></search>
+			<add><![CDATA[$('textarea[name=\'message\']').html(jQuery('textarea[name=\'message\']').val());]]></add>
+		</operation>
+        <operation error="skip">
+			<search position="replace"><![CDATA[url: url,]]></search>
+			<add><![CDATA[url: url+'format=raw&tmpl=component',]]></add>
+		</operation>
+	</file>
+
+    <file name="admin/view/template/sale/customer_form.tpl">
+        <operation error="skip">
+            <search position="replace"><![CDATA[index.php?route=sale/customer/zone]]></search>
+            <add><![CDATA[index.php?option=com_mijoshop&format=raw&tmpl=component&route=sale/customer/zone]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/view/template/sale/customer_group_form.tpl">
+        <operation error="skip">
+            <search position="before" offset="1"><![CDATA[<td><span class="required">*</span> <?php echo $entry_name; ?></td>]]></search>
+            <add><![CDATA[          <tr>
+            <td><span class="required">*</span> Joomla Group:</td>
+            <td><?php echo $jgroups; ?></td>
+          </tr>]]></add>
+        </operation>
+    </file>
+	
+	<file name="admin/view/template/sale/order_form.tpl">
+		<operation error="skip">
+			<search position="replace"><![CDATA[<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[ name="option[]]></search>
+			<add><![CDATA[ name="option_oc[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[url: '<?php echo $store_url; ?>index.php?route=checkout/manual]]></search>
+			<add><![CDATA[url: '<?php echo $store_url; ?>index.php?route=checkout/manual&j_user_id=<?php echo JFactory::getUser()->get("id"); ?>]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[
+                    for (i in json['order_voucher']) {
+            ]]></search>
+            <add><![CDATA[
+                    for (i = 0; i <  json['order_voucher'].length; i++) {
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[
+                    for (i in json['order_total']) {
+            ]]></search>
+            <add><![CDATA[
+                    for (i = 0; i <  json['order_total'].length; i++) {
+            ]]></add>
+        </operation>
+		 <operation error="skip">
+            <search position="after"><![CDATA[
+                    for (i in json['payment_method']) {
+            ]]></search>
+            <add><![CDATA[
+                    if(typeof json['payment_method'][i] !== "object" ) {
+                        continue;
+                    }
+            ]]></add>
+        </operation>
+		 <operation error="skip">
+            <search position="after"><![CDATA[
+                    for (i in json['shipping_method']) {
+            ]]></search>
+            <add><![CDATA[
+                    if(typeof json['shipping_method'][i] !== "object" ) {
+                        continue;
+                    }
+            ]]></add>
+        </operation>
+	</file>
+	
+	<file name="admin/view/template/sale/order_invoice.tpl">
+		<operation error="skip">
+			<search position="replace"><![CDATA[<link rel="stylesheet" type="text/css" href="view/stylesheet/invoice.css" />]]></search>
+			<add><![CDATA[<link rel="stylesheet" type="text/css" href="admin/view/stylesheet/invoice.css" />]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/view/template/setting/setting.tpl">
+		<operation error="skip">
+            <search position="replace"><![CDATA[index.php?route=common/filemanager]]></search>
+            <add><![CDATA[index.php?option=com_mijoshop&format=raw&tmpl=component&route=common/filemanager]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&route=]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="4"><![CDATA[<td><?php echo $entry_icon; ?></td>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="11"><![CDATA[<td><?php echo $entry_seo_url; ?></td>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[width: 800,]]></search>
+			<add><![CDATA[width: 700,]]></add>
+		</operation>
+		<operation error="skip">
+            <search position="after" offset="3"><![CDATA[<td><textarea name="config_google_analytics" cols="40" rows="5"><?php echo $config_google_analytics; ?></textarea></td>]]></search>
+            <add><![CDATA[
+                <div id="tab-mijoshop">
+                  <table class="form">
+                    <!-- added mijosoft component setting-->
+                    <tr>
+                      <td><?php echo $entry_mijoshop_pid; ?></td>
+                      <td>
+                        <input type="password" size="60" name="config_mijoshop[pid]" value="<?php echo $config_mijoshop['pid']; ?>" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><?php echo $entry_mijoshop_enable_vqmod_cache; ?></td>
+                      <td><?php if ($config_mijoshop['enable_vqmod_cache']) { ?>
+                        <input type="radio" name="config_mijoshop[enable_vqmod_cache]" value="1" checked="checked" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[enable_vqmod_cache]" value="0" />
+                        <?php echo $text_no; ?>
+                        <?php } else { ?>
+                        <input type="radio" name="config_mijoshop[enable_vqmod_cache]" value="1" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[enable_vqmod_cache]" value="0" checked="checked" />
+                        <?php echo $text_no; ?>
+                        <?php } ?></td>
+                    </tr>
+                    <tr>
+                      <td><?php echo $entry_mijoshop_show_header; ?></td>
+                      <td><?php if ($config_mijoshop['show_header']) { ?>
+                        <input type="radio" name="config_mijoshop[show_header]" value="1" checked="checked" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[show_header]" value="0" />
+                        <?php echo $text_no; ?>
+                        <?php } else { ?>
+                        <input type="radio" name="config_mijoshop[show_header]" value="1" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[show_header]" value="0" checked="checked" />
+                        <?php echo $text_no; ?>
+                        <?php } ?></td>
+                    </tr>
+                    <tr>
+                      <td><?php echo $entry_mijoshop_show_footer; ?></td>
+                      <td><?php if ($config_mijoshop['show_footer']) { ?>
+                        <input type="radio" name="config_mijoshop[show_footer]" value="1" checked="checked" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[show_footer]" value="0" />
+                        <?php echo $text_no; ?>
+                        <?php } else { ?>
+                        <input type="radio" name="config_mijoshop[show_footer]" value="1" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[show_footer]" value="0" checked="checked" />
+                        <?php echo $text_no; ?>
+                        <?php } ?></td>
+                    </tr>
+                    <tr>
+                      <td><?php echo $entry_mijoshop_show_cats_menu; ?></td>
+                      <td><?php if ($config_mijoshop['show_cats_menu']) { ?>
+                        <input type="radio" name="config_mijoshop[show_cats_menu]" value="1" checked="checked" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[show_cats_menu]" value="0" />
+                        <?php echo $text_no; ?>
+                        <?php } else { ?>
+                        <input type="radio" name="config_mijoshop[show_cats_menu]" value="1" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[show_cats_menu]" value="0" checked="checked" />
+                        <?php echo $text_no; ?>
+                        <?php } ?></td>
+                    </tr>
+                    <tr>
+                      <td><?php echo $entry_mijoshop_trigger_content_plg; ?></td>
+                      <td><?php if ($config_mijoshop['trigger_content_plg']) { ?>
+                        <input type="radio" name="config_mijoshop[trigger_content_plg]" value="1" checked="checked" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[trigger_content_plg]" value="0" />
+                        <?php echo $text_no; ?>
+                        <?php } else { ?>
+                        <input type="radio" name="config_mijoshop[trigger_content_plg]" value="1" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[trigger_content_plg]" value="0" checked="checked" />
+                        <?php echo $text_no; ?>
+                        <?php } ?></td>
+                    </tr>
+                    <tr>
+                      <td><?php echo $entry_mijoshop_fix_ie_cache; ?></td>
+                      <td><?php if ($config_mijoshop['fix_ie_cache']) { ?>
+                        <input type="radio" name="config_mijoshop[fix_ie_cache]" value="1" checked="checked" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[fix_ie_cache]" value="0" />
+                        <?php echo $text_no; ?>
+                        <?php } else { ?>
+                        <input type="radio" name="config_mijoshop[fix_ie_cache]" value="1" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[fix_ie_cache]" value="0" checked="checked" />
+                        <?php echo $text_no; ?>
+                        <?php } ?></td>
+                    </tr>
+                    <tr>
+                      <td><?php echo $entry_mijoshop_check_j_block_status; ?></td>
+                      <td><?php if (!empty($config_mijoshop['check_j_block_status'])) { ?>
+                        <input type="radio" name="config_mijoshop[check_j_block_status]" value="1" checked="checked" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[check_j_block_status]" value="0" />
+                        <?php echo $text_no; ?>
+                        <?php } else { ?>
+                        <input type="radio" name="config_mijoshop[check_j_block_status]" value="1" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[check_j_block_status]" value="0" checked="checked" />
+                        <?php echo $text_no; ?>
+                        <?php } ?></td>
+                    </tr>
+                    <tr>
+                      <td><?php echo $entry_mijoshop_mijoshop_display; ?></td>
+                      <td><?php if ($config_mijoshop['mijoshop_display']) { ?>
+                        <input type="radio" name="config_mijoshop[mijoshop_display]" value="1" checked="checked" />
+                        Grid
+                        <input type="radio" name="config_mijoshop[mijoshop_display]" value="0" />
+                        List
+                        <?php } else { ?>
+                        <input type="radio" name="config_mijoshop[mijoshop_display]" value="1" />
+                        Grid
+                        <input type="radio" name="config_mijoshop[mijoshop_display]" value="0" checked="checked" />
+                        List
+                        <?php } ?></td>
+                    </tr>
+                    <tr>
+                      <td><?php echo $entry_mijoshop_button_class; ?></td>
+                      <td>
+                          <input type="text" name="config_mijoshop[button_class]" value="<?php echo $config_mijoshop['button_class']; ?>" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><?php echo $entry_mijoshop_comments; ?></td>
+                      <td>
+                          <select name="config_mijoshop[comments]">
+                            <?php if (!isset($config_mijoshop['comments']) or $config_mijoshop['comments'] == 0) { ?>
+                            <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                            <?php } else { ?>
+                            <option value="0"><?php echo $text_no; ?></option>
+                            <?php } ?>
+
+                            <?php if ($config_mijoshop['comments'] == 'jcomments') { ?>
+                            <option value="jcomments" selected="selected">JComments</option>
+                            <?php } else { ?>
+                            <option value="jcomments">JComments</option>
+                            <?php } ?>
+
+                            <?php if ($config_mijoshop['comments'] == 'komento') { ?>
+                            <option value="komento" selected="selected">Komento</option>
+                            <?php } else { ?>
+                            <option value="komento">Komento</option>
+                            <?php } ?>
+                          </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><?php echo $entry_mijoshop_mijosef_integration; ?></td>
+                      <td><?php if ($config_mijoshop['mijosef_integration']) { ?>
+                        <input type="radio" name="config_mijoshop[mijosef_integration]" value="1" checked="checked" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[mijosef_integration]" value="0" />
+                        <?php echo $text_no; ?>
+                        <?php } else { ?>
+                        <input type="radio" name="config_mijoshop[mijosef_integration]" value="1" />
+                        <?php echo $text_yes; ?>
+                        <input type="radio" name="config_mijoshop[mijosef_integration]" value="0" checked="checked" />
+                        <?php echo $text_no; ?>
+                        <?php } ?>
+                        <input type="hidden" name="config_mijoshop[account_sync_done]" value="1">
+                      </td>
+                    </tr>
+                    <?php if (Mijoshop::get('base')->isAcymaillingInstalled()) { ?>
+                    <tr>
+                      <td><?php echo $entry_mijoshop_acymailling_register; ?></td>
+                      <td>
+                          <?php echo Mijoshop::get('base')->getMailListHtml('config_mijoshop[acymailling_register]', $config_mijoshop['acymailling_register']); ?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><?php echo $entry_mijoshop_acymailling_checkout; ?></td>
+                      <td>
+                          <?php echo Mijoshop::get('base')->getMailListHtml('config_mijoshop[acymailling_checkout]', $config_mijoshop['acymailling_checkout']); ?>
+                      </td>
+                    </tr>
+
+                    <?php } ?>
+                  </table>
+                </div>
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[<a href="#tab-server"><?php echo $tab_server; ?></a>]]></search>
+            <add><![CDATA[<a href="#tab-server"><?php echo $tab_server; ?></a><a href="#tab-mijoshop">MijoShop</a>]]></add>
+        </operation>
+	</file>
+	
+	<file name="admin/view/template/setting/store_form.tpl">
+        <operation error="skip">
+            <search position="replace"><![CDATA[index.php?route=common/filemanager]]></search>
+            <add><![CDATA[index.php?option=com_mijoshop&format=raw&tmpl=component&route=common/filemanager]]></add>
+        </operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&route=]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="4"><![CDATA[<td><?php echo $entry_icon; ?></td>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[width: 800,]]></search>
+			<add><![CDATA[width: 700,]]></add>
+		</operation>
+	</file>
+
+    <file name="admin/view/template/user/user_group_form.tpl">
+        <operation error="skip">
+            <search position="after" offset="2"><![CDATA[<span class="error"><?php echo $error_name; ?></span>]]></search>
+            <add><![CDATA[          <tr>
+            <td><span class="required">*</span> Joomla Group:</td>
+            <td><?php echo $jgroups; ?></td>
+          </tr>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[<td><div class="scrollbox">]]></search>
+            <add><![CDATA[<td><div class="scrollbox" style="height: 150px;">]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/" name="module/*.tpl,shipping/*.tpl,payment/*.tpl,total/*.tpl,feed/*.tpl">
+        <operation error="skip">
+            <search position="replace"><![CDATA[<div class="buttons"><a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>]]></search>
+            <add><![CDATA[<div class="buttons"><a onclick="save('save');" class="button"><?php echo $button_save; ?></a><a onclick="$('#form').submit();" class="button"><?php echo $button_saveclose; ?></a><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[<?php echo $footer; ?>]]></search>
+            <add><![CDATA[
+        <script type="text/javascript"><!--
+        function save(type){
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'button';
+            input.value = type;
+            document.getElementById('form').appendChild(input);
+            $('#form').submit();
+        }
+        //--></script>
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/view/template/setting/store_list.tpl">
+        <operation error="skip">
+            <search position="replace"><![CDATA[<div class="buttons"><a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a><a onclick="$('form').submit();" class="button"><?php echo $button_delete; ?></a></div>]]></search>
+            <add><![CDATA[<div class="buttons"><a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a><a onclick="$('form').submit();" class="button"><?php echo $button_delete; ?></a><a onclick="fixIds();" class="button"><?php echo $button_fix_lang_ids; ?></a><a onclick="fix();" class="button"><?php echo $button_lang_sync; ?></a></div>]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[<?php echo $footer; ?>]]></search>
+            <add><![CDATA[
+        <script type="text/javascript"><!--
+        function fix(){
+            $.ajax({
+                url: 'index.php?route=common/edit/fixLanguage',
+                type: 'post',
+                dataType: 'json',
+                success : function(data) {
+                    $('.success, .warning, .attention, information, .error').remove();
+
+                    if (data['error']) {
+                        $('.box').before('<div class="warning" >' + data['error'] + '</div>');
+
+                        $('.warning').fadeIn('slow');
+                    }
+
+                    if (data['success']) {
+                        $('.box').before('<div class="success" >' + data['success'] + '</div>');
+
+                        $('.success').fadeIn('slow');
+                    }
+                }
+            });
+        }
+
+        function fixIds(){
+            $.ajax({
+                url: 'index.php?route=common/edit/fixLanguageIds',
+                type: 'post',
+                dataType: 'json',
+                success : function(data) {
+                    $('.success, .warning, .attention, information, .error').remove();
+
+                    if (data['error']) {
+                        $('.box').before('<div class="warning" >' + data['error'] + '</div>');
+
+                        $('.warning').fadeIn('slow');
+                    }
+
+                    if (data['success']) {
+                        $('.box').before('<div class="success" >' + data['success'] + '</div>');
+
+                        $('.success').fadeIn('slow');
+                    }
+                }
+            });
+        }
+        //--></script>
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/view/javascript/common.js">
+        <operation error="log">
+            <search position="replace"><![CDATA[$]]></search>
+            <add><![CDATA[jQuery]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[menu]]></search>
+            <add><![CDATA[menu_oc]]></add>
+        </operation>
+    </file>
+</modification>

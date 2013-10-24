@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0.0" client="administrator" position="menu" method="upgrade">
+	<name>MijoSearch</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>February 2013</creationDate>
+	<copyright>2009-2013 Mijosoft LLC</copyright>
+	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>www.mijosoft.com</authorUrl>
+	<version>1.0.0</version>
+	<description>MijoSearch module for back-end.</description>
+	<files>
+		<filename module="mod_mijosearch_admin">mod_mijosearch_admin.php</filename>
+		<filename module="mod_mijosearch_admin">index.html</filename>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB.mod_mijosearch_admin.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+				<field name="text" type="text" default="search..." label="MOD_MIJOSEARCH_SEARCH_MENU_QUERY_TEXT" description="MOD_MIJOSEARCH_SEARCH_MENU_QUERY_TEXT_HELP"	size="30" />
+				<field type="spacer" />
+				<field name="show_order" type="radio" class="btn-group" default="0" label="MOD_MIJOSEARCH_SHOW_ORDER_LABEL" description="MOD_MIJOSEARCH_SHOW_ORDER_DESC">
+					<option value="0">Hide</option>
+					<option value="1">Show</option>
+				</field>
+				<field name="show_ext_flt" type="radio" class="btn-group" default="0" label="MOD_MIJOSEARCH_SHOW_SECTIONS" description="MOD_MIJOSEARCH_SHOW_SECTIONS_DESC">
+					<option value="0">Hide</option>
+					<option value="1">Show</option>
+				</field>
+				<field name="show_advanced_options" type="radio" class="btn-group" default="0" label="MOD_MIJOSEARCH_SHOW_ADVANCED_SEARCH_OPTIONS" description="MOD_MIJOSEARCH_SHOW_ADVANCED_SEARCH_OPTIONS_DESC">
+					<option value="0">Hide</option>
+					<option value="1">Show</option>
+				</field>
+				<field type="spacer" />
+				<field name="show_advanced_search" type="radio" class="btn-group" default="0" label="MOD_MIJOSEARCH_SHOW_ADVANCED" description="MOD_MIJOSEARCH_SHOW_ADVANCED_DESC">
+					<option value="0">Hide</option>
+					<option value="1">Show</option>
+				</field>
+				<field name="advanced_label" type="text" default="Advanced Search" size="30" label="MOD_MIJOSEARCH_ADVANCED_SEARCH_LABEL" description="MOD_MIJOSEARCH_ADVANCED_SEARCH_LABEL"/>
+				<field type="spacer" />	
+				<field name="enable_complete" type="radio" class="btn-group" default="1" label="MOD_MIJOSEARCH_ENABLE_COMP" description="MOD_MIJOSEARCH_ENABLE_COMP">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="show_button" type="radio" class="btn-group" default="0" label="MOD_MIJOSEARCH_SHOW_BUTTON" description="MOD_MIJOSEARCH_SHOW_BUTTON_DESC">
+					<option value="0">Hide</option>
+					<option value="1">Show</option>			
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

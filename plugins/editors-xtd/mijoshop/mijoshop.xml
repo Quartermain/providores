@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5.0" type="plugin" group="editors-xtd" method="upgrade">
+	<name>Button - Mijoshop</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>January 2013</creationDate>
+	<copyright>Copyright (C) Mijosoft LLC, mijosoft.com</copyright>
+	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>http://mijosoft.com</authorUrl>
+	<version>1.0.0</version>
+	<description>Editor buttons plugin for Mijoshop</description>
+	
+	<files>
+		<filename plugin="mijoshop">mijoshop.php</filename>
+		<filename>index.html</filename>
+		<folder>assets</folder>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_editors-xtd_mijoshop.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_editors-xtd_mijoshop.sys.ini</language>
+	</languages>
+	
+	<administration>
+		<languages>
+			<language tag="en-GB">language/en-GB/en-GB.plg_editors-xtd_mijoshop.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.plg_editors-xtd_mijoshop.sys.ini</language>
+		</languages>
+	</administration>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="enable_frontend" type="list" default="0" label="PLG_EDITORS-XTD_EDITOR_BUTTON_ENABLE_FRONTEND_LABEL" description="PLG_EDITORS-XTD_EDITOR_BUTTON_ENABLE_FRONTEND_DESC">
+					<option value="0">PLG_EDITORS-XTD_EDITOR_BUTTON_NO</option>
+					<option value="1">PLG_EDITORS-XTD_EDITOR_BUTTON_YES</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Category">
+		<message>
+			<![CDATA[This layout will display the products of the selected category.]]>
+		</message>
+	</layout>
+	<state>
+		<name>MijoShop: Category</name>
+		<description>This layout will display the products of the selected category.</description>
+		<url addpath="/components/com_mijoshop/mijoshop/elements">
+            <field name="path" type="mijoshopcategory" default="" label="Select Category" description="Displays the products of the selected category."/>
+		</url>
+		<params addpath="/components/com_mijoshop/mijoshop/elements">
+			<param name="mijoshop_store_id" type="mijoshopstore" default="" label="Select Store" description="Select the proper store for this page." />
+		</params>
+	</state>
+	<fields name="request">
+		<fieldset name="request" label="MijoShop: Category" addfieldpath="/components/com_mijoshop/mijoshop/elements">
+            <field name="path" type="mijoshopcategory" default="" label="Select Category" description="Displays the products of the selected category."/>
+        </fieldset>
+    </fields>
+	<fields name="params">
+		<fieldset name="basic" label="MijoShop: Store" addfieldpath="/components/com_mijoshop/mijoshop/elements">
+            <field name="mijoshop_store_id" type="mijoshopstore" default="" label="Select Store" description="Select the proper store for this page." />
+        </fieldset>
+    </fields>
+</metadata>

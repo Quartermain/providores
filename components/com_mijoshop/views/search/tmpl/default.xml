@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Search">
+		<message>
+			<![CDATA[This layout will display the search page.]]>
+		</message>
+	</layout>
+    <state>
+        <name>MijoShop: Search</name>
+        <description>This layout will display the search page.</description>
+		<url>
+			<param type="text" name="filter_name" default="" size="30" label="Query" description="Search query (optional)." />
+		</url>
+		<params addpath="/components/com_mijoshop/mijoshop/elements">
+			<param name="mijoshop_store_id" type="mijoshopstore" default="" label="Select Store" description="Select the proper store for this page." />
+		</params>
+    </state>
+	<fields name="request">
+		<fieldset name="request" label="MijoShop: Search" >
+            <field type="text" name="filter_name" default="" size="30" label="Query" description="Search query (optional)." />
+		</fieldset>
+    </fields>
+	<fields name="params">
+		<fieldset name="basic" label="MijoShop: Store" addfieldpath="/components/com_mijoshop/mijoshop/elements">
+            <field name="mijoshop_store_id" type="mijoshopstore" default="" label="Select Store" description="Select the proper store for this page." />
+        </fieldset>
+    </fields>
+</metadata>

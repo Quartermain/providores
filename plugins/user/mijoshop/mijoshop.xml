@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5.0" type="plugin" group="user" method="upgrade">
+	<name>User - MijoShop</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>October 2012</creationDate>
+	<copyright>Copyright (C) Mijosoft LLC, mijosoft.com</copyright>
+	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>http://mijosoft.com</authorUrl>
+	<version>1.0.0</version>
+	<description>User plugin to integrate Joomla users with OpenCart.</description>
+	
+	<files>
+		<filename plugin="mijoshop">mijoshop.php</filename>
+	</files>
+</extension>

@@ -1,0 +1,44 @@
+/* Sliders */
+div.panel {
+	background: none repeat scroll 0 0 white;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    margin-bottom: 3px;
+}
+
+div.panel h3 {
+    font-size: 1em;
+    margin: 0px;
+}
+
+div.panel h3 a {
+    display: block;
+    padding: 5px 0px 5px 10px;
+}
+
+select {
+    background-color: #FFFFFF;
+    border: 1px solid #BBBBBB;
+    width: inherit !important;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    width: inherit !important;
+}
+
+/*fieldset {
+    border: 1px solid #CCCCCC !important;
+    margin-bottom: 10px !important;
+    padding: 5px !important;
+    text-align: left !important;
+    float: none !important;
+}
+
+legend {
+    color: #146295 !important;
+    font-size: 1.182em !important;
+    font-weight: bold !important;
+    border: none !important;
+    margin-bottom: 0px !important;
+    width:auto !important;
+}*/

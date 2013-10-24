@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<config>
+		<fields name="params">
+			<fieldset name="default_params">
+                <field name="access" type="accesslevel" default="1" label="COM_MIJOSEARCH_EXTENSIONS_VIEW_ACCESS" description="COM_MIJOSEARCH_EXTENSIONS_VIEW_ACCESS_HELP" />
+                <field name="handler" type="handlerlist" default="1" label="COM_MIJOSEARCH_EXTENSIONS_HANDLER" description="COM_MIJOSEARCH_EXTENSIONS_HANDLER_HELP" />
+                <field name="custom_name" type="text" default="" label="COM_MIJOSEARCH_EXTENSIONS_CUSTOM_NAME" description="COM_MIJOSEARCH_EXTENSIONS_CUSTOM_NAME_HELP" />
+                <field type="spacer" />
+                <field name="result_limit" type="text" default="" label="COM_MIJOSEARCH_CONFIG_RESULT_LIMIT" description="COM_MIJOSEARCH_CONFIG_RESULT_LIMIT_HELP" />
+                <field type="spacer" />
+                <field name="google_more_results_length" type="text" default="" label="COM_MIJOSEARCH_CONFIG_GOOGLE_MORE_RESULTS_LENGTH" description="COM_MIJOSEARCH_CONFIG_GOOGLE_MORE_RESULTS_LENGTH_HELP" />
+                <field type="spacer" />
+				<field name="show_desc" type="list" default="g" label="COM_MIJOSEARCH_CONFIG_SHOW_DESC" description="COM_MIJOSEARCH_CONFIG_SHOW_DESC_HELP">
+                    <option value="g">Global</option>
+                    <option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="show_properties" type="list" default="g" label="COM_MIJOSEARCH_CONFIG_SHOW_PROPERTIES" description="COM_MIJOSEARCH_CONFIG_SHOW_PROPERTIES_HELP">
+                    <option value="g">Global</option>
+                    <option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="show_url" type="list" default="g" label="COM_MIJOSEARCH_CONFIG_SHOW_URL" description="COM_MIJOSEARCH_CONFIG_SHOW_URL_HELP">
+                    <option value="g">Global</option>
+                    <option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</metadata>

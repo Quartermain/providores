@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5.0" type="module" client="administrator" method="upgrade">
+	<name>MijoShop Orders</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>October 2012</creationDate>
+	<copyright>Copyright (C) Mijosoft LLC, mijosoft.com</copyright>
+	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>http://mijosoft.com</authorUrl>
+	<version>1.0.0</version>
+	<description>This module will display a list MijoShop orders in back-end. Set the module poisiton to "cpanel" .</description>
+	
+	<files>
+		<filename module="mod_mijoshop_orders">mod_mijoshop_orders.php</filename>
+		<filename>index.html</filename>
+		<filename>tmpl/default.php</filename>
+		<filename>tmpl/index.html</filename>
+	</files>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic" >
+				<field name="limit" type="text" default="10" label="Orders shown" description="Set the number of orders shown" />
+				<field name="display_pending" type="radio" class="btn-group" default="0" label="Pending orders" description="Display Pending orders in a orders list?">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="display_confirmed" type="radio" class="btn-group" default="1" label="Confirmed orders" description="Display Confirmed orders in a orders list?">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="display_cancelled" type="radio" class="btn-group" default="0" label="Cancelled orders" description="Display Cancelled orders in a orders list?">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="display_refunded" type="radio" class="btn-group" default="0" label="Refunded orders" description="Display Refunded orders in a orders list?">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="display_shipped" type="radio" class="btn-group" default="0" label="Shipped orders" description="Display Shipped orders in a orders list?">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field type="spacer" default="&lt;hr/&gt;" />
+				<field name="ordering" type="list" default="id" label="Ordering by" description="Descending ordering options">
+					<option value="id">Number</option>
+					<option value="status">Status</option>
+					<option value="price">Price</option>
+					<option value="date">Date</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

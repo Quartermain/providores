@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Downloads">
+		<message>
+			<![CDATA[This layout will display the list of the downloads for the user logged in.]]>
+		</message>
+	</layout>
+    <state>
+        <name>MijoShop: Downloads</name>
+        <description>This layout will display the list of the downloads for the user logged in.</description>
+	<fields name="params">
+		<fieldset name="basic" label="MijoShop: Store" addfieldpath="/components/com_mijoshop/mijoshop/elements">
+            <field name="mijoshop_store_id" type="mijoshopstore" default="" label="Select Store" description="Select the proper store for this page." />
+        </fieldset>
+    </fields>
+    </state>
+	<fields name="params">
+		<fieldset name="basic" label="MijoShop: Store" addfieldpath="/components/com_mijoshop/mijoshop/elements">
+            <field name="mijoshop_store_id" type="mijoshopstore" default="" label="Select Store" description="Select the proper store for this page." />
+        </fieldset>
+    </fields>
+</metadata>

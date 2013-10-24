@@ -1,0 +1,157 @@
+<modification>
+	<id>MijoShop - System modifications</id>
+	<version>1.2.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>mijosoft.com</author>
+
+    <file name="admin/view/template/catalog/product_form.tpl">
+        <!-- Mijoshop J integration -->
+        <operation error="skip">
+            <search position="replace"><![CDATA[<a href="#tab-design"><?php echo $tab_design; ?></a>]]></search>
+            <add><![CDATA[<a href="#tab-design"><?php echo $tab_design; ?></a><a href="#tab-integration">Integration</a>]]></add>
+        </operation>
+
+        <operation error="log" >
+            <search position="before"><![CDATA[<div id="tab-design">]]></search>
+            <add><![CDATA[
+        <div id="tab-integration">
+            <?php echo MijoShop::get('base')->getIntegrationViews($integration); ?>
+        </div>
+        ]]></add>
+        </operation>
+   	</file>
+
+    <file name="admin/model/catalog/product.php">
+        <operation error="skip">
+            <search position="before" ><![CDATA[
+                if (isset($data['product_layout'])) {
+            ]]></search>
+            <add><![CDATA[
+        // Save integration
+        if(isset($_POST["content"])){
+            $_post_contents = $_POST["content"];
+
+            foreach($_post_contents as $key => $_post_content) {
+
+                $tmp[$key]  = array();
+
+                if(!empty($_post_content['add'])){
+                    $statuses['add'] = explode(',',html_entity_decode($_post_content['add']));
+                    foreach($statuses['add'] as $status){
+                        $_status = explode('=',$status);
+                        $tmp[$key]['add'][$_status[0]] = explode(':',$_status[1]);
+                    }
+                }
+
+                if(!empty($_post_content['remove'])){
+                    $statuses['remove'] = explode(',',html_entity_decode($_post_content['remove']));
+                    foreach($statuses['remove'] as $status){
+                        $_status = explode('=',$status);
+                        $tmp[$key]['remove'][$_status[0]] = explode(':',$_status[1]);
+                    }
+                }
+
+                if(!empty($_post_content['sql'])){
+                    $statuses['sql'] = explode('|',html_entity_decode($_post_content['sql']));
+                    foreach($statuses['sql'] as $status){
+                        $_status = explode('~',$status);
+                        $tmp[$key]['sql'][$_status[0]] = $_status[1];
+                    }
+                }
+
+                $_content = json_encode($tmp);
+
+                $query = $this->db->query("SELECT content FROM " . DB_PREFIX . "j_integrations p  WHERE p.product_id = '" . (int)$product_id . "'");
+
+                if(empty($query->row)){
+                    $content = $_content;
+                    $this->db->query("INSERT INTO " . DB_PREFIX . "j_integrations SET product_id = '" . (int)$product_id . "', content = '" . $content . "'");
+
+                }
+                else {
+                    $db_content = json_decode(html_entity_decode($query->row['content']));
+                    $decode_content = json_decode($_content);
+                    $db_content->$key = $decode_content->$key;
+
+                    $content = json_encode($db_content);
+                    $this->db->query("UPDATE " . DB_PREFIX . "j_integrations SET content = '" . $content . "' WHERE product_id = '" . (int)$product_id . "'");
+                }
+
+                unset($tmp[$key]);
+            }
+        }
+        // End save
+            ]]></add>
+        </operation>
+
+        <operation error="skip">
+            <search position="before"><![CDATA[ public function getTotalProductsByLayoutId($layout_id) {            ]]></search>
+            <add><![CDATA[
+    // Save integration
+    public function getIntegrationsFormated($product_id) {
+        $_integrations = array();
+        $integrations  = MijoShop::get('base')->getIntegrations($product_id);
+
+        if(!empty($integrations)){
+            foreach($integrations as $key => $integration){
+                if(isset($integration->add)){
+                    $_integrations[$key.'_add'] = self::getFormated($integration->add);
+                }
+
+                if(isset($integration->remove)){
+                    $_integrations[$key.'_remove'] = self::getFormated($integration->remove);
+                }
+
+                if(isset($integration->sql)){
+                    $_integrations[$key] = self::getFormatedSql($integration->sql);
+                }
+            }
+        }
+
+        return $_integrations;
+    }
+
+    public function getFormated($integration) {
+        $integration = json_encode($integration);
+        $integration = str_replace('],"','&',$integration);
+        $integration = str_replace(':','=',$integration);
+        $integration = str_replace(',',':',$integration);
+        $integration = str_replace('[','',$integration);
+        $integration = str_replace(']','',$integration);
+        $integration = str_replace('{','',$integration);
+        $integration = str_replace('}','',$integration);
+        $integration = str_replace('"','',$integration);
+        $integration = str_replace('&',',',$integration);
+
+        return $integration;
+    }
+
+    public function getFormatedSql($integration) {
+        $string = array();
+
+        foreach($integration as $key => $sql){
+            $string[]= $key.'~'.$sql;
+        }
+
+        return implode('|',$string);;
+    }
+    // End save integration
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/catalog/product.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[ 		$this->load->model('design/layout');            ]]></search>
+            <add><![CDATA[
+        //integration
+        if (isset($this->request->get['product_id'])) {
+             $this->data["integration"] = $this->model_catalog_product->getIntegrationsFormated($this->request->get['product_id']);
+        } else {
+             $this->data["integration"] = array();
+        }
+        //integration
+            ]]></add>
+        </operation>
+    </file>
+</modification>

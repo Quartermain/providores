@@ -1,0 +1,38 @@
+###############################################################
+
+MijoShop Quick Guide
+
+###############################################################
+
+http://mijosoft.com/downloads/user-guides/mijoshop-quick-guide
+
+
+
+###############################################################
+
+For Joomla 2.5 and 3.x
+
+###############################################################
+
+REQUIRED
+--------
+com_mijoshop.zip
+
+pkg_mijoshop_library.zip
+
+plg_mijoshop_jquery.zip
+
+
+OPTIONAL
+--------
+pkg_mijoshop_themes.zip
+
+
+
+###############################################################
+
+For Joomla 1.5
+
+###############################################################
+
+http://mijosoft.com/downloads/mijoshop/extras/mijoshop-for-joomla-15

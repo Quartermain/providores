@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>	
+	<fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
+		<field name="rules" type="rules" label="JCONFIG_PERMISSIONS_LABEL" filter="rules" component="com_mijosearch" section="component">
+			<action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
+			<action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
+			<action name="mijosearch.extensions" title="Manage Extensions" description="Manage Extensions" />
+			<action name="mijosearch.filters" title="Manage Filters" description="Manage Filters" />
+			<action name="mijosearch.search" title="Search in back-end" description="Search in back-end" />
+		</field>
+	</fieldset>
+</config>

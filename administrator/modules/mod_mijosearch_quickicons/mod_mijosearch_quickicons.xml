@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0.0" client="administrator" method="upgrade">
+	<name>MijoSearch - Quick Icons</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>February 2013</creationDate>
+	<copyright>2009-2013 Mijosoft LLC</copyright>
+	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>www.mijosoft.com</authorUrl>
+	<version>1.0.0</version>
+	<description>This module shows MijoSearch Quick Icons on the Admin area Home Page. Publish in "cpanel" position.</description>
+	<files>
+		<filename module="mod_mijosearch_quickicons">mod_mijosearch_quickicons.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB.mod_mijosearch_quickicons.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="mijosearch_version" type="radio" class="btn-group" default="1" label="MOD_MIJOSEARCH_VERSION_STATUS" description="MOD_MIJOSEARCH_VERSION_STATUS_HELP">
+					<option value="0">NO</option>
+					<option value="1">YES</option>
+				</field>
+				<field name="mijosearch_configuration" type="radio" class="btn-group" default="0" label="MOD_MIJOSEARCH_CONFIG" description="MOD_MIJOSEARCH_CONFIG_HELP">
+					<option value="0">NO</option>
+					<option value="1">YES</option>
+				</field>
+				<field name="mijosearch_extensions" type="radio" class="btn-group" default="0" label="MOD_MIJOSEARCH_EXT" description="MOD_MIJOSEARCH_EXT_HELP">
+					<option value="0">NO</option>
+					<option value="1">YES</option>
+				</field>
+				<field name="mijosearch_search" type="radio" class="btn-group" default="1" label="MOD_MIJOSEARCH_SEARCH" decription="MOD_MIJOSEARCH_SEARCH_HELP">
+					<option value="0">NO</option>
+					<option value="1">YES</option>
+				</field>
+				<field name="mijosearch_filter" type="radio" class="btn-group" default="0" label="MOD_MIJOSEARCH_FILTERS" decription="MOD_MIJOSEARCH_FILTER_HELP">
+					<option value="0">NO</option>
+					<option value="1">YES</option>
+				</field>
+				<field name="mijosearch_statistics" type="radio" class="btn-group" default="0" label="MOD_MIJOSEARCH_STATISTICS" decription="MOD_MIJOSEARCH_STATISTICS_HELP">
+					<option value="0">NO</option>
+					<option value="1">YES</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

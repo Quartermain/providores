@@ -1,0 +1,120 @@
+<modification>
+	<id>MijoShop - JavaScript modifications</id>
+	<version>1.2.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>mijosoft.com</author>
+
+	<file name="catalog/view/javascript/common.js">
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=checkout/cart/add]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&format=raw&tmpl=component&route=checkout/cart/add]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=account/wishlist/add]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&format=raw&tmpl=component&route=account/wishlist/add]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=product/compare/add]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&format=raw&tmpl=component&route=product/compare/add]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=module/cart]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&format=raw&tmpl=component&route=module/cart]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[index.php?route=]]></search>
+            <add><![CDATA[index.php?option=com_mijoshop&route=]]></add>
+        </operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[$.]]></search>
+			<add><![CDATA[jQuery.]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[$(]]></search>
+			<add><![CDATA[jQuery(]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[jQuery('#cart-total').html(json['total']);]]></search>
+            <add><![CDATA[
+                updateMijocartModule();]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="bottom"><![CDATA[]]></search>
+            <add><![CDATA[
+function updateMijocartModule() {
+	jQuery.ajax({
+		url: 'index.php?option=com_mijoshop&format=raw&tmpl=component&route=module/mijoshopcart/ajax',
+		type: 'post',
+		success: function(output) {
+			var cart = document.getElementById('module_cart');
+			if(cart){
+			    cart.innerHTML = output;
+			}
+		}
+	});
+}]]></add>
+        </operation>
+		<operation error="skip">
+            <search position="after"><![CDATA[jQuery(document).ready(function() {]]></search>
+            <add><![CDATA[
+    jQuery('#totop-scroller').click(function(e) {
+        e.preventDefault();
+        jQuery('html,body').animate({scrollTop: 0}, 1000);
+        return false;
+    });
+            ]]></add>
+        </operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[<img src="catalog/view/]]></search>
+			<add><![CDATA[<img src="components/com_mijoshop/opencart/catalog/view/]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#menu]]></search>
+            <add><![CDATA[#menu_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#header]]></search>
+            <add><![CDATA[#header_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#footer]]></search>
+            <add><![CDATA[#footer_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#search]]></search>
+            <add><![CDATA[#search_oc]]></add>
+        </operation>
+		<operation error="skip">
+            <search position="replace"><![CDATA[\'search\']]></search>
+            <add><![CDATA[\'search_oc\']]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#content]]></search>
+            <add><![CDATA[#content_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#container]]></search>
+            <add><![CDATA[#container_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#logo]]></search>
+            <add><![CDATA[#logo_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[.button]]></search>
+            <add><![CDATA[.button_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[.content]]></search>
+            <add><![CDATA[.content_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[.breadcrumb]]></search>
+            <add><![CDATA[.breadcrumb_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[.banner]]></search>
+            <add><![CDATA[.banner_oc]]></add>
+        </operation>
+    </file>
+</modification>

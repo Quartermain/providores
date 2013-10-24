@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5.0" type="plugin" group="finder" method="upgrade">
+	<name>plg_finder_mijoshop</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>January 2012</creationDate>
+	<copyright>Copyright (C) Mijosoft LLC, mijosoft.com</copyright>
+	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>http://mijosoft.com</authorUrl>
+	<version>1.0.0</version>
+	<description>Smart Search - Mijoshop</description>
+	<scriptfile>script.php</scriptfile>
+	<files>
+		<file plugin="mijoshop">mijoshop.php</file>
+    	<filename>index.html</filename>
+	</files>
+    <languages>
+        <language tag="en-GB">language/en-GB/en-GB.plg_finder_mijoshop.ini</language>
+        <language tag="en-GB">language/en-GB/en-GB.plg_finder_mijoshop.sys.ini</language>
+    </languages>
+</extension>

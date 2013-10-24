@@ -1,0 +1,112 @@
+<modification>
+    <id>Removes Compare</id>
+    <version>1.0.0</version>
+    <vqmver>1.0.0</vqmver>
+    <author>mijosoft.com</author>
+
+    <file name="catalog/view/theme/*/template/product/product.tpl">
+        <operation error="log">
+            <search position="replace"><![CDATA[<div><span>&nbsp;&nbsp;&nbsp;<?php echo $text_or; ?>&nbsp;&nbsp;&nbsp;</span></div>]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[<a onclick="addToCompare('<?php echo $product_id; ?>');"><?php echo $button_compare; ?></a>]]></search>
+            <add><![CDATA[<a onclick="addToCompare('<?php echo $product_id; ?>');" style="display:none;"><?php echo $button_compare; ?></a>]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/view/theme/*/template/product/category.tpl">
+        <operation error="log">
+            <search position="replace"><![CDATA[<div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>]]></search>
+            <add><![CDATA[<div class="product-compare" style="display:none;"></div>]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[<div class="compare"><a onclick="addToCompare('<?php echo $product['product_id']; ?>');"><?php echo $button_compare; ?></a></div>]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[html += '  <div class="compare">' + $(element).find('.compare').html() + '</div>';]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[html += '<div class="compare">' + $(element).find('.compare').html() + '</div>';]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/view/theme/*/template/product/manufacturer_info.tpl">
+        <operation error="log">
+            <search position="replace"><![CDATA[<div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>]]></search>
+            <add><![CDATA[<div class="product-compare"></div>]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[<div class="compare"><a onclick="addToCompare('<?php echo $product['product_id']; ?>');"><?php echo $button_compare; ?></a></div>]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[html += '  <div class="compare">' + $(element).find('.compare').html() + '</div>';]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[html += '<div class="compare">' + $(element).find('.compare').html() + '</div>';]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/view/theme/*/template/product/special.tpl">
+        <operation error="log">
+            <search position="replace"><![CDATA[<div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>]]></search>
+            <add><![CDATA[<div class="product-compare"></div>]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[<div class="compare"><a onclick="addToCompare('<?php echo $product['product_id']; ?>');"><?php echo $button_compare; ?></a></div>]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[html += '  <div class="compare">' + $(element).find('.compare').html() + '</div>';]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[html += '<div class="compare">' + $(element).find('.compare').html() + '</div>';]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+    </file>
+  
+	<file name="catalog/view/theme/*/template/product/latest.tpl">
+        <operation error="log">
+            <search position="replace"><![CDATA[<div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>]]></search>
+            <add><![CDATA[<div class="product-compare"></div>]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[<div class="compare"><a onclick="addToCompare('<?php echo $product['product_id']; ?>');"><?php echo $button_compare; ?></a></div>]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[html += '  <div class="compare">' + $(element).find('.compare').html() + '</div>';]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[html += '<div class="compare">' + $(element).find('.compare').html() + '</div>';]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/view/theme/*/template/product/search.tpl">
+        <operation error="log">
+            <search position="replace"><![CDATA[<div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>]]></search>
+            <add><![CDATA[<div class="product-compare"></div>]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[<div class="compare"><a onclick="addToCompare('<?php echo $product['product_id']; ?>');"><?php echo $button_compare; ?></a></div>]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[html += '  <div class="compare">' + $(element).find('.compare').html() + '</div>';]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+        <operation error="log">
+            <search position="replace"><![CDATA[html += '<div class="compare">' + $(element).find('.compare').html() + '</div>';]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+    </file>
+</modification>

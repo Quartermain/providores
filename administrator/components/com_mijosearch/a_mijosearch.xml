@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.0" method="upgrade">
+	<!-- Start -->
+	<name>COM_MIJOSEARCH</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>May 2013</creationDate>
+	<copyright>2009-2013 Mijosoft LLC</copyright>
+	<license>GNU/GPL, http://www.gnu.org/copyleft/gpl.html</license>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>www.mijosoft.com</authorUrl>
+	<version>2.0.2</version>
+	<description>MijoSearch is a flexible and powerful Joomla! Search component with an easy-to-use user interface that provides searching through all components from front-end and back-end with custom fields.</description>
+
+	<!-- Frontend -->
+	<files folder="site">
+		<!-- Files -->
+		<filename>mijosearch.php</filename>
+		<filename>controller.php</filename>
+		<filename>index.html</filename>
+		<filename>router.php</filename>
+		<!-- Folders -->
+		<folder>assets</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+	
+	<languages folder="languages/site">
+		<language tag="en-GB">en-GB/en-GB.com_mijosearch.ini</language>
+	</languages>
+		
+	<!-- Backend -->
+	<administration>
+		<menu img="components/com_mijosearch/assets/images/mijosearch.png">COM_MIJOSEARCH</menu>
+		<submenu>
+	    	<menu link="option=com_mijosearch" img="components/com_mijosearch/assets/images/mijosearch.png">COM_MIJOSEARCH_CPANEL</menu>
+	    	<menu link="option=com_mijosearch&amp;controller=config&amp;task=edit" img="components/com_mijosearch/assets/images/icon-16-as-config.png">COM_MIJOSEARCH_CONFIG</menu>
+	      	<menu link="option=com_mijosearch&amp;controller=extensions&amp;task=view" img="components/com_mijosearch/assets/images/icon-16-as-extensions.png">COM_MIJOSEARCH_EXTENSIONS</menu>
+	      	<menu link="option=com_mijosearch&amp;controller=statistics&amp;task=view" img="components/com_mijosearch/assets/images/icon-16-as-statistics.png">COM_MIJOSEARCH_STATISTICS</menu>
+			<menu link="option=com_mijosearch&amp;controller=filters&amp;task=view" img="components/com_mijosearch/assets/images/icon-16-as-filters.png">COM_MIJOSEARCH_FILTERS</menu>
+			<menu link="option=com_mijosearch&amp;controller=search&amp;task=view" img="components/com_mijosearch/assets/images/icon-16-as-search.png">COM_MIJOSEARCH_SEARCH</menu>
+	      	<menu link="option=com_mijosearch&amp;controller=upgrade&amp;task=view" img="components/com_mijosearch/assets/images/icon-16-as-upgrade.png">COM_MIJOSEARCH_UPGRADE</menu>
+	      	<menu link="option=com_mijosearch&amp;controller=support&amp;task=support" img="components/com_mijosearch/assets/images/icon-16-as-support.png">COM_MIJOSEARCH_SUPPORT</menu>
+	    </submenu>
+		
+		<files folder="admin">
+			<!-- Files -->
+			<filename>mijosearch.php</filename>
+			<filename>configgg.xml</filename>
+			<filename>toolbar.php</filename>
+			<filename>install.sql</filename>
+			<filename>index.html</filename>
+			<!-- Folders -->
+			<folder>adapters</folder>
+			<folder>assets</folder>
+			<folder>library</folder>
+			<folder>extensions</folder>
+			<folder>controllers</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+		</files>
+		
+		<languages folder="languages/admin">
+			<language tag="en-GB">en-GB/en-GB.com_mijosearch.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_mijosearch.sys.ini</language>
+		</languages>
+	</administration>
+	
+	<!-- Install/Uninstall SQL -->
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">install.sql</file>
+		</sql>
+	</install>
+	
+	<!-- Install/Uninstall File -->
+	<scriptfile>script.php</scriptfile>
+	
+	<!-- Akeeba Backup -->
+	<restorepoint>
+		<customdirs>
+			<!-- Add the site and administrator modules -->
+			<dir>modules/mod_mijosearch</dir>
+			<dir>administrator/modules/mod_mijosearch_admin</dir>
+			<dir>administrator/modules/mod_mijosearch_quickicons</dir>
+		</customdirs>
+		<langfiles>
+			<!-- Language files of the modules -->
+			<lang>mod_mijosearch</lang>
+			<lang>mod_mijosearch_admin</lang>
+			<lang>mod_mijosearch_quickicons</lang>
+		</langfiles>
+	</restorepoint>
+	
+	<!-- Finish -->
+</extension>

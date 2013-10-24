@@ -1,0 +1,53 @@
+<modification>
+	<id>MijoShop - JavaScript modifications for any Custom theme</id>
+	<version>1.2.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>mijosoft.com</author>
+	
+	<!--  	############################################     -->
+	<!--  	############################################     -->
+	<!--  	                                                 -->
+	<!--  	REPLACE myyy_themeee WITH YOUR TEMPLATE NAME     -->
+	<!--  	                                                 -->
+	<!--  	############################################     -->
+	<!--  	############################################     -->
+	
+	<file name="catalog/view/theme/myyy_themeee/js/*.js">
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&route=]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[$.]]></search>
+			<add><![CDATA[jQuery.]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[$(]]></search>
+			<add><![CDATA[jQuery(]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[<img src="catalog/view/]]></search>
+			<add><![CDATA[<img src="components/com_mijoshop/opencart/catalog/view/]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#menu]]></search>
+            <add><![CDATA[#menu_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#header]]></search>
+            <add><![CDATA[#header_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#footer]]></search>
+            <add><![CDATA[#footer_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#search]]></search>
+            <add><![CDATA[#search_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#content]]></search>
+            <add><![CDATA[#content_oc]]></add>
+        </operation>
+    </file>
+</modification>

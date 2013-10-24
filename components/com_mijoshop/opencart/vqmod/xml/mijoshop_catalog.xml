@@ -1,0 +1,660 @@
+<modification>
+	<id>MijoShop - Front-end modifications</id>
+	<version>1.2.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>mijosoft.com</author>
+	
+	<file name="catalog/controller/account/logout.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[if ($this->customer->isLogged()) {]]></search>
+			<add><![CDATA[
+				MijoShop::get('user')->logoutJFromO();
+				]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/controller/account/account.php">
+		<operation error="log" >
+			<search position="after"  >
+				<![CDATA[$this->data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');]]>
+			</search>
+			<add><![CDATA[$this->data['logout'] = $this->url->link('account/logout', '', 'SSL');]]></add>
+		</operation>
+		<operation error="log" >
+			<search position="after"  >
+				<![CDATA[$this->data['text_newsletter'] = $this->language->get('text_newsletter');]]>
+			</search>
+			<add><![CDATA[$this->data['text_logout'] = $this->language->get('text_logout');]]></add>
+		</operation>		
+	</file>
+
+	<file name="catalog/controller/account/register.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[information_id=]]></search>
+			<add><![CDATA[format=raw&tmpl=component&information_id=]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/controller/affiliate/register.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[information_id=]]></search>
+			<add><![CDATA[format=raw&tmpl=component&information_id=]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/controller/checkout/cart.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[post['option']]]></search>
+			<add><![CDATA[post['option_oc']]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[
+            	public function quote() {
+            ]]></search>
+            <add><![CDATA[
+    public function addExternal(){
+        $this->language->load('checkout/cart');
+
+        $json = array();
+
+        $_id = JRequest::getInt('product_id');
+        $_quantity = JRequest::getInt('quantity');
+        $_price = JRequest::getString('price');
+
+        if (!empty($_id) && !empty($_quantity)){
+            $this->request->post['product_id'] = $_id;
+            $this->request->post['quantity'] = $_quantity;
+        }
+
+        if (isset($this->request->post['product_id'])) {
+            $product_id = $this->request->post['product_id'];
+        } else {
+            $product_id = 0;
+        }
+
+        $this->load->model('catalog/product');
+
+        $product_info = $this->model_catalog_product->getProduct($product_id);
+
+        if ($product_info) {
+            if (isset($this->request->post['quantity'])) {
+                $quantity = $this->request->post['quantity'];
+            } else {
+                $quantity = 1;
+            }
+
+            if(!(doubleval($_price) < doubleval($product_info['price']))) {
+                $this->request->post['option_oc']['external'] = $_price;
+            }
+
+            if (isset($this->request->post['option_oc'])) {
+                $option = array_filter($this->request->post['option_oc']);
+            } else {
+                $option = array();
+            }
+
+            $this->cart->add($this->request->post['product_id'], $quantity, $option);
+        }
+
+		$this->redirect(MijoShop::get('router')->route('index.php?route=checkout/cart'));
+    }
+    ]]></add>
+        </operation>
+		<operation error="skip">
+            <search position="replace" offset="2"><![CDATA['payment/google_checkout',]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+	</file>
+
+	<file name="catalog/controller/checkout/manual.php">
+		<operation error="skip">
+			<search position="replace" offset="2"><![CDATA[$this->load->library('user');]]></search>
+			<add><![CDATA[$this->user = MijoShop::get('opencart')->get('user');]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[if (isset($this->request->post['option'])) {]]></search>
+			<add><![CDATA[if (isset($this->request->post['option_oc'])) {
+						    $option = array_filter($this->request->post['option_oc']);
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/controller/checkout/register.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[information_id=]]></search>
+			<add><![CDATA[format=raw&tmpl=component&information_id=]]></add>
+		</operation>
+	</file>
+
+    <file name="catalog/controller/checkout/payment_method.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[information_id=]]></search>
+            <add><![CDATA[format=raw&tmpl=component&information_id=]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" offset="1"><![CDATA[$this->response->setOutput(json_encode($json));]]></search>
+            <add><![CDATA[
+    public function setPaymentMethods($payment_address, $total) {
+		/*if (!empty($this->session->data['payment_methods'])) {
+			return;
+		}*/
+
+		$method_data = array();
+
+		$this->load->model('setting/extension');
+
+		$results = $this->model_setting_extension->getExtensions('payment');
+
+		foreach ($results as $result) {
+			if ($this->config->get($result['code'] . '_status')) {
+				$this->load->model('payment/' . $result['code']);
+
+				$method = $this->{'model_payment_' . $result['code']}->getMethod($payment_address, $total);
+
+				if ($method) {
+					$method_data[$result['code']] = $method;
+				}
+			}
+		}
+
+		$sort_order = array();
+
+		foreach ($method_data as $key => $value) {
+			$sort_order[$key] = $value['sort_order'];
+		}
+
+		array_multisort($sort_order, SORT_ASC, $method_data);
+
+		$this->session->data['payment_methods'] = $method_data;
+	}
+
+	public function getTotal($payment_address){
+        $total_data = array();
+        $total = 0;
+        $taxes = $this->cart->getTaxes();
+
+        $this->load->model('setting/extension');
+
+        $sort_order = array();
+
+        $results = $this->model_setting_extension->getExtensions('total');
+
+        foreach ($results as $key => $value) {
+            $sort_order[$key] = $this->config->get($value['code'] . '_sort_order');
+        }
+
+        array_multisort($sort_order, SORT_ASC, $results);
+
+        foreach ($results as $result) {
+            if ($this->config->get($result['code'] . '_status')) {
+                $this->load->model('total/' . $result['code']);
+
+                $this->{'model_total_' . $result['code']}->getTotal($total_data, $total, $taxes);
+            }
+        }
+
+        return $total;
+    }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" ><![CDATA[ if (!isset($this->request->post['payment_method'])) { ]]></search>
+            <add><![CDATA[
+            $total = $this->getTotal($payment_address);
+            $this->setPaymentMethods($payment_address, $total);
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace" offset="56" ><![CDATA[  if (!empty($payment_address)) { ]]></search>
+            <add><![CDATA[
+        if (!empty($payment_address)) {
+            $total = $this->getTotal($payment_address);
+        }
+
+        $this->setPaymentMethods($payment_address, $total);
+            ]]></add>
+        </operation>
+    </file>
+	
+	<file name="catalog/controller/checkout/shipping_method.php">
+        <operation error="skip">
+            <search position="before" ><![CDATA[$this->session->data['shipping_methods']]]></search>
+            <add><![CDATA[
+                //Shipping Methods session bug fix
+                if (!empty($shipping_address) && !isset($this->session->data['shipping_methods'])) {
+                    // Shipping Methods
+                    $quote_data = array();
+    
+                    $this->load->model('setting/extension');
+    
+                    $results = $this->model_setting_extension->getExtensions('shipping');
+    
+                    foreach ($results as $result) {
+                        if ($this->config->get($result['code'] . '_status')) {
+                            $this->load->model('shipping/' . $result['code']);
+    
+                            $quote = $this->{'model_shipping_' . $result['code']}->getQuote($shipping_address);
+    
+                            if ($quote) {
+                                $quote_data[$result['code']] = array(
+                                    'title'      => $quote['title'],
+                                    'quote'      => $quote['quote'],
+                                    'sort_order' => $quote['sort_order'],
+                                    'error'      => $quote['error']
+                                );
+                            }
+                        }
+                    }
+
+                    $sort_order = array();
+
+                    foreach ($quote_data as $key => $value) {
+                        $sort_order[$key] = $value['sort_order'];
+                    }
+
+                    array_multisort($sort_order, SORT_ASC, $quote_data);
+
+                    $this->session->data['shipping_methods'] = $quote_data;
+                }
+            ]]></add>
+        </operation>      
+    </file>
+
+	<file name="catalog/controller/common/header.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[foreach ($robots as $robot) {]]></search>
+			<add><![CDATA[				if (empty($robot)) {
+					continue;
+				}
+				]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" index="1"><![CDATA[if (isset($this->request->post['redirect'])) {]]></search>
+			<add><![CDATA[if (isset($this->request->post['redirect']) && strpos($this->request->post['redirect'], HTTP_SERVER) !== false) {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[$this->data['language_code'] = $this->session->data['language'];]]></search>
+			<add><![CDATA[		elseif (isset($this->request->get['lang']) && $this->session->data['language']!=$this->request->get['lang']) {
+			$this->session->data['language'] = $this->request->get['lang'];
+			
+			if (isset($this->request->post['redirect']) && strpos($this->request->post['redirect'], HTTP_SERVER) !== false) {
+				$this->redirect($this->request->post['redirect']);
+			}
+			else {
+				$this->redirect($this->url->link('common/home'));
+			}
+		}
+		elseif (isset($this->request->post['lang']) && $this->session->data['language']!=$this->request->post['lang']) {
+			$this->session->data['language'] = $this->request->post['lang'];
+			
+			if (isset($this->request->post['redirect']) && strpos($this->request->post['redirect'], HTTP_SERVER) !== false) {
+				$this->redirect($this->request->post['redirect']);
+			}
+			else {
+				$this->redirect($this->url->link('common/home'));
+			}
+		}
+		]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/header.tpl')) {]]></search>
+			<add><![CDATA[		if (JRequest::getCmd('option') == 'com_mijoshop') {
+			$document = JFactory::getDocument();
+
+            $title = html_entity_decode($this->data['title']);
+
+			
+            $mainframe = JFactory::getApplication();
+
+            if ($mainframe->getCfg('sitename_pagetitles', 0) == 1) {
+                $title = JText::sprintf('JPAGETITLE', $mainframe->getCfg('sitename'), $title);
+            }
+            elseif ($mainframe->getCfg('sitename_pagetitles', 0) == 2) {
+                $title = JText::sprintf('JPAGETITLE', $title, $mainframe->getCfg('sitename'));
+            }
+            
+            $document->setTitle($title);
+            $document->setMetaData('title', $title);
+            $document->setMetaData('description', html_entity_decode($this->data['description']));
+            $document->setMetaData('keywords', html_entity_decode($this->data['keywords']));
+
+            $document->setBase(MijoShop::get()->getFullUrl());
+		}
+		]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[$this->load->model('catalog/category');]]></search>
+            <add><![CDATA[		if (MijoShop::get('base')->getConfig()->get('show_cats_menu', 0) == 1) {]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" offset="1"><![CDATA[$this->children = array(]]></search>
+            <add><![CDATA[		}]]></add>
+        </operation>
+	</file>
+	
+	<file name="catalog/controller/feed/*.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&route=]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/controller/account/*.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');]]></search>
+            <add><![CDATA[//$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');]]></search>
+            <add><![CDATA[//$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');]]></add>
+        </operation>
+	</file>
+
+	<file name="catalog/controller/affiliate/*.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');]]></search>
+            <add><![CDATA[//$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');]]></search>
+            <add><![CDATA[//$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');]]></add>
+        </operation>
+	</file>
+
+	<file name="catalog/controller/checkout/*.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');]]></search>
+            <add><![CDATA[//$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');]]></search>
+            <add><![CDATA[//$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');]]></add>
+        </operation>
+	</file>
+
+	<file name="catalog/controller/product/*.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');]]></search>
+            <add><![CDATA[//$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->document->addScript('catalog/view/javascript/jquery/tabs.js');]]></search>
+            <add><![CDATA[//$this->document->addScript('catalog/view/javascript/jquery/tabs.js');]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');]]></search>
+            <add><![CDATA[//$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');]]></search>
+            <add><![CDATA[//$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');]]></add>
+        </operation>
+	</file>
+	
+	<file name="catalog/controller/module/*.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[protected function index]]></search>
+			<add><![CDATA[public function index]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[private function index]]></search>
+			<add><![CDATA[public function index]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[$this->render();]]></search>
+			<add><![CDATA[return $this->render();]]></add>
+		</operation>
+		<operation error="skip">
+            <search position="replace"><![CDATA[$this->response->setOutput($this->render());]]></search>
+            <add><![CDATA[$this->response->setOutput($this->render());
+		return $this->output;]]></add>
+        </operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[return return $this->render();]]></search>
+			<add><![CDATA[return $this->render();]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&route=]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[$this->document->addStyle('catalog/view/theme/']]></search>
+			<add><![CDATA[MijoShop::get()->addHeader(JPATH_MIJOSHOP_OC.'/catalog/view/theme/']]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[$this->document->addScript('catalog/view/']]></search>
+			<add><![CDATA[$this->document->addScript('/catalog/view/']]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/module/banner.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[$this->document->addScript('catalog/view/javascript/jquery/jquery.cycle.js');]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+        <operation error="skip">
+			<search position="replace"><![CDATA[$result['link']]]></search>
+			<add><![CDATA[MijoShop::get('router')->route(MijoShop::get()->getFullUrl().$result['link'])]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/module/carousel.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[$this->document->addScript('catalog/view/javascript/jquery/jquery.jcarousel.min.js');]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$result['link']]]></search>
+            <add><![CDATA[MijoShop::get('router')->route(MijoShop::get()->getFullUrl().$result['link'])]]></add>
+        </operation>
+	</file>
+	<file name="catalog/controller/module/slideshow.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[$this->document->addScript('catalog/view/javascript/jquery/nivo-slider/jquery.nivo.slider.pack.js');]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[$this->document->addStyle('catalog/view/theme/default/stylesheet/slideshow.css');]]></search>
+			<add><![CDATA[MijoShop::get()->addHeader(JPATH_MIJOSHOP_OC.'/catalog/view/theme/default/stylesheet/slideshow.css');]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$result['link']]]></search>
+            <add><![CDATA[MijoShop::get('router')->route(MijoShop::get()->getFullUrl().$result['link'])]]></add>
+        </operation>
+	</file>
+	<file name="catalog/controller/module/store.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[HTTP_SERVER . 'index.php?option=com_mijoshop&route=common/home&session_id=' . $this->session->getId()]]></search>
+			<add><![CDATA[HTTP_SERVER . ltrim(JRoute::_('index.php?option=com_mijoshop&route=common/home&session_id=' . $this->session->getId()), '/')]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[$result['url'] . 'index.php?option=com_mijoshop&route=common/home&session_id=' . $this->session->getId()]]></search>
+			<add><![CDATA[$result['url'] . ltrim(JRoute::_('index.php?option=com_mijoshop&route=common/home&session_id=' . $this->session->getId()), '/')]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/controller/payment/*.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[index.php?route=]]></search>
+			<add><![CDATA[index.php?option=com_mijoshop&route=]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/controller/product/category.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[mb_substr]]></search>
+			<add><![CDATA[JString::substr]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[if (isset($this->request->get['path'])) {]]></search>
+			<add><![CDATA[
+        if(empty($this->request->get['path'])){
+			if(!empty($_GET['path'])){
+				$this->request->get['path'] = $_GET['path'];
+			}
+			elseif(!empty($_REQUEST['path'])){ //joomla3
+				$this->request->get['path'] = $_REQUEST['path'];
+				$_GET['path'] = $_REQUEST['path'];
+			}          
+		}
+            ]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/controller/product/product.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[$pagination->url = $this->url->link('product/product/review', 'product_id=' . $this->request->get['product_id']]]></search>
+			<add><![CDATA[$pagination->url = $this->url->link('product/product/review', 'format=raw&tmpl=component&product_id=' . $this->request->get['product_id']]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after"><![CDATA[$this->data['tab_attribute'] = $this->language->get('tab_attribute');]]></search>
+			<add><![CDATA[			$this->data['tab_comments'] = $this->language->get('tab_comments');]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after"><![CDATA[public function upload() {]]></search>
+			<add><![CDATA[
+        if(!isset($_SERVER['HTTP_REFERER']) or (strpos($_SERVER['HTTP_REFERER'] , HTTP_SERVER) === false  and strpos($_SERVER['HTTP_REFERER'] , HTTPS_SERVER) === false)){
+            return;
+        }
+            ]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[if (isset($this->request->get['product_id'])) {]]></search>
+			<add><![CDATA[			
+		if(empty($this->request->get['product_id'])){
+			if(!empty($_GET['product_id'])){
+				$this->request->get['product_id'] = $_GET['product_id'];
+			}
+			elseif(!empty($_REQUEST['product_id'])){//joomla3
+				$this->request->get['product_id'] = $_REQUEST['product_id'];
+				$_GET['product_id'] = $_REQUEST['product_id'];
+			}          
+		}
+            ]]></add>
+		</operation>
+	</file>
+
+    <file name="catalog/controller/product/search.php">
+		<operation error="skip">
+			<search position="replace"><![CDATA[if (isset($this->request->get['search']) || isset($this->request->get['filter_tag'])) {]]></search>
+			<add><![CDATA[if (isset($this->request->get['search']) || isset($this->request->get['tag'])) {]]></add>
+		</operation>
+	</file>
+
+    <file name="catalog/model/account/customer.php">
+   		<operation error="skip">
+   			<search position="before"><![CDATA[$this->language->load('mail/customer');]]></search>
+   			<add><![CDATA[		MijoShop::get('user')->createJUserFromO($data, $customer_id);
+   		]]></add>
+   		</operation>
+   		<operation error="skip">
+   			<search position="after"><![CDATA[$this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "' WHERE customer_id = '" . (int)$this->customer->getId() . "'");]]></search>
+   			<add><![CDATA[
+   		MijoShop::get('user')->updateJUserFromO(MijoShop::get('user')->getJUserIdFromOCustomer((int)$this->customer->getId()), $data, (int)$this->customer->getId());]]></add>
+   		</operation>
+   		<operation error="skip">
+   			<search position="after"><![CDATA[public function editPassword($email, $password) {]]></search>
+   			<add><![CDATA[   		MijoShop::get('user')->updateJUserPasswordFromO($email, $password);
+   			]]></add>
+   		</operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET store_id = '" . (int)$this->config->get('config_store_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', newsletter = '" . (isset($data['newsletter']) ? (int)$data['newsletter'] : 0) . "', customer_group_id = '" . (int)$customer_group_id . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', status = '1', approved = '" . (int)!$customer_group_info['approval'] . "', date_added = NOW()");]]></search>
+            <add><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET store_id = '" . (int)$this->config->get('config_store_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', password = '" . $this->db->escape(md5($data['password'])) . "', newsletter = '" . (isset($data['newsletter']) ? (int)$data['newsletter'] : 0) . "', customer_group_id = '" . (int)$customer_group_id . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', status = '1', approved = '" . (int)!$customer_group_info['approval'] . "', date_added = NOW()");]]></add>
+        </operation>
+   	</file>
+
+    <file name="catalog/model/checkout/order.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[index.php?route=]]></search>
+            <add><![CDATA[index.php?option=com_mijoshop&route=]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[$template->data['logo'] = $this->config->get('config_url') . 'image/' . $this->config->get('config_logo');]]></search>
+            <add><![CDATA[$template->data['logo'] = $this->config->get('config_url') . 'components/com_mijoshop/opencart/image/' . $this->config->get('config_logo');]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[if ($order_info && !$order_info['order_status_id']) {]]></search>
+            <add><![CDATA[            MijoShop::get('base')->trigger('onMijoshopBeforeOrderConfirm', array(&$order_info, &$order_id, &$order_status_id, &$notify)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" ><![CDATA[$this->cache->delete('product');]]></search>
+            <add><![CDATA[            MijoShop::get('base')->trigger('onMijoshopAfterOrderConfirm', array(&$order_info, &$order_id, &$order_status_id, &$notify)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[if ($order_info && $order_info['order_status_id']) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeOrderStatusUpdate', array(&$order_info, &$order_id, &$order_status_id, &$notify)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after" ><![CDATA[$this->db->query("UPDATE `" . DB_PREFIX . "order` SET order_status_id = '" . (int)$order_status_id . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopAfterOrderStatusUpdate', array(&$order_info, &$order_id, &$order_status_id, &$notify)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[public function addOrder($data) {]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopBeforeOrderSave', array(&$data, &$data['products'], &$data['vouchers'], &$data['totals'], true)); ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[return $order_id;]]></search>
+            <add><![CDATA[		MijoShop::get('base')->trigger('onMijoshopAfterOrderSave', array(&$data, &$data['products'], &$data['vouchers'], &$data['totals'], &$order_id, true)); ]]></add>
+        </operation>
+    </file>
+	
+	<file name="catalog/model/checkout/voucher.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$template->data['image'] = $this->config->get('config_url') . 'image/' . $voucher['image'];]]></search>
+            <add><![CDATA[$template->data['image'] = HTTP_IMAGE . $voucher['image'];]]></add>
+        </operation>
+    </file>
+	
+    <file name="catalog/model/checkout/coupon.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[$coupon_category_query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "product_to_category` p2c LEFT JOIN `" . DB_PREFIX . "category` c ON (p2c.category_id = c.category_id) WHERE p2c.`product_id` = '" . (int)$product['product_id'] . "' AND c.`left` BETWEEN '" . (int)$category['left'] . "' AND '" . (int)$category['right'] . "'");]]></search>
+            <add><![CDATA[$coupon_category_query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "product_to_category` p2c LEFT JOIN `" . DB_PREFIX . "category` c ON (p2c.category_id = c.category_id) WHERE p2c.`product_id` = '" . (int)$product['product_id'] . "'");]]></add>
+        </operation>
+    </file>
+	
+    <file name="catalog/model/shipping/ups.php">
+        <operation error="skip">
+            <search position="replace" offset="3"><![CDATA[function comparecost ($a, $b) {]]></search>
+            <add><![CDATA[			function upscomparecost ($a, $b) {
+            	return $a['cost'] > $b['cost'];
+            }
+            uasort($quote_data, 'upscomparecost');]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/model/shipping/usps.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[First-Class Mail Package]]></search>
+            <add><![CDATA[First-Class Mail Parcel]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/model/tool/image.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[return $this->config->get('config_ssl') . 'image/' . $new_image;]]></search>
+            <add><![CDATA[return HTTPS_IMAGE . $new_image;]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[return $this->config->get('config_url') . 'image/' . $new_image;]]></search>
+            <add><![CDATA[return HTTP_IMAGE . $new_image;]]></add>
+        </operation>
+    </file>
+	
+	<file name="catalog/language/english/account/account.php">
+		<operation error="log" >
+			<search position="after"  >
+				<![CDATA[$_['text_newsletter']    = 'Subscribe / unsubscribe to newsletter';]]>
+			</search>
+			<add><![CDATA[$_['text_logout']    = 'Logout';]]></add>
+		</operation>		
+	</file>
+	
+	<file name="catalog/view/theme/*/template/product/product.tpl">
+        <operation error="log" >
+            <search position="replace"><![CDATA[document.getElementById('captcha').src = 'index.php?route=product/product/captcha&' + (Math.floor(Math.random()*1000) + 1);]]></search>
+            <add><![CDATA[
+    <?php if ($review_status) { ?>
+        document.getElementById('captcha').src = 'index.php?route=product/product/captcha&' + (Math.floor(Math.random()*1000) + 1);
+    <?php } ?>
+            ]]></add>
+        </operation>
+    </file>
+</modification>

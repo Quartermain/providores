@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5" method="upgrade">
+	<name>COM_MIJOSHOP</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>October 2013</creationDate>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>http://mijosoft.com</authorUrl>
+	<copyright>2009-2013 Mijosoft LLC</copyright>
+	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+	<version>2.1.7</version>
+	<description>MijoShop is a powerful and turn-key ready shopping cart component that is designed feature rich and user friendly for Joomla.</description> 
+	
+	<languages folder="languages/site">
+		<language tag="en-GB">en-GB/en-GB.com_mijoshop.ini</language>
+	</languages>
+	
+	<files folder="site">
+		<filename>index.html</filename>
+		<filename>mijoshop.php</filename>
+		<filename>router.php</filename>
+		<folder>assets</folder>
+		<folder>mijoshop</folder>
+		<folder>views</folder>
+	</files>
+	
+	<administration>
+		<menu img="components/com_mijoshop/assets/images/icon-16-mijoshop.png">COM_MIJOSHOP</menu>
+		<submenu>
+	    	<menu link="option=com_mijoshop" img="components/com_mijoshop/assets/images/icon-16-mijoshop.png">COM_MIJOSHOP_DASHBOARD</menu>
+	    	<menu link="option=com_mijoshop&amp;route=setting/store" img="components/com_mijoshop/assets/images/icon-16-mijoshop-settings.png">COM_MIJOSHOP_SETTINGS</menu>
+	    	<menu link="option=com_mijoshop&amp;route=catalog/category" img="components/com_mijoshop/assets/images/icon-16-mijoshop-categories.png">COM_MIJOSHOP_CATEGORIES</menu>
+	      	<menu link="option=com_mijoshop&amp;route=catalog/product" img="components/com_mijoshop/assets/images/icon-16-mijoshop-products.png">COM_MIJOSHOP_PRODUCTS</menu>
+			<menu link="option=com_mijoshop&amp;route=sale/coupon" img="components/com_mijoshop/assets/images/icon-16-mijoshop-coupons.png">COM_MIJOSHOP_COUPONS</menu>
+	      	<menu link="option=com_mijoshop&amp;route=sale/customer" img="components/com_mijoshop/assets/images/icon-16-mijoshop-customers.png">COM_MIJOSHOP_CUSTOMERS</menu>
+			<menu link="option=com_mijoshop&amp;route=sale/order" img="components/com_mijoshop/assets/images/icon-16-mijoshop-orders.png">COM_MIJOSHOP_ORDERS</menu>
+	      	<menu link="option=com_mijoshop&amp;route=sale/affiliate" img="components/com_mijoshop/assets/images/icon-16-mijoshop-affiliates.png">COM_MIJOSHOP_AFFILIATES</menu>
+	      	<menu link="option=com_mijoshop&amp;route=sale/contact" img="components/com_mijoshop/assets/images/icon-16-mijoshop-mailing.png">COM_MIJOSHOP_MAILING</menu>
+	      	<menu link="option=com_mijoshop&amp;route=common/upgrade" img="components/com_mijoshop/assets/images/icon-16-mijoshop-upgrade.png">COM_MIJOSHOP_UPGRADE</menu>
+	      	<menu link="option=com_mijoshop&amp;route=common/support" img="components/com_mijoshop/assets/images/icon-16-mijoshop-support.png">COM_MIJOSHOP_SUPPORT</menu>
+	    </submenu>
+		<files folder="admin">
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>install.sql</filename>
+			<filename>index.html</filename>
+			<filename>mijoshop.php</filename>
+			<folder>assets</folder>
+		</files>
+		<languages folder="languages/admin">
+			<language tag="en-GB">en-GB/en-GB.com_mijoshop.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_mijoshop.old.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_mijoshop.sys.ini</language>
+		</languages>
+	</administration>
+	
+	<scriptfile>script.php</scriptfile>
+</extension>

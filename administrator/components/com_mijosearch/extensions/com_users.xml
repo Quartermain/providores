@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="mijosearch_ext" version="1.5.0" method="upgrade">
+	<name>Users</name>
+	<author>Mijosoft LLC</author>
+    <creationDate>February 2013</creationDate>
+    <copyright>(C) 2009-2013 Mijosoft LLC</copyright>
+    <license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+    <authorEmail>info@mijosoft.com</authorEmail>
+    <authorUrl>www.mijosoft.com</authorUrl>
+    <version>2.0.0</version>
+	<description>Users extension for MijoSearch.</description>
+	<client>1</client>
+	<files>
+		<filename mijosearch_ext="com_users">com_users.php</filename>
+	</files>
+	<fields>
+		<field client="1" name="name" type="checkbox" jtext="COM_MIJOSEARCH_FIELDS_TITLE" value="1" />
+		<field client="1" name="username" type="checkbox" jtext="COM_MIJOSEARCH_FIELDS_USERNAME" value="1" />
+		<field client="1" name="email" type="checkbox" jtext="COM_MIJOSEARCH_FIELDS_EMAIL" value="1" />
+	</fields>
+</install>

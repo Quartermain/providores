@@ -1,0 +1,343 @@
+<modification>
+    <id>MijoShop - System modifications</id>
+    <version>1.2.0</version>
+    <vqmver>2.1.5</vqmver>
+    <author>mijosoft.com</author>
+
+    <file name="system/startup.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[require_once(DIR_SYSTEM . 'helper/utf8.php');]]></search>
+            <add><![CDATA[jimport('phputf8.utf8');]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace" offset="14"><![CDATA[if (ini_get('register_globals')) {]]></search>
+            <add><![CDATA[/*if (ini_get('register_globals')) {
+    ini_set('session.use_cookies', 'On');
+    ini_set('session.use_trans_sid', 'Off');
+
+    session_set_cookie_params(0, '/');
+    session_start();
+
+    $globals = array($_REQUEST, $_SESSION, $_SERVER, $_FILES);
+
+    foreach ($globals as $global) {
+        foreach(array_keys($global) as $key) {
+            unset(${$key});
+        }
+    }
+}*/]]></add>
+        </operation>
+    </file>
+
+    <file name="system/engine/front.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[while ($action) {]]></search>
+            <add><![CDATA[while (is_object($action)) {]]></add>
+        </operation>
+    </file>
+
+    <file name="system/engine/loader.php">
+        <operation error="skip">
+            <search position="bottom" offset="2"><![CDATA[]]></search>
+            <add><![CDATA[
+    public function config($config) {
+        MijoShop::get('opencart')->get('config')->load($config);
+    }
+
+    public function language($language) {
+        return MijoShop::get('opencart')->get('language')->load($language);
+    }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[protected $registry;]]></search>
+            <add><![CDATA[    protected $language;]]></add>
+        </operation>
+		<operation error="skip">
+            <search position="before"><![CDATA[
+			public function library($library) {
+			]]></search>
+            <add><![CDATA[
+    public function __get($key) {
+		return $this->registry->get($key);
+	}
+
+	public function __set($key, $value) {
+		$this->registry->set($key, $value);
+	}
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="system/library/cart.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[
+            foreach ($options as $product_option_id => $option_value) {
+            ]]></search>
+            <add><![CDATA[
+			if (strtolower($product_option_id) == 'external') {
+				$option_data[] = array(
+					'product_option_id'       => $product_option_id,
+					'product_option_value_id' => $option_value,
+					'option_id'               => 0,
+					'option_value_id'         => 0,
+					'name'                    => 'Price',
+					'option_value'            => $option_value,
+					'type'                    => 'text',
+					'quantity'                => 1,
+					'subtract'                => 0,
+					'price'                   => $option_value,
+					'price_prefix'            => '+',
+					'points'                  => 0,
+					'points_prefix'           => '+',
+					'weight'                  => 0,
+					'weight_prefix'           => '+'
+				);
+				$option_price += $option_value;
+				continue;
+			}//
+            ]]></add>
+        </operation>
+
+        <operation error="log">
+            <search position="before"><![CDATA[
+            if (!$product_query->row['quantity']
+            ]]></search>
+            <add><![CDATA[
+			foreach ($option_data as $option) {
+				if ($option['product_option_id'] == 'external') {
+					$price = 0;
+					break;
+				}
+			}//
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="system/library/currency.php">
+        <operation error="skip">
+            <search position="replace" offset="1"><![CDATA[if (isset($this->request->get['currency']) && (array_key_exists($this->request->get['currency'], $this->currencies))) {]]></search>
+            <add><![CDATA[if (isset($this->request->get['currency']) && (array_key_exists($this->request->get['currency'], $this->currencies))) {
+            $this->set($this->request->get['currency']);
+        } elseif (isset($this->request->post['currency_code']) && (array_key_exists($this->request->post['currency_code'], $this->currencies))) {
+            $this->set($this->request->post['currency_code']);]]></add>
+        </operation>
+    </file>
+
+    <file name="system/library/customer.php">
+        <!--<operation error="skip">
+              <search position="after"><![CDATA[$this->session = $registry->get('session');]]></search>
+              <add><![CDATA[
+          MijoShop::get('user')->loginOFromJ($this);]]></add>
+          </operation>-->
+        <operation error="skip">
+            <search position="replace" offset="6"><![CDATA[public function login($email, $password, $override = false) {]]></search>
+            <add><![CDATA[public function login($email, $password, $override = false) {
+          $encrypted_password = MijoShop::get('user')->getEncryptedOPassword($email, $password);
+
+          if ($override) {
+              $customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer where LOWER(email) = '" . $this->db->escape(strtolower($email)) . "' AND status = '1'");
+          } else {
+              $customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE LOWER(email) = '" . $this->db->escape(strtolower($email)) . "' AND (password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password) . "'))))) OR password = '" . $this->db->escape(md5($password)) . "' OR password = '".$this->db->escape($encrypted_password)."') AND status = '1' AND approved = '1'");
+          }
+          ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->address_id = '';]]></search>
+            <add><![CDATA[
+           MijoShop::get('user')->logoutJFromO();]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");]]></search>
+            <add><![CDATA[
+            if ($override) {
+                $password = $customer_query->row['password'];
+            }
+
+            MijoShop::get('user')->loginJFromO($email, $password);]]></add>
+        </operation>
+    </file>
+
+    <file name="system/library/language.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[public function get($key) {]]></search>
+            <add><![CDATA[        $file_name  = $this->filename;
+        $trace      = debug_backtrace();
+
+        if (!empty($trace)) {
+            $file_path  = $trace[0]['file'];
+            $file_path  = str_replace('\\', '/', $file_path);
+            $file_path  = str_replace('.php', '', $file_path);
+
+            $as_file    = strpos($file_path, str_replace('/','\\',$file_name));
+            $as_vqmod   = strpos($file_path, str_replace('/','_',$file_name));
+            $is_system  = strpos($file_path, 'system');
+
+            if ($as_file === false && $as_vqmod === false && $is_system === false) {
+                if (strpos($file_path, 'vq2-') !== false){
+                    $_file_name = strstr($file_path, 'vq2-');
+                    $path_array = explode('_', $_file_name);
+                    unset($path_array[0]);
+                    unset($path_array[1]);
+                    $file_name = implode('/', $path_array);
+                }
+                else {
+                    $_file_name = strstr($file_path, 'opencart');
+                    $path_array = explode('/', $_file_name);
+                    unset($path_array[0]);
+                    unset($path_array[1]);
+                    $file_name = implode('/', $path_array);
+                }
+            }
+        }
+
+        $string = 'COM_MIJOSHOP_'.strtoupper(str_replace('/', '_', $this->filename)).'_'.strtoupper($key);
+		$text = JText::_($string);
+
+		if ( ($text == $string or $text == '??'. $string .'??') and !JFactory::getApplication()->isAdmin() and !(isset($_GET['view']) and $_GET['view'] == 'admin') ) {
+            $string = 'COM_MIJOSHOP_'.strtoupper(str_replace('/', '_', $file_name)).'_'.strtoupper($key);
+            $text = JText::_($string);
+        }
+		
+        if (isset($path_array[2]) and $path_array[2] == 'checkout' and ($text == $string or $text == '??'. $string .'??')) {
+            $string = 'COM_MIJOSHOP_'.strtoupper(str_replace('/', '_', 'checkout/checkout')).'_'.strtoupper($key);
+            $text = JText::_($string);
+        }
+
+        if ($text == $string or $text == '??'. $string .'??') {
+            $string = 'COM_MIJOSHOP_'.strtoupper($key);
+			$text = JText::_($string);
+        }
+		
+		if (($text != $string) and ($text != '??'. $string .'??')) {
+			return $text;
+		}
+        ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace" offset="23"><![CDATA[public function load($filename) {]]></search>
+            <add><![CDATA[public function load($filename) {
+        $this->filename = $filename;
+
+        $file = DIR_LANGUAGE . $this->default . '/' . $filename . '.php';
+        if (file_exists($file)) {
+            $_ = array();
+
+            global $vqmod;
+			require($vqmod->modCheck($file));
+
+            $this->data = array_merge($this->data, $_);
+        }
+
+		$file = DIR_LANGUAGE . $this->directory . '/' . $filename . '.php';
+		if (file_exists($file)) {
+			$_ = array();
+
+			global $vqmod;
+			require($vqmod->modCheck($file));
+
+			$this->data = array_merge($this->data, $_);
+		}
+
+        return $this->data;
+  	}]]></add>
+        </operation>
+    </file>
+
+    <file name="system/library/log.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[class Log {]]></search>
+            <add><![CDATA[if (class_exists('Log')) {
+	return;
+}
+
+require_once(JPATH_MIJOSHOP_LIB.'/mijoanalyticslog.php');
+class Log extends MijoAnalyticsLog {]]></add>
+        </operation>
+    </file>
+
+    <file name="system/library/pagination.php">
+        <operation error="skip">
+            <search position="replace"><![CDATA[str_replace('{page}', 1, $this->url)]]></search>
+            <add><![CDATA[MijoShop::get('router')->route(str_replace('{page}', 1, $this->url))]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[str_replace('{page}', $i, $this->url)]]></search>
+            <add><![CDATA[MijoShop::get('router')->route(str_replace('{page}', $i, $this->url))]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[str_replace('{page}', $page + 1, $this->url)]]></search>
+            <add><![CDATA[MijoShop::get('router')->route(str_replace('{page}', $page + 1, $this->url))]]></add>
+        </operation>
+		<operation error="skip">
+            <search position="replace"><![CDATA[str_replace('{page}', $page - 1, $this->url)]]></search>
+            <add><![CDATA[MijoShop::get('router')->route(str_replace('{page}', $page - 1, $this->url))]]></add>
+        </operation>
+		<operation error="skip">
+            <search position="replace"><![CDATA[str_replace('{page}', $num_pages, $this->url)]]></search>
+            <add><![CDATA[MijoShop::get('router')->route(str_replace('{page}', $num_pages, $this->url))]]></add>
+        </operation>
+    </file>
+
+    <file name="system/library/response.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[public function redirect($url) {]]></search>
+            <add><![CDATA[		$url = MijoShop::get('router')->route($url);
+           ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && (strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false)) {]]></search>
+            <add><![CDATA[if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) {]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && (strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'x-gzip') !== false)) {]]></search>
+            <add><![CDATA[if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'x-gzip')) {]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[return gzencode($data, (int)$level);]]></search>
+            <add><![CDATA[$gzdata = gzencode($data, (int)$level);
+           return $gzdata;]]></add>
+        </operation>
+    </file>
+
+    <file name="system/library/session.php">
+        <operation error="skip">
+            <search position="replace" offset="5"><![CDATA[if (preg_match('/^[0-9a-z]*$/i', session_id())) {]]></search>
+            <add><![CDATA[//if (preg_match('/^[0-9a-z]*$/i', session_id())) {
+            session_set_cookie_params(0, '/');
+            session_start();
+
+            $this->data =& $_SESSION;
+        //}]]></add>
+        </operation>
+    </file>
+
+    <file name="system/library/user.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[$this->session = $registry->get('session');]]></search>
+            <add><![CDATA[
+        MijoShop::get('user')->loginOFromJ($this, null, true);]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace" offset="1"><![CDATA[public function login($username, $password) {]]></search>
+            <add><![CDATA[public function login($username, $password) {
+          $encrypted_password = MijoShop::get('user')->getEncryptedOPassword($username, $password, 'Username');
+
+          $user_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user WHERE username = '" . $this->db->escape($username) . "' AND (password = '" . $this->db->escape($password) . "' OR password = '" . $this->db->escape(md5($password)) . "' OR password = '" . $this->db->escape($encrypted_password) . "') AND status = '1'");]]></add>
+        </operation>
+        <!--<operation error="skip">
+            <search position="replace"><![CDATA[AND password = '" . $this->db->escape(md5($password)) . "']]></search>
+            <add><![CDATA[AND (password = '" . $this->db->escape(md5($password)) . "' OR password = '" . $this->db->escape($password) . "')]]></add>
+         </operation>-->
+        <operation error="skip">
+            <search position="before"><![CDATA[return true;]]></search>
+            <add><![CDATA[			if (MijoShop::get('base')->isAdmin('joomla')) {
+			    MijoShop::get('user')->redirectOAfterLoginFromJ($this);
+            }
+            else {
+                MijoShop::get('user')->loginJFromO($username, $password, 'Username');
+            }
+			]]></add>
+        </operation>
+    </file>
+</modification>

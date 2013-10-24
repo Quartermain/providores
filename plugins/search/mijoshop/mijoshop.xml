@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5.0" type="plugin" group="search" method="upgrade">
+	<name>Search - MijoShop</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>October 2012</creationDate>
+	<copyright>Copyright (C) Mijosoft LLC, mijosoft.com</copyright>
+	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>http://mijosoft.com</authorUrl>
+	<version>1.0.0</version>
+	<description>Displays MijoShop products within the search results</description>
+	
+	<files>
+		<filename plugin="mijoshop">mijoshop.php</filename>
+	</files>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="search_limit" type="text" size="5" default="50" label="Search Limit" description="The number of items to return when performing a search."/>
+				<!--<field name="search_tags" type="radio" default="0" label="Search in tags" description="Select if you want to search product's tags. Note that this can be very slow on large sites.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>-->
+			</fieldset>
+		</fields>
+	</config>
+</extension>

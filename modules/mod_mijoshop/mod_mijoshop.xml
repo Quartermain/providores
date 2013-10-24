@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5.0" type="module" client="site" method="upgrade">
+	<name>MijoShop - All-in-One</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>October 2012</creationDate>
+	<copyright>Copyright (C) Mijosoft LLC, mijosoft.com</copyright>
+	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>http://mijosoft.com</authorUrl>
+	<version>1.0.0</version>
+	<description>MijoShop All-in-One Module</description>
+	
+	<files>
+		<filename module="mod_mijoshop">index.html</filename>
+		<filename module="mod_mijoshop">mod_mijoshop.php</filename>
+	</files>
+
+	<config>
+		<fields name="params" addfieldpath="/components/com_mijoshop/mijoshop/elements">
+			<fieldset name="basic">
+				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="Module Suffix" />
+                <field name="module" type="mijoshopmodule" default="mijoshopcart" label="Module" description="Module" />
+                <field name="layout_id" type="mijoshoplayout" default="12" label="Layout" description="Layout" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

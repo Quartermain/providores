@@ -1,0 +1,22 @@
+div.header.icon-48-mijoshop {
+	background-image: url(../images/icon-48-mijoshop.png);
+}
+
+.icon-48-mijoshop {
+	background-image: url(../images/icon-48-mijoshop.png);
+}
+
+.icon-32-changelog {
+	background-image: url(../images/icon-32-changelog.png);
+}
+
+/* author JoomlaWorks http://www.joomlaworks.net */
+#MijoshopQuickIcons { clear:both; margin:-1px 0 8px; padding:8px 0; position:relative; z-index:0; min-height: 95px; }
+#MijoshopQuickIcons div.icon-wrapper { float:left; display: block !important; width: auto !important; height :auto!important; line-height:12px !important; background-image: none !important; }
+#MijoshopQuickIcons div.icon { text-align:center; margin-right:15px; float:left; margin-bottom:15px; }
+#MijoshopQuickIcons div.icon a { background-color:#fff; background-position:-30px; display:block; float:left; height:97px; width:108px; color:#565656; vertical-align:middle; text-decoration:none; border:1px solid #CCC; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; -webkit-transition-property:background-position, 0 0; -moz-transition-property:background-position, 0 0; -webkit-transition-duration:.8s; -moz-transition-duration:.8s; }
+#MijoshopQuickIcons div.icon a:hover,#cpanel div.icon a:focus,#cpanel div.icon a:active { background-position:0; -webkit-border-bottom-left-radius:50% 20px; -moz-border-radius-bottomleft:50% 20px; border-bottom-left-radius:50% 20px; -webkit-box-shadow:-5px 10px 15px rgba(0,0,0,0.25); -moz-box-shadow:-5px 10px 15px rgba(0,0,0,0.25); box-shadow:-5px 10px 15px rgba(0,0,0,0.25); position:relative; z-index:10; }
+#MijoshopQuickIcons div.icon a img { padding:10px 0; margin:0 auto; }
+#MijoshopQuickIcons div.icon a span { display:block; text-align:center; }
+
+.dashboard-slider { float: left !important; margin: 5px !important; width: 98% !important; }

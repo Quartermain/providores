@@ -1,0 +1,779 @@
+<modification>
+	<id>MijoShop - CSS modifications for any Custom theme</id>
+	<version>1.2.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>mijosoft.com</author>
+	
+	<!--  	############################################     -->
+	<!--  	############################################     -->
+	<!--  	                                                 -->
+	<!--  	REPLACE myyy_themeee WITH YOUR TEMPLATE NAME     -->
+	<!--  	                                                 -->
+	<!--  	############################################     -->
+	<!--  	############################################     -->
+	
+	<file name="catalog/view/theme/myyy_themeee/stylesheet/carousel.css">
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.jcarousel-skin-opencart .jcarousel-container {]]></search>
+			<add><![CDATA[.jcarousel-skin-opencart .jcarousel-container {]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/view/theme/myyy_themeee/stylesheet/stylesheet.css">
+		<operation error="skip">
+			<search position="replace"><![CDATA[url('../image/]]></search>
+			<add><![CDATA[url('../../catalog/view/theme/default/image/]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[url("../image/]]></search>
+			<add><![CDATA[url("../../catalog/view/theme/default/image/]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[h1, .welcome {]]></search>
+			<add><![CDATA[h1, .welcome {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[h2 {]]></search>
+			<add><![CDATA[h2 {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[a, a:visited, a b {]]></search>
+			<add><![CDATA[a, a:visited, a b {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3" index="1"><![CDATA[form {]]></search>
+			<add><![CDATA[form {
+    padding: 0;
+    margin: 0;
+    /*display: inline;*/]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[#header {]]></search>
+			<add><![CDATA[#header {
+	height: 60px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[#header #logo {]]></search>
+			<add><![CDATA[#header #logo {
+	position: absolute;
+	top: -5px;
+	left: 229px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="5"><![CDATA[#language {]]></search>
+			<add><![CDATA[#language {
+	position: absolute;
+	top: 0px;
+	right: 150px;
+	width: 75px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="5"><![CDATA[#currency {]]></search>
+			<add><![CDATA[#currency {
+	width: 75px;
+	position: absolute;
+	top: 10px;
+	left: 5px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="4"><![CDATA[#currency a {]]></search>
+			<add><![CDATA[#currency a {
+	display: inline-block;
+	padding: 2px 4px;
+	border: 1px solid #CCC;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[#currency a b {]]></search>
+			<add><![CDATA[#currency a b {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="5"><![CDATA[#header #cart {]]></search>
+			<add><![CDATA[#header #cart {
+	position: absolute;
+	top: -5px;
+	left: 70px;
+	z-index: 9;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="9"><![CDATA[#header #cart .heading {]]></search>
+			<add><![CDATA[#header #cart .heading {
+	float: right;
+	margin-right: 172px;
+	margin-top: 15px;
+	padding-left: 14px;
+	padding-right: 14px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[#header #cart .heading h4 {]]></search>
+			<add><![CDATA[#header #cart .heading h4 {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[#header #cart .heading a {]]></search>
+			<add><![CDATA[#header #cart .heading a {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[background: #FFFFFF url('../../catalog/view/theme/default/image/arrow-down.png') 100% 50% no-repeat;]]></search>
+			<add><![CDATA[background: url('../../catalog/view/theme/default/image/arrow-down.png') 100% 50% no-repeat;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after" offset="2"><![CDATA[#header #cart .cart .remove img {]]></search>
+			<add><![CDATA[#cart_module .cart {
+	width:100%;
+}
+#cart_module .cart .remove img {
+	cursor: pointer;
+}
+#cart_module table.total {
+	border-collapse: collapse;
+	padding: 5px;
+	float: right;
+	clear: left;
+	margin-bottom: 5px;
+}
+#cart_module .content .checkout {
+	text-align: right;
+	clear: both;
+}]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="4"><![CDATA[#header #search {]]></search>
+			<add><![CDATA[#header #search {
+	position: absolute;
+	top: 10px;
+	right: 0px;
+	width: 150px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[#header #search input {]]></search>
+			<add><![CDATA[#header #search input {
+	background: #FFF;
+	padding: 1px 1px 1px 33px;
+	width: 110px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="7"><![CDATA[#header #welcome {]]></search>
+			<add><![CDATA[#header #welcome {
+	position: absolute;
+	top: 52px;
+	right: 0px;
+	z-index: 5;
+	text-align: right;
+	color: #999999;
+	display:none;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="5"><![CDATA[#header .links {]]></search>
+			<add><![CDATA[#header .links {
+	position: absolute;
+	right: 0px;
+	top: 50px;
+	font-size: 10px;
+	padding-right: 5px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="4"><![CDATA[#header .links a {]]></search>
+			<add><![CDATA[#header .links a {
+	float: left;
+	display: block;
+	padding: 0px 0px 0px 7px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.breadcrumb {]]></search>
+			<add><![CDATA[.breadcrumb {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[input.large-field, select.large-field {]]></search>
+			<add><![CDATA[input.large-field, select.large-field {
+	width: 100%;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="5"><![CDATA[.pagination .links a {]]></search>
+			<add><![CDATA[.pagination .links a {
+	display: inline-block;
+	border: 1px solid #EEEEEE;
+	padding: 4px 10px;
+	text-decoration: none;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="6"><![CDATA[.pagination .links b {]]></search>
+			<add><![CDATA[.pagination .links b {
+	display: inline-block;
+	border: 1px solid #269BC6;
+	padding: 4px 10px;
+	font-weight: normal;
+	text-decoration: none;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before" index="1"><![CDATA[.buttons {]]></search>
+			<add><![CDATA[#main a.button_oc:hover {
+	background: url('../../catalog/view/theme/default/image/button-left-active.png') top left no-repeat;
+}
+#main a.button_oc:hover span {
+	color: #FFFFFF;
+	background: url('../../catalog/view/theme/default/image/button-right-active.png') top right no-repeat;
+}
+/* button */
+a.button_oc {
+	display: inline-block;
+	padding-left: 6px;
+	background: url('../../catalog/view/theme/default/image/button-left.png') top left no-repeat;
+	text-decoration: none;
+	cursor: pointer;
+}
+a.button_oc span {
+	color: #FFFFFF;
+	line-height: 12px;
+	font-size: 12px;
+	font-weight: bold;
+	display: inline-block;
+	padding: 6px 12px 8px 5px;
+	background: url('../../catalog/view/theme/default/image/button-right.png') top right no-repeat;
+}
+a.button_oc:hover {
+	background: url('../../catalog/view/theme/default/image/button-left-active.png') top left no-repeat;
+}
+a.button_oc:hover span {
+	color: #FFFFFF;
+	background: url('../../catalog/view/theme/default/image/button-right-active.png') top right no-repeat;
+}
+#main a.button_oc:hover {
+	background: url('../../catalog/view/theme/default/image/button-left-active.png') top left no-repeat;
+}
+#main a.button_oc:hover span {
+	color: #FFFFFF;
+	background: url('../../catalog/view/theme/default/image/button-right-active.png') top right no-repeat;
+}]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" index="1" offset="1"><![CDATA[.buttons {]]></search>
+			<add><![CDATA[.buttons {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="2"><![CDATA[.htabs {]]></search>
+			<add><![CDATA[.htabs {
+	margin-bottom: -1px;
+	overflow: auto;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="12"><![CDATA[.htabs a {]]></search>
+			<add><![CDATA[.htabs a {
+	border-top: 1px solid #DDDDDD;
+	border-left: 1px solid #DDDDDD;
+	border-right: 1px solid #DDDDDD;
+	background: #FFFFFF url('../../catalog/view/theme/default/image/tab.png') repeat-x;
+	padding: 7px 15px 6px 15px;
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="7"><![CDATA[.tab-content {]]></search>
+			<add><![CDATA[.tab-content {
+	border-left: 1px solid #DDDDDD;
+	border-right: 1px solid #DDDDDD;
+	border-bottom: 1px solid #DDDDDD;
+	padding: 10px;
+	margin-bottom: 20px;
+	z-index: 2;
+	overflow: hidden;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="9"><![CDATA[.box .box-content {]]></search>
+			<add><![CDATA[.box .box-content {
+	-webkit-border-radius: 0px 0px 7px 7px;
+	-moz-border-radius: 0px 0px 7px 7px;
+	-khtml-border-radius: 0px 0px 7px 7px;
+	border-radius: 0px 0px 7px 7px;
+	border-left: 1px solid #DBDEE1;
+	border-right: 1px solid #DBDEE1;
+	border-bottom: 1px solid #DBDEE1;
+	padding: 10px;
+	margin: 0px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="2"><![CDATA[.box-product {]]></search>
+			<add><![CDATA[.box-product {
+	width: 100%;
+	overflow: hidden;
+	margin-left:38px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[.box-product .name a {]]></search>
+			<add><![CDATA[#main .box-product .image img:hover {
+	background-color:#FFFFFF;
+}]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.box-product .name a {]]></search>
+			<add><![CDATA[.box-product .name a {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[.box-product .price {]]></search>
+			<add><![CDATA[.box-product .price {
+	display: block;
+	font-weight: bold;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.box-product .price-old {]]></search>
+			<add><![CDATA[.box-product .price-old {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.box-category > ul > li {]]></search>
+			<add><![CDATA[.box-category > ul > li {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="2"><![CDATA[.box-category > ul > li > a {]]></search>
+			<add><![CDATA[.box-category > ul > li > a {
+	text-decoration: none;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.box-category > ul > li ul > li {]]></search>
+			<add><![CDATA[.box-category > ul > li ul > li {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="4"><![CDATA[.product-filter .display {]]></search>
+			<add><![CDATA[.product-filter .display {
+	margin-right: 15px;
+	float: left;
+	padding-top: 4px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="2"><![CDATA[.product-filter .sort {]]></search>
+			<add><![CDATA[.product-filter .sort {
+	float: right;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[.product-filter .limit {]]></search>
+			<add><![CDATA[.product-filter .limit {
+	margin-left: 15px;
+	float: right;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-list .name a {]]></search>
+			<add><![CDATA[.product-list .name a {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[.product-list .description {]]></search>
+			<add><![CDATA[.product-list .description {
+	line-height: 15px;
+	margin-bottom: 5px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-list .rating {]]></search>
+			<add><![CDATA[.product-list .rating {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="5"><![CDATA[.product-list .price {]]></search>
+			<add><![CDATA[.product-list .price {
+	float: right;
+	height: 50px;
+	margin-left: 8px;
+	text-align: right;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-list .price-old {]]></search>
+			<add><![CDATA[.product-list .price-old {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[.product-list .price-tax {]]></search>
+			<add><![CDATA[.product-list .price-tax {
+	font-size: 12px;
+	font-weight: normal;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-list .wishlist a {]]></search>
+			<add><![CDATA[.product-list .wishlist a {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-list .compare a {]]></search>
+			<add><![CDATA[.product-list .compare a {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-grid .name a {]]></search>
+			<add><![CDATA[.product-grid .name a {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[.product-grid .price {]]></search>
+			<add><![CDATA[.product-grid .price {
+	display: block;
+	font-weight: bold;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-grid .price-old {]]></search>
+			<add><![CDATA[.product-grid .price-old {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-grid .wishlist a {]]></search>
+			<add><![CDATA[.product-grid .wishlist a {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-grid .compare a {]]></search>
+			<add><![CDATA[.product-grid .compare a {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[.product-info > .left {]]></search>
+			<add><![CDATA[.product-info > .left {
+	float: left;
+	width:38%;
+}
+.product-info > .right {
+	float: right;
+	width:59%;
+}]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="2"><![CDATA[.product-info > .left + .right {]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-info .image-additional {]]></search>
+			<add><![CDATA[.product-info .image-additional {
+	width: 200px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="6"><![CDATA[.product-info .description {]]></search>
+			<add><![CDATA[.product-info .description {
+	border-top: 1px solid #E7E7E7;
+	border-bottom: 1px solid #E7E7E7;
+	padding: 5px 5px 10px 5px;
+	margin-bottom: 10px;
+	line-height: 20px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-info .description span {]]></search>
+			<add><![CDATA[.product-info .description span {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-info .description a {]]></search>
+			<add><![CDATA[.product-info .description a {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="7"><![CDATA[.product-info .price {]]></search>
+			<add><![CDATA[.product-info .price {
+	overflow: auto;
+	border-bottom: 1px solid #E7E7E7;
+	padding: 0px 5px 10px 5px;
+	margin-bottom: 10px;
+	font-size: 15px;
+	font-weight: bold;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-info .price-old {]]></search>
+			<add><![CDATA[.product-info .price-old {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[.product-info .price-tax {]]></search>
+			<add><![CDATA[.product-info .price-tax {
+	font-size: 12px;
+	font-weight: normal;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[.product-info .price .reward {]]></search>
+			<add><![CDATA[.product-info .price .reward {
+	font-size: 12px;
+	font-weight: normal;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[.product-info .price .discount {]]></search>
+			<add><![CDATA[.product-info .price .discount {
+	font-size: 12px;
+	font-weight: normal;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="4"><![CDATA[.product-info .options {]]></search>
+			<add><![CDATA[.product-info .options {
+	border-bottom: 1px solid #E7E7E7;
+	padding: 0px 5px 10px 5px;
+	margin-bottom: 10px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="4"><![CDATA[.product-info .cart {]]></search>
+			<add><![CDATA[.product-info .cart {
+	border-bottom: 1px solid #E7E7E7;
+	padding: 0px 5px 10px 5px;
+	margin-bottom: 20px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[.product-info .cart div > span {]]></search>
+			<add><![CDATA[.product-info .cart div > span {
+	padding-top: 7px;
+	display: block;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[.product-info .cart .minimum {]]></search>
+			<add><![CDATA[.product-info .cart .minimum {
+	padding-top: 5px;
+	font-size: 11px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-info .review {]]></search>
+			<add><![CDATA[.product-info .review {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.product-info .review > div > span {]]></search>
+			<add><![CDATA[.product-info .review > div > span {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="2"><![CDATA[.compare-info .price-old {]]></search>
+			<add><![CDATA[.compare-info .price-old {
+	font-weight: bold;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.wishlist-product tbody .price s {]]></search>
+			<add><![CDATA[.wishlist-product tbody .price s {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="2"><![CDATA[.return-comment {]]></search>
+			<add><![CDATA[.return-comment {
+	width: 100%;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="2"><![CDATA[.return-captcha {]]></search>
+			<add><![CDATA[.return-captcha {
+	width: 100%;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[.cart-info tbody span.stock {]]></search>
+			<add><![CDATA[.cart-info tbody span.stock {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="6"><![CDATA[.checkout-heading {]]></search>
+			<add><![CDATA[.checkout-heading {
+	border: 1px solid #DBDEE1;
+	padding: 8px;
+	font-weight: bold;
+	font-size: 13px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[.checkout-content {]]></search>
+			<add><![CDATA[.checkout-content {
+	padding: 0px 0px 15px 0px;
+	display: none;
+	overflow: hidden;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="7"><![CDATA[#footer {]]></search>
+			<add><![CDATA[#footer {
+	clear: both;
+	overflow: hidden;
+	min-height: 135px;
+	padding: 20px;
+	border-top: 1px solid #DBDEE1;
+	border-bottom: 1px solid #DBDEE1;
+	border-left: 1px solid #DBDEE1;
+	border-right: 1px solid #DBDEE1;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[#footer h3 {]]></search>
+			<add><![CDATA[#footer h3 {]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[#footer .column {]]></search>
+			<add><![CDATA[#footer .column {
+	float: left;
+	width: 25%;
+	min-height: 135px;]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="2"><![CDATA[#footer .column a {]]></search>
+			<add><![CDATA[#footer .column a {
+	text-decoration: none;]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace" offset="3"><![CDATA[#menu ul {]]></search>
+            <add><![CDATA[#menu ul {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace" offset="3"><![CDATA[#menu > ul > li {]]></search>
+            <add><![CDATA[#menu > ul > li {
+    position: relative !important;
+    float: left !important;
+    z-index: 20 !important;
+    background: 000 !important;
+    line-height: 100% !important;
+    padding: 0px !important;
+    margin: 0 !important;
+    overflow: visible !important;]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[#menu > ul > li > div > ul > li > a {]]></search>
+            <add><![CDATA[#menu > ul > li > div > ul > li {
+    background: 000 !important;
+    line-height: 100% !important;
+    padding: 4px !important;
+    margin: 0 !important;
+}]]></add>
+        </operation>
+		<operation error="skip">
+			<search position="replace" offset="4"><![CDATA[html {]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="6"><![CDATA[body {]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[html, body{]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="2"><![CDATA[body, td, th, input, textarea, select, a {]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[#container {]]></search>
+			<add><![CDATA[#container {
+	width: 100%;]]></add>
+		</operation>
+        <operation error="skip">
+            <search position="replace" offset="1"><![CDATA[#container{]]></search>
+            <add><![CDATA[#container{
+    width: 100%;]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace" offset="1"><![CDATA[table.form > * > * > td {]]></search>
+            <add><![CDATA[table.form > * > * > td {
+    /*color: #000000;*/]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#menu]]></search>
+            <add><![CDATA[#menu_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#header]]></search>
+            <add><![CDATA[#header_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#footer]]></search>
+            <add><![CDATA[#footer_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#search]]></search>
+            <add><![CDATA[#search_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#content]]></search>
+            <add><![CDATA[#content_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#container]]></search>
+            <add><![CDATA[#container_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[#logo]]></search>
+            <add><![CDATA[#logo_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[.button]]></search>
+            <add><![CDATA[.button_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[.content]]></search>
+            <add><![CDATA[.content_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[.breadcrumb]]></search>
+            <add><![CDATA[.breadcrumb_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[.banner]]></search>
+            <add><![CDATA[.banner_oc]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[.box {]]></search>
+            <add><![CDATA[.box_oc {]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="replace"><![CDATA[.box .]]></search>
+            <add><![CDATA[.box_oc .]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="bottom"><![CDATA[]]></search>
+            <add><![CDATA[#module_cart .content_oc {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #EEEEEE;
+    border-radius: 0 7px 7px 7px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 2px 2px #DDDDDD;
+    clear: both;
+    display: none;
+    min-height: 150px;
+    padding: 8px;
+    position: relative;
+    top: -1px;
+}
+#module_cart.active .heading {
+    border-left: 1px solid #EEEEEE;
+    border-radius: 7px 7px 0 0;
+    border-right: 1px solid #EEEEEE;
+    border-top: 1px solid #EEEEEE;
+    margin-top: 5px;
+    padding-bottom: 6px;
+    padding-top: 10px;
+}
+#module_cart.active .content {
+    display: block;
+}
+#module_cart .cart {
+    border-collapse: collapse;
+    margin-bottom: 5px;
+    width: 100%;
+}
+#module_cart .cart td {
+    border-bottom: 1px solid #EEEEEE;
+    color: #000000;
+    padding: 2px 3px;
+    vertical-align: top;
+}
+#module_cart .cart .image {
+    display: none;
+}
+#module_cart .cart .image img {
+    border: 1px solid #EEEEEE;
+    text-align: left;
+}
+#module_cart .cart .name small {
+    color: #666666;
+    line-height: 14px;
+}
+#module_cart .cart td.total, #module_cart .cart td.quantity{
+    text-align: right;
+    vertical-align: middle;
+}
+#module_cart .cart .remove {
+    text-align: right;
+    padding: 0 2px;
+    vertical-align: middle;
+}
+#module_cart .cart .remove img {
+    cursor: pointer;
+}
+#module_cart table.total {
+    border-collapse: collapse;
+    clear: left;
+    float: right;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+#module_cart table.total td {
+    color: #000000;
+}
+#module_cart .checkout {
+    clear: both;
+    text-align: right;
+}
+#module_cart .empty {
+    text-align: center;
+}]]></add>
+        </operation>
+    </file>
+</modification>

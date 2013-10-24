@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Search">
+		<message>
+			<![CDATA[Search]]>
+		</message>
+	</layout>
+	<fields name="request">
+		<fieldset name="request" label="MijoSearch: Search" addfieldpath="/administrator/components/com_mijosearch/library/elements">
+            <field name="query" type="text" default="" label="COM_MIJOSEARCH_MENU_QUERY" description="COM_MIJOSEARCH_MENU_QUERY_HELP" size="30" />
+            <field name="filter" type="mijosearchfilters" default="" label="COM_MIJOSEARCH_MENU_FILTER" description="COM_MIJOSEARCH_MENU_FILTER_HELP"/>
+		</fieldset>
+    </fields>
+</metadata>

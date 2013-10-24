@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Advanced Search">
+		<message>
+			<![CDATA[Display the advanced search page.]]>
+		</message>
+	</layout>
+	<fields name="params">
+		<fieldset name="basic" label="MijoSearch: Advanced Search" addfieldpath="/administrator/components/com_mijosearch/library/elements">
+            <field name="component" type="componentlist" default="" label="COM_MIJOSEARCH_MENU_COMPONENT" description="COM_MIJOSEARCH_MENU_COMPONENT_HELP" />
+        </fieldset>
+    </fields>
+</metadata>

@@ -1,0 +1,20 @@
+<modification>
+    <id>Removes Reward Points</id>
+    <version>1.0.0</version>
+    <vqmver>1.0.0</vqmver>
+    <author>mijosoft.com</author>
+
+    <file name="catalog/view/theme/*/template/product/product.tpl">
+        <operation error="skip">
+            <search position="replace"><![CDATA[<span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+    </file>
+
+	<file name="catalog/view/theme/*/template/account/account.tpl">
+        <operation error="skip">
+            <search position="replace"><![CDATA[<li><a href="<?php echo $reward; ?>"><?php echo $text_reward; ?></a></li>]]></search>
+            <add><![CDATA[]]></add>
+        </operation>
+    </file>
+</modification>

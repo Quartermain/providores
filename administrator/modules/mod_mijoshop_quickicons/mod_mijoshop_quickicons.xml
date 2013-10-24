@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5.0" type="module" client="administrator" method="upgrade">
+	<name>MijoShop - Quick Icons</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>October 2012</creationDate>
+	<copyright>Copyright (C) Mijosoft LLC, mijosoft.com</copyright>
+	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>http://mijosoft.com</authorUrl>
+	<version>1.0.0</version>
+	<description>This module shows MijoShop Quick Icons on the Admin area Home Page. Publish in "icon" position.</description>
+	
+	<files>
+		<filename module="mod_mijoshop_quickicons">mod_mijoshop_quickicons.php</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic" >
+				<field name="mijoshop_dashboard" type="radio" class="btn-group" default="1" label="COM_MIJOSHOP_DASHBOARD" description="Show Dashboard button.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="mijoshop_categories" type="radio" class="btn-group" default="1" label="COM_MIJOSHOP_CATEGORIES" description="Show Categories button.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="mijoshop_products" type="radio" class="btn-group" default="1" label="COM_MIJOSHOP_PRODUCTS" description="Show Products button.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="mijoshop_coupons" type="radio" class="btn-group" default="0" label="COM_MIJOSHOP_COUPONS" description="Show Coupons button.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="mijoshop_customers" type="radio" class="btn-group" default="1" label="COM_MIJOSHOP_CUSTOMERS" description="Show Customers button.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="mijoshop_orders" type="radio" class="btn-group" default="1" label="COM_MIJOSHOP_ORDERS" description="Show Orders button.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="mijoshop_affiliates" type="radio" class="btn-group" default="0" label="COM_MIJOSHOP_AFFILIATES" description="Show Affiliates button.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

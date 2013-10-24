@@ -1,0 +1,113 @@
+/* Yahoo like tabs*/
+#mijosearch_tabs, .mijosearch_tabs{
+	margin-bottom:4px;
+	margin-right:0;
+	margin-top:0;
+	margin-left:0px;
+	position:relative;
+	z-index:1;	
+	list-style:none;
+}
+
+#mijosearch_tabs .on {
+  color:#133891;
+  cursor:default;
+  font:normal normal normal 15px/normal arial, helvetica, 'bitstream vera sans', clean, sans-serif;
+  font-weight:bold;
+  padding-left:0px;
+}
+
+#mijosearch_tabs li, .off{
+  display:inline;
+  margin-left:2px;
+  margin-right:2px;
+  padding-bottom:0;
+  padding-left:2px;
+  padding-right:2px;
+  padding-top:0;  
+  list-style-image:initial;
+  list-style-position:initial;
+  list-style-type:none;
+}
+#mijosearch_tabs a {
+  color:#133891;
+  text-decoration:none;
+  font:normal normal normal 15px/normal arial, helvetica, 'bitstream vera sans', clean, sans-serif;
+}
+
+#mijosearch_tabs li.last {
+  position:relative;
+  border-bottom-width:0;
+  border-color:initial;
+  border-left-width:0;
+  border-right-width:0;
+  border-style:initial;
+  border-top-width:0;
+  margin-left:10px;
+}
+
+#mijosearch_more_menu_ol {
+	padding:0px !important;
+}
+
+.more-menu {
+  background-attachment:initial;
+  background-clip:initial;
+  background-color:#FFFFFF;
+  background-image:initial;
+  background-origin:initial;
+  background-position:initial initial;
+  background-repeat:initial initial;
+  border-bottom-color:#889AA7;
+  border-bottom-style:solid;
+  border-bottom-width:1px;
+  border-left-color:#889AA7;
+  border-left-style:solid;
+  border-left-width:1px;
+  border-right-color:#889AA7;
+  border-right-style:solid;
+  border-right-width:1px;
+  border-top-color:#889AA7;
+  border-top-style:solid;
+  border-top-width:1px;
+  display:none;
+  font-size:13px;
+  left:6px;
+  padding-bottom:2px;
+  padding-left:2px;
+  padding-right:2px;
+  padding-top:2px;
+  position:absolute;
+  /*top:5px;*/
+  z-index:1;
+}
+.more-menu ol.first-of-type {
+  border-bottom-width:0;
+  border-color:initial;
+  border-left-width:0;
+  border-right-width:0;
+  border-style:initial;
+  border-top-width:0;
+  line-height: 7px;
+}
+.more-menu ol {
+  border-top-color:#889AA7;
+  border-top-style:solid;
+  border-top-width:1px;
+  padding-bottom:0px;
+  padding-left:3px;
+  padding-right:3px;
+  padding-top:0;
+  
+}
+.more-menu li a {
+  display:block;
+  padding-bottom:0px;
+  padding-left:4px;
+  padding-right:12px;
+  padding-top:0px;
+  white-space:nowrap;
+}
+#more-menu li {
+  border-style:initial;
+}

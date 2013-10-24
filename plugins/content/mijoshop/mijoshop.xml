@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5.0" type="plugin" group="content" method="upgrade">
+	<name>Content - MijoShop</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>October 2012</creationDate>
+	<copyright>Copyright (C) Mijosoft LLC, mijosoft.com</copyright>
+	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>http://mijosoft.com</authorUrl>
+	<version>1.0.0</version>
+	<description>Display any product anywhere by using this syntax (only id=5 is compulsory): {mijoshop id=5,image=1:80:80,name=1,price=1,rating=1,button=1,options=option_oc[226]:15}</description>
+	
+	<files>
+		<filename plugin="mijoshop">mijoshop.php</filename>
+		<filename>index.html</filename>
+	</files>
+	
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="show_image" type="radio" class="btn-group" default="1" label="Show Product Image" description="Select if you want to show the image of the product.">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                <field name="image_width" type="text" size="5" default="80" label="Product Image Width" description="Enter the width of the image."/>
+                <field name="image_height" type="text" size="5" default="80" label="Product Image Height" description="Enter the height of the image."/>
+                <field type="spacer" default="" />
+                <field name="show_name" type="radio" class="btn-group" default="1" label="Show Product Name" description="Select if you want to show the name of the product.">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                <field name="show_price" type="radio" class="btn-group" default="1" label="Show Product Price" description="Select if you want to show the price of the product.">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                <field name="show_rating" type="radio" class="btn-group" default="1" label="Show Product Rating" description="Select if you want to show the rating of the product.">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                <field name="show_button" type="radio" class="btn-group" default="1" label="Show Add to Cart" description="Select if you want to show the Add to Cart button.">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                <field type="spacer" default="" />
+                <field name="show_box" type="radio" class="btn-group" default="0" label="Show Box" description="Select if you want to show a box that wraps the product.">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                <field name="show_heading" type="radio" class="btn-group" default="0" label="Show Box Header" description="Select if you want to show the header of the above box.">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
