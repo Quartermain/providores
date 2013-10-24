@@ -1,35 +1,9 @@
 <?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
-  <div class="box">
+  <div class="box  category-box" >
   <div class="box-heading"><h1 class="mijoshop_heading_h1"><?php echo $heading_title; ?></h1></div>
   <div class="box-content">
-  <?php if ($thumb || $description) { ?>
-  <div class="category-info">
-    <?php if ($thumb) { ?>
-    <div class="image"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" /></div>
-    <?php } ?>
-    <?php if ($description) { ?>
-    <?php echo MijoShop::get('base')->triggerContentPlg($description); ?>
-    <?php } ?>
-  </div>
-  <?php } ?>
-  <?php if ($categories) { ?>
-  <div class="box">
-	<div class="box-heading"><?php echo $text_refine; ?></div>
-	<div class="box-content">
-		<div class="box-product box-subcat">
-			<?php foreach ($categories as $category) { ?>
-			<div>
-				<?php if ($category['thumb']) { ?>
-				<div class="image"><a href="<?php echo $category['href']; ?>"><img src="<?php echo $category['thumb']; ?>" alt="<?php echo $category['name']; ?>" /></a></div>
-				<?php } ?>
-				<div class="name subcatname"><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></div>
-			</div>
-			<?php } ?>
-		</div>
-	</div>
-  </div>
-  <?php } ?>
+
   <?php if ($products) { ?>
   <div class="product-filter">
     <div class="display"><b><?php echo $text_display; ?></b> <?php echo $text_list; ?> <b>/</b> <a onclick="display('grid');"><?php echo $text_grid; ?></a></div>

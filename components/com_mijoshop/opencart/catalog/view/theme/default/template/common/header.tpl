@@ -23,26 +23,7 @@ DD_belatedPNG.fix('#logo img');
 <?php echo $google_analytics; ?>
 
 <div id="container">
-<div id="header" <?php echo (MijoShop::get('base')->getConfig()->get('show_header', 1) == 1) ? '' : 'style="display:none;"'; ?>>
-  <?php echo $currency; ?>
-  <?php echo $cart; ?>
-  <div id="search">
-    <div class="button-search"></div>
-    <?php if ($search) { ?>
-    <input type="text" name="search" value="<?php echo $search; ?>" />
-    <?php } else { ?>
-    <input type="text" name="search" value="<?php echo $text_search; ?>" onclick="this.value = '';" onkeydown="this.style.color = '#000000';" />
-    <?php } ?>
-  </div>
-  <div id="welcome">
-    <?php if (!$logged) { ?>
-    <?php echo $text_welcome; ?>
-    <?php } else { ?>
-    <?php echo $text_logged; ?>
-    <?php } ?>
-  </div>
-  <div class="links"><a href="<?php echo $home; ?>"><?php echo $text_home; ?></a><a href="<?php echo $wishlist; ?>" id="wishlist-total"><?php echo $text_wishlist; ?></a><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a><a href="<?php echo $shopping_cart; ?>"><?php echo $text_shopping_cart; ?></a><a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a></div>
-</div>
+
 <?php if (!empty($categories)) { ?>
 <div id="menu">
   <ul>
