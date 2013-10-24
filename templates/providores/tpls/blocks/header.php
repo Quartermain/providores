@@ -18,9 +18,14 @@ if ($logoimage) {
 <!-- HEADER -->
 <header id="t3-header" class="container t3-header">
   <div class="row">
+	<div class="span4">
+		<div class="account-login-shop<?php $this->_c('account-login-shop')?>">     
+			<jdoc:include type="modules" name="<?php $this->_p('account-login-shop') ?>" style="raw" />
+		</div>
+	</div>
 
     <!-- LOGO -->
-    <div class="span8 logo">
+    <div class="span4 logo">
       <div class="logo-<?php echo $logotype ?>">
         <a href="<?php echo JURI::base(true) ?>" title="<?php echo strip_tags($sitename) ?>"<?php echo $logoimage ?>>
           <span><?php echo $sitename ?></span>
