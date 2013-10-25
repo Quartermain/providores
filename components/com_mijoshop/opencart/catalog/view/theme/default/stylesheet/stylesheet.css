@@ -548,6 +548,7 @@ table.radio tr.highlight:hover td {
 }
 .pagination .results {
 	float: right;
+	display: none;
 	padding-top: 3px;
 }
 /* button */
@@ -855,6 +856,7 @@ ul.box-filter > li ul {
 .product-compare a {
 	text-decoration: none;
 	font-weight: bold;
+	display: none;
 }
 .product-list > div {
 	overflow: auto;
@@ -932,33 +934,63 @@ ul.box-filter > li ul {
 .product-grid {
 	width: 100%;
 	overflow: auto;
+	overflow: hidden;
 }
 .product-grid > div {
-	/*width: 130px;*/
+	width: 210px;
 	display: inline-block;
 	vertical-align: top;
-	margin-right: 20px;
-	margin-bottom: 15px;
+	margin-right: 0px;
+	margin-bottom: 1px;
+	text-align: center;
+	padding: 10px;
+	border: 1px dashed #F2ECE7;
+	margin: -1px 0 0 -1px;
+	 display: block;
+    float: left;
 }
 #column-left + #column-right + #content_oc .product-grid > div {
 	width: 125px;
 }
 .product-grid .image {
 	display: block;
-	margin-bottom: 0px;
+	margin-bottom: 12px;
 }
 .product-grid .image img {
 	padding: 3px;
-	border: 1px solid #E7E7E7;
 }
 .product-grid .name a {
-	font-weight: bold;
 	text-decoration: none;
 	display: block;
 	margin-bottom: 4px;
+	text-transform:uppercase;
+	font-size: 18px;
+	color: #1f1f1e;
+}
+.grid-bottom {
+	border-left: 6px solid #fb9316;
+	background: #f3ede8;
+	padding: 0px 8px;
+	overflow: hidden;
+	height: 40px;line-height: 40px;
+}
+.cart .btn ,.cart .btn:focus ,.cart .btn:hover {
+	background: url(../image/btn-cart.png) ;
+	border-radius: 0;
+	border: none;
+	display: block;
+	text-indent: -9999px;
+	 box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+	 width: 27px;
+	 height: 27px;
+	 margin-top: 8px;
 }
 .product-grid .description {
-	display: none;
+	display: block;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+	height: 25px;
 }
 .product-grid .rating {
 	display: block;
@@ -966,8 +998,11 @@ ul.box-filter > li ul {
 }
 .product-grid .price {
 	display: block;
-	font-weight: bold;
 	margin-bottom: 4px;
+	text-transform:uppercase;
+	font-size: 18px;
+	color: #1f1f1e;
+	float: left;
 }
 .product-grid .price-old {
 	text-decoration: line-through;
@@ -979,7 +1014,7 @@ ul.box-filter > li ul {
 	display: none;
 }
 .product-grid .cart {
-	margin-bottom: 3px;
+	margin-bottom: 3px;float:right;
 }
 .product-grid .wishlist, .product-grid .compare {
 	margin-bottom: 3px;

@@ -6,8 +6,7 @@
 
   <?php if ($products) { ?>
   <div class="product-filter">
-    <div class="display"><b><?php echo $text_display; ?></b> <?php echo $text_list; ?> <b>/</b> <a onclick="display('grid');"><?php echo $text_grid; ?></a></div>
-    <div class="limit"><b><?php echo $text_limit; ?></b>
+       <div class="limit" style="display: none"><b><?php echo $text_limit; ?></b>
       <select onchange="location = this.value;">
         <?php foreach ($limits as $limits) { ?>
         <?php if ($limits['value'] == $limit) { ?>
@@ -123,6 +122,7 @@ function display(view) {
 		
 		$('.product-grid > div').each(function(index, element) {
 			html = '';
+			index = index + 1;
 			
 			var image = $(element).find('.image').html();
 			
@@ -134,6 +134,7 @@ function display(view) {
 			html += '<div class="description">' + $(element).find('.description').html() + '</div>';
 			
 			var price = $(element).find('.price').html();
+			html += '<div class="grid-bottom">' ;
 			
 			if (price != null) {
 				html += '<div class="price">' + price  + '</div>';
@@ -146,8 +147,8 @@ function display(view) {
 			}
 						
 			html += '<div class="cart">' + $(element).find('.cart').html() + '</div>';
-			html += '<div class="wishlist">' + $(element).find('.wishlist').html() + '</div>';
-			html += '<div class="compare">' + $(element).find('.compare').html() + '</div>';
+			html += '</div>';
+			
 			
 			$(element).html(html);
 		});	
@@ -164,7 +165,7 @@ if (view) {
 	display(view);
 } else {
     <?php if(Mijoshop::get('base')->getConfig()->get('mijoshop_display', 0) == 0) { ?>
-        display('list');
+        display('grid');
     <?php } else { ?>
         display('grid');
     <?php } ?>
