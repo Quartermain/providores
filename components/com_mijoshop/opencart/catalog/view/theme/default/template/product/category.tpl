@@ -7,6 +7,7 @@
   <?php if ($products) { ?>
   <div class="product-filter">
        <div class="limit" style="display: none"><b><?php echo $text_limit; ?></b>
+	    
       <select onchange="location = this.value;">
         <?php foreach ($limits as $limits) { ?>
         <?php if ($limits['value'] == $limit) { ?>
@@ -17,16 +18,19 @@
         <?php } ?>
       </select>
     </div>
-    <div class="sort"><b><?php echo $text_sort; ?></b>
-      <select onchange="location = this.value;">
-        <?php foreach ($sorts as $sorts) { ?>
-        <?php if ($sorts['value'] == $sort . '-' . $order) { ?>
-        <option value="<?php echo $sorts['href']; ?>" selected="selected"><?php echo $sorts['text']; ?></option>
-        <?php } else { ?>
-        <option value="<?php echo $sorts['href']; ?>"><?php echo $sorts['text']; ?></option>
-        <?php } ?>
-        <?php } ?>
-      </select>
+	<div class="top-box">
+		<div class="pagination pull-right"><?php echo $pagination; ?></div>
+		<div class="sort"><b><?php echo $text_sort; ?></b>
+		  <select onchange="location = this.value;">
+			<?php foreach ($sorts as $sorts) { ?>
+			<?php if ($sorts['value'] == $sort . '-' . $order) { ?>
+			<option value="<?php echo $sorts['href']; ?>" selected="selected"><?php echo $sorts['text']; ?></option>
+			<?php } else { ?>
+			<option value="<?php echo $sorts['href']; ?>"><?php echo $sorts['text']; ?></option>
+			<?php } ?>
+			<?php } ?>
+		  </select>
+		</div>
     </div>
   </div>
   <div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>

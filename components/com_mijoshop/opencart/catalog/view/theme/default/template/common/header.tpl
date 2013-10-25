@@ -20,6 +20,26 @@
 DD_belatedPNG.fix('#logo img');
 </script>
 <![endif]-->
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.box-category li').each(function(index,element){
+		if($(this).children('ul').length !='') {
+			element.addClass('parent');
+		}
+	})
+	$('.box-category li a').hover(function(){
+		if($(this).next('ul').is(':visible')) {
+			return false;
+		}
+		else {
+			$('.box-category li ul').hide();
+			$(this).next('ul').slideDown();
+			//if($($(this).next('ul')).length !='' ) return false;
+			//else return true;
+		}
+	})
+})
+</script>
 <?php echo $google_analytics; ?>
 
 <div id="container">

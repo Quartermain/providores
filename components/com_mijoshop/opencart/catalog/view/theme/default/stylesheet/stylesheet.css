@@ -523,28 +523,38 @@ table.radio tr.highlight:hover td {
 	cursor: pointer;
 }
 .pagination {
-	border-top: 1px solid #EEEEEE;
-	padding-top: 8px;
+	border-bottom: 1px solid #c5bfb8;
+	padding-bottom: 15px;
 	display: inline-block;
 	width: 100%;
 	margin-bottom: 10px;
 }
 .pagination .links {
-	float: left;
+	float: right;
 }
 .pagination .links a {
 	display: inline-block;
-	border: 1px solid #EEEEEE;
+	border: 1px solid #c5bfb8;
 	padding: 4px 10px;
 	text-decoration: none;
+	background: #f3ede8;
+	font-size: 12px;
+	color: #1f1e1e;
 }
 .pagination .links b {
 	display: inline-block;
-	border: 1px solid #269BC6;
+	border: 1px solid #c5bfb8;
 	padding: 4px 10px;
 	font-weight: normal;
 	text-decoration: none;
-	background: #FFFFFF;
+	background: #fb9316;
+	color: white;
+}
+.mijoshop_heading_h1 {
+	 color: #202020 !important;
+    font-size: 50px !important;
+    line-height: 37px !important;
+    margin-bottom: 4px !important;
 }
 .pagination .results {
 	float: right;
@@ -842,7 +852,23 @@ ul.box-filter > li ul {
 	font-weight: bold;
 }
 .product-filter .sort {
-	float: right;
+	float: left;
+}
+.top-box {
+	overflow: hidden;
+	padding: 10px 0;
+	margin: 10px 0;
+	border-top: 1px solid #c5bfb8;
+	border-bottom: 1px solid #c5bfb8;
+}
+.top-box  .pagination  {
+	border: none;
+	width: auto;
+	margin: 0;
+	padding:0;
+}
+.top-box select{
+	margin: 0;
 }
 .product-filter .limit {
 	margin-left: 15px;
@@ -893,8 +919,8 @@ ul.box-filter > li ul {
 	line-height: 15px;
 	margin-bottom: 5px;
 }
-.product-list .rating {
-	
+.product-list .rating ,.product-compare{
+	display: none;
 }
 .product-list .price {
 	float: right;
@@ -937,7 +963,7 @@ ul.box-filter > li ul {
 	overflow: hidden;
 }
 .product-grid > div {
-	width: 210px;
+	width: 22.6%;
 	display: inline-block;
 	vertical-align: top;
 	margin-right: 0px;
@@ -1005,7 +1031,7 @@ ul.box-filter > li ul {
 	float: left;
 }
 .product-grid .price-old {
-	text-decoration: line-through;
+	text-decoration: line-through;font-weight: bold;
 }
 .product-grid .price-new {
 	font-weight: bold;
@@ -1745,4 +1771,7 @@ ul.box-filter > li ul {
     -moz-transition: opacity .5s ease-out;
     -webkit-transition: opacity .5s ease-out;
     -o-transition: opacity .5s ease-out;
+}
+.parent ul {
+	display: none;	
 }
