@@ -53,7 +53,7 @@
 
 // Scaffolding
 // -------------------------
-@bodyBackground:        @white;
+@bodyBackground:        "@{T3ImagePath}/bg-body.png";
 @textColor:             @gray;
 
 
@@ -65,7 +65,9 @@
 
 // Typography
 // -------------------------
-@sansFontFamily:        sans-serif;
+@sansFontFamily:        "QlassikMediumRegular";
+@sansFontFamilyBold:        "QlassikBoldRegular";
+
 @serifFontFamily:       serif;
 @monoFontFamily:        monospace;
 
@@ -74,7 +76,7 @@
 @baseLineHeight:        20px;
 @altFontFamily:         @serifFontFamily;
 
-@headingsFontFamily:    @sansFontFamily; // empty to use BS default, @baseFontFamily
+@headingsFontFamily:    @sansFontFamilyBold; // empty to use BS default, @baseFontFamily
 @headingsFontWeight:    bold;    // instead of browser default, bold
 @headingsColor:         @grayDark; // empty to use BS default, @textColor
 
@@ -300,8 +302,8 @@
 @gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
 
 // 1200px min
-@T3gridWidth1200:         1200px;  // T3 add
-@gridGutterWidth1200:     40px;
+@T3gridWidth1200:         990px;  // T3 add
+@gridGutterWidth1200:     20px;
 @gridColumnWidth1200:     floor((@T3gridWidth1200 - @gridGutterWidth1200 * (@gridColumns - 1)) / @gridColumns);
 @gridRowWidth1200:        (@gridColumns * @gridColumnWidth1200) + (@gridGutterWidth1200 * (@gridColumns - 1));
 
@@ -358,8 +360,8 @@
 //
 // T3 LOGO
 // --------------------------------------------------
-@T3logoWidth:               204px;
-@T3logoHeight:              65px;
+@T3logoWidth:               305px;
+@T3logoHeight:              130px;
 
 @T3LogoImage:               "@{T3ImagePath}/logo.png";
 

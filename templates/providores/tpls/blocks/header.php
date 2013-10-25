@@ -18,14 +18,14 @@ if ($logoimage) {
 <!-- HEADER -->
 <header id="t3-header" class="container t3-header">
   <div class="row">
-	<div class="span4">
+	<div class="span2">
 		<div class="account-login-shop<?php $this->_c('account-login-shop')?>">     
 			<jdoc:include type="modules" name="<?php $this->_p('account-login-shop') ?>" style="raw" />
 		</div>
 	</div>
 
     <!-- LOGO -->
-    <div class="span4 logo">
+    <div class="span7 logo">
       <div class="logo-<?php echo $logotype ?>">
         <a href="<?php echo JURI::base(true) ?>" title="<?php echo strip_tags($sitename) ?>"<?php echo $logoimage ?>>
           <span><?php echo $sitename ?></span>
@@ -36,7 +36,7 @@ if ($logoimage) {
     <!-- //LOGO -->
 
     <?php if($this->countModules('head-search or languageswitcherload')): ?>
-    <div class="span4 clearfix">  
+    <div class="span3 clearfix">  
       <?php if ($this->countModules('head-search')) : ?>
       <!-- HEAD SEARCH -->
       <div class="head-search<?php $this->_c('head-search')?>">     

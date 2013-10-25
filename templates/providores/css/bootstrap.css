@@ -593,7 +593,7 @@ input,
 button,
 select,
 textarea {
-  font-family: sans-serif;
+  font-family: "QlassikMediumRegular";
 }
 label {
   display: block;
@@ -1462,7 +1462,7 @@ table {
   border-top: 2px solid #ddd;
 }
 .table .table {
-  background-color: #fff;
+  background-color: "../images/bg-body.png";
 }
 .table-condensed th,
 .table-condensed td {
@@ -3996,7 +3996,7 @@ input[type="submit"].btn.btn-mini {
 .nav-tabs > .active > a:hover,
 .nav-tabs > .active > a:focus {
   color: #666;
-  background-color: #fff;
+  background-color: "../images/bg-body.png";
   border: 1px solid #ddd;
   border-bottom-color: transparent;
   cursor: default;
@@ -4384,7 +4384,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-search .search-query {
   margin-bottom: 0;
   padding: 4px 14px;
-  font-family: sans-serif;
+  font-family: "QlassikMediumRegular";
   font-size: 13px;
   font-weight: normal;
   line-height: 1;

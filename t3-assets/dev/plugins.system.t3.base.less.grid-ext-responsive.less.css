@@ -394,40 +394,40 @@
 }
 @media (min-width: 1200px) {
   .offset-12 {
-    margin-left: -1196px;
+    margin-left: -988px;
   }
   .offset-11 {
-    margin-left: -1093px;
+    margin-left: -904px;
   }
   .offset-10 {
-    margin-left: -990px;
+    margin-left: -820px;
   }
   .offset-9 {
-    margin-left: -887px;
+    margin-left: -736px;
   }
   .offset-8 {
-    margin-left: -784px;
+    margin-left: -652px;
   }
   .offset-7 {
-    margin-left: -681px;
+    margin-left: -568px;
   }
   .offset-6 {
-    margin-left: -578px;
+    margin-left: -484px;
   }
   .offset-5 {
-    margin-left: -475px;
+    margin-left: -400px;
   }
   .offset-4 {
-    margin-left: -372px;
+    margin-left: -316px;
   }
   .offset-3 {
-    margin-left: -269px;
+    margin-left: -232px;
   }
   .offset-2 {
-    margin-left: -166px;
+    margin-left: -148px;
   }
   .offset-1 {
-    margin-left: -63px;
+    margin-left: -64px;
   }
 }
 @media (min-width: 600px) and (max-width: 767px) {

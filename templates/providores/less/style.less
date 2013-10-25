@@ -41,6 +41,7 @@
 // ----------
 .logo-image {
   overflow: hidden;
+  text-align: center;
 
   a {
     background-image: url("@{T3LogoImage}");
@@ -277,6 +278,89 @@
   }
 }
 
+.home .box-product {
+  margin-left: 0;
+}
+
+//  Account login shop
+
+.account-login-shop {
+  #btl .btl-panel > span {
+    box-shadow: none;
+    .border-radius (0);
+    background: transparent !important;
+    color: @black !important;
+    padding: 0;
+    font-size: @baseFontSize;
+    text-transform: uppercase;
+    border-right: solid 1px #c0b8af !important;
+    padding-right: 10px;
+    margin-right: 10px;
+  }
+
+  #header_oc #cart .heading {
+    padding-left: 0;
+  }
+  #btl .btl-panel {
+    float: left !important;
+    border-bottom: solid 1px #c0b8af;
+    padding-bottom: 10px;
+  }
+
+  #header_oc .heading h4 {
+    background: url("../images/shoping-icon.png") no-repeat left center;
+    padding-left: 25px;
+  }
+}
+
+
+/* Slide show */
+
+.slideshow {
+  .ja-button-control {
+    background: transparent;
+  }
+
+  .ja-contentslider-left, 
+  .ja-contentslider-right {
+    background: url("../images/bc-lr.png") no-repeat left top;
+    border:none;
+    width: 54px;
+    height: 54px;
+    z-index: 99;
+    top: 200px;
+  }
+
+  .ja-contentslider-left {
+    right: 0;
+    left: 5%;
+  }
+
+  .ja-contentslider-right {
+    background-position: -56px 0;
+    right: 5%;
+  }
+
+  .ja-contentslider-center-wrap {
+    width: 980px;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .ja-contentslider-left:hover, 
+  .ja-contentslider-right:hover {
+    background: url("../images/bc-lr.png") no-repeat left -56px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ja-contentslider-right:hover {
+    background-position: -56px -56px;
+  }
+
+
+
+}
 
 
 // ---------------------------------------------------------
