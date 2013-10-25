@@ -178,8 +178,8 @@
 // FOOTER
 // ---------------------------------------------------------
 .t3-footer {
-  background: @grayDarker;
-  color: @gray;
+  background: #1f1f1f;
+  color: #ffffff;
   .clearfix();
   // small
   small {
@@ -188,7 +188,8 @@
   }
   // links
   a {
-    color: @T3FooterModuleColor;
+    color: #ffffff;
+	font-size:14px;
     // Link States
     &:hover, &:active, &:focus {
       color: lighten(@gray,50%);
@@ -205,6 +206,18 @@
   ul {
     list-style: none;
     margin-left: 0;
+    padding-left: 15px;
+	li a {
+		display: block;
+		padding: 0 0 0 12px;
+		line-height: 20px;
+		margin-bottom:5px;
+		background: url(../images/arrow-left.png) no-repeat left 9px;
+		&:hover ,&:focus ,&:active{
+			background: url(../images/arrow-left.png) no-repeat left 9px;
+			color: #FB9316;
+		}
+	}
   }
   
   li {
@@ -213,7 +226,12 @@
   
   .module-title {
     font-size: @baseFontSize + 4px;
-    color: @T3FooterModuleTitleColor;
+    color: white;
+	text-transform: uppercase;
+	display: inline-block;
+		background:#2e2c2b;
+		border-left: 6px solid #fb9316;
+		padding:0 10px;
   }
 }
 
@@ -224,6 +242,25 @@
   font-size: @T3smallerFontSize;
   padding: (@T3globalPadding * 2) 0 (@T3globalPadding * 4);
   .clearfix();
+  .custom p {font-size: 12px;color:#696159;}
+  .nav {margin-bottom:0;ul {
+		display: none;
+	}}
+  .nav > li {
+	display: inline;
+	
+  }
+  .nav > li > a {
+	display: inline-block;
+	 color: white;
+	 margin-right: 20px;
+	 font-size: 18px;
+	text-transform: uppercase;
+	&:hover ,&:focus ,&:active{
+		background:none;
+		color: #FB9316;
+	}
+  }
 }
 
 .copyright {
