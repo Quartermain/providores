@@ -27,17 +27,24 @@ $(document).ready(function(){
 			element.addClass('parent');
 		}
 	})
-	$('.box-category li a').hover(function(){
-		if($(this).next('ul').is(':visible')) {
-			return false;
-		}
-		else {
-			$('.box-category li ul').hide();
-			$(this).next('ul').slideDown();
+
+    
+  
+	$('.box-category li').hover(function(){
+		//if($(this).children('ul').is(':visible')) {
+		//	return false;
+		//}
+		//else {
+		
+		$(this).children('ul').stop().slideDown();
 			//if($($(this).next('ul')).length !='' ) return false;
 			//else return true;
-		}
-	})
+		//}
+	},function(){
+		$('.box-category li ul').stop().hide();
+	}
+	
+	)
 })
 </script>
 <?php echo $google_analytics; ?>

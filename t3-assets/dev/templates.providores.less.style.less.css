@@ -423,4 +423,52 @@
   background: none !important;
   color: #F29400 !important;
 }
+.customintagram {
+  width: 206px;
+}
+.customintagram  img {
+  padding: 4px;
+  background: #f4f4f4;
+  border: 1px solid #c0bbb8;
+  border-radius: 2px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+.customintagram  p + p img {
+  padding: 0px;
+  background: none;
+  border: 0px solid #c0bbb8;
+  border-radius: 0px;
+  box-shadow: 0 0 0px rgba(0,0,0,0.5);
+}
+.t3-sidebar .module-title {
+  background: #202020;
+  border-left: 6px solid #fb9316;
+  padding: 0px 0 0 5px;
+  font-size: 18px;
+  color: white;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+.t3-sidebar  .box-category {
+  list-style: none;
+  margin-left: 0;
+}
+.t3-sidebar  .box-category  > li >  a {
+  color: #1f1f1e;
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 0 0 0 12px;
+  display: block;
+  line-height: 24px;
+  background: url("../../templates/providores/images/arrow-left.png") no-repeat left 8px;
+}
+.t3-sidebar  .box-category  > li li  a {
+  color: #1f1f1e;
+  font-size: 14px;
+}
+.t3-sidebar  .box-category  > li {
+  display: block;
+  padding: 10px 15px 8px;
+  background: url("../../templates/providores/images/bg-menu-left.png") no-repeat left top;
+}
 

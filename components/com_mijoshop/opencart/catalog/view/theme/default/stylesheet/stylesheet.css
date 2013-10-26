@@ -187,7 +187,6 @@ label {
 	color: #000;
 	vertical-align: top;
 	padding: 10px 5px;
-	border-bottom: 1px solid #EEEEEE;
 }
 .mini-cart-info .image {
 	width: 1px;
@@ -529,16 +528,16 @@ table.radio tr.highlight:hover td {
 .pagination .links a {
 	display: inline-block;
 	border: 1px solid #c5bfb8;
-	padding: 4px 10px;
+	
 	text-decoration: none;
 	background: #f3ede8;
 	font-size: 12px;
-	color: #1f1e1e;
+	color: #1f1e1e; box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);padding: 1px 8px;
 }
 .pagination .links b {
 	display: inline-block;
 	border: 1px solid #c5bfb8;
-	padding: 4px 10px;
+	 box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);padding: 1px 8px;
 	font-weight: normal;
 	text-decoration: none;
 	background: #fb9316;
@@ -1001,7 +1000,7 @@ background: white;
 	overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-	height: 25px;
+	height: 25px; margin-bottom: 15px;
 }
 .product-grid .rating {
 	display: block;

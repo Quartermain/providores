@@ -13,14 +13,14 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 
-<div class="row" id="ja-sidenews-<?php echo $moduleID; ?>">
+<div class="" id="ja-sidenews-<?php echo $moduleID; ?>">
 	<?php foreach( $list as $i => $item ) :
 		$item->text = $item->introtext . $item->fulltext;
 		$onclick = ' onclick="location.href=\''.$item->link.'\'"';
 		$class='even';
 		if ($i%2==0) $class='odd';
 	?>
-	<div class="span3 ja-<?php echo $class ?> ja-sidenews" <?php echo $onclick ;?> style="display:none; height:<?php echo $height;?>px" >
+	<div class=" ja-<?php echo $class ?> ja-sidenews" <?php echo $onclick ;?> style="display:none; height:<?php echo $height;?>px" >
 		<div class="ja-icon-<?php echo $class ?> "></div><?php echo $helper->renderImage ($item, $params, $descMaxChars, $iwidth, $iheight ); ?>
 		<div class="ja-slidenews-cover" style="height:<?php echo $height;?>px;">
 			

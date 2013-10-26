@@ -14,7 +14,7 @@
   
   background: linear-gradient(to right,rgba(255,255,255,0) 0%,#212121 10%,#212121 90%,rgba(255,255,255,0) 100%);
   
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff',endColorstr='#00ffffff',GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff',endColorstr='#00ffffff',GradientType=0);
 }
 .t3-mainnav .navbar {
   color: #666;
