@@ -82,7 +82,7 @@ label {
 }
 /* header */
 #header_oc {
-	height: 60px;
+	height: 40px;
 	margin-bottom: 7px;
 	padding-bottom: 4px;
 	position: relative;clear:both;
@@ -1769,7 +1769,7 @@ background: white;
 }
 
 .account-login-shop .nav    {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     padding-bottom: 6px; border-bottom: 1px solid #C0B8AF;
     display: block;
 	float: left;
@@ -1778,12 +1778,12 @@ background: white;
 	 border-right: none!important;
 	padding-right:0;margin-right: 0;
 }
-.account-login-shop .nav  li a {
+.account-login-shop .nav  li  {
     cursor: pointer;
-    display: inline-block;
+    display: block;
+	float: left;
     height: 26px;
     line-height: 28px;margin: 2px 0;
-    padding: 0 18px;
     text-indent: 0 !important;
     width: auto;
 }
@@ -1801,7 +1801,7 @@ background: white;
 .head-search  p {
 	color: black;text-align: right;
 }
-#header_oc {height: auto;}
+
 .account-login-shop {
 	padding-top: 40px;
 }
