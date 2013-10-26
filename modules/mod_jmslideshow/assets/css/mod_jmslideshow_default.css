@@ -1,0 +1,103 @@
+.jmslideshow{
+  position: relative;
+}
+.jmslideshow .cycle-next,
+.jmslideshow .cycle-next:hover,
+.jmslideshow .cycle-next:visited,
+.jmslideshow .cycle-next:active,
+.jmslideshow .cycle-next:focus{
+  background: url("../images/bc-lr.png") repeat scroll 98% 134% transparent;
+  height: 55px;
+  opacity: 0.6;
+  position: absolute;
+  right: -100px;
+  top: 45%;
+  width: 55px;
+  z-index: 99999;
+  text-indent: -999px;
+  overflow: hidden;
+  cursor: pointer;
+  background-position: -55px 0px;
+}
+
+.jmslideshow .cycle-next {
+	background-position: -55px -56px;
+}
+.jmslideshow .cycle-prev,
+.jmslideshow .cycle-prev:hover,
+.jmslideshow .cycle-prev:visited,
+.jmslideshow .cycle-prev:active,
+.jmslideshow .cycle-prev:focus{
+  background: url("../images/bc-lr.png") repeat scroll 0 0 ;
+  height: 55px;
+  left: -100px;
+  opacity: 0.6;
+  position: absolute;
+  top: 45%;
+  width: 55px;
+  z-index: 99999;
+  text-indent: -999px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.jmslideshow .cycle-prev {
+	background-position: 0 -56px;
+}
+
+.jmslideshow .slideshow-content{ 
+  font-family: tahoma, arial;
+  position: absolute; width: 542px; z-index: 600;
+  background: white; color: black; padding: 3px 10px 0px 10px; opacity: .5;
+  border-radius:5px;
+}
+.jmslideshow .slideshow-content p{
+  margin-top:-4px;
+  line-height: 1.4em !important;
+}
+.jmslideshow .slideshow-content a{
+  color:green; 
+}
+.jmslideshow .slideshow-content div:first-child{
+  font-weight:bold;
+}
+/*Pager*/
+.jmslideshow .cycle-pager{
+  position: absolute;
+  z-index: 999;
+}
+.jmslideshow .cycle-pager span{
+  background-image: url("../images/control_button.png");
+  background-repeat: repeat;
+  background-position: 92px 132px;
+  color: transparent;
+  display: block;
+  float: left;
+  height: 15px;
+  margin-right: 5px;
+  text-indent: -999px;
+  width: 15px;
+  cursor: pointer;
+}
+.jmslideshow .cycle-pager span.cycle-pager-active{
+  background-position: 64px 132px;
+}
+.jmslideshow .pager-number span{
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: block;
+  float: left;
+  height: 15px;
+  margin-right: 5px;
+  padding: 3px;
+  text-align: center;
+  text-indent: 0;
+  width: 15px;
+}
+.jmslideshow .pager-number span a{
+  color: #fff;
+  text-decoration: none;
+}
+.jmslideshow .pager-number span.cycle-pager-active{
+  background: rgba(127,0,12,0.8);
+}

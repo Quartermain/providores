@@ -256,4 +256,171 @@
 .slideshow .ja-contentslider-right:hover {
   background-position: -56px -56px;
 }
+.container .ja-sidenews {
+  width: 25%;
+  float: left;
+}
+.ja-sidenews img {
+  width: 100%;
+  opacity: 0.7;
+  transition: opacity .5s ease-out;
+  -moz-transition: opacity .5s ease-out;
+  -webkit-transition: opacity .5s ease-out;
+  -o-transition: opacity .5s ease-out;
+}
+.ja-sidenews.ja-even .ja-slidenews-cover {
+  top: 0;
+}
+.ja-sidenews .ja-icon-even,
+.ja-sidenews .ja-icon-odd {
+  display: block;
+  width: 26px;
+  height: 13px;
+  position: absolute;
+  left: 20px;
+  background: url("../../templates/providores/images/arrow-new.png");
+  z-index: 9;
+}
+.ja-sidenews .ja-icon-odd {
+  bottom: 120px;
+  background-position: left top;
+}
+.ja-sidenews .ja-icon-even {
+  top: 120px;
+  background-position: left bottom;
+}
+.ja-sidenews.ja-even img {
+  margin-top: 120px;
+}
+.ja-sidenews:hover h3 {
+  color: #fa9215 !important;
+}
+.ja-sidenews h3 {
+  font-size: 24px !important;
+}
+.ja-sidenews:hover img {
+  opacity: 1;
+  width: 100%;
+}
+.t3-sl {
+  padding-bottom: 30px;
+  padding-top: 0px;
+}
+@font-face {
+  font-family: 'Conv_SverigeScriptClean_Demo';
+  src: url('../../templates/providores/fonts/SverigeScript/SverigeScriptClean_Demo.eot');
+  src: local('☺'), url('../../templates/providores/fonts/SverigeScript/SverigeScriptClean_Demo.woff') format('woff'), url('../../templates/providores/fonts/SverigeScript/SverigeScriptClean_Demo.ttf') format('truetype'), url('../../templates/providores/fonts/SverigeScript/SverigeScriptClean_Demo.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.t3-mainnav .navbar .nav > li {
+  display: inline-block;
+  float: none;
+}
+.t3-mainnav .navbar .nav {
+  text-align: center;
+  float: none;
+}
+.t3-mainnav .navbar .nav ul {
+  text-align: left;
+}
+.home .t3-sl-3,
+.home .t3-sl-4 {
+  border: none !important;
+}
+.home .t3-sl-2 .customtitlenew p {
+  font-size: 20px;
+  color: black;
+  margin-bottom: 40px;
+}
+.customtitle-shop {
+  background: url("../../templates/providores/images/shop-by.png") no-repeat center center;
+  margin: 0px 0 30px 0;
+}
+.customtitle-shop  h3 {
+  font-size: 16px;
+}
+.customtitlenew h3 {
+  text-shadow: 0 0 3px #f29400;
+  font-size: 50px !important;
+  font-family: 'Conv_SverigeScriptClean_Demo';
+  margin-bottom: 30px;
+}
+#ja-sidenews-jasd-modid110,
+.customtitle-shop +  .box_oc {
+  overflow: hidden;
+  padding-bottom: 41px;
+  background: url("../../templates/providores/images/shadow.png") no-repeat center bottom;
+}
+.t3-logos {
+  color: #696159 !important;
+  text-shadow: 0 1px 0 #000;
+}
+.t3-logos strong {
+  color: #dddfe4;
+  display: inline-block;
+  padding: 1px 3px;
+  margin-left: 4px;
+  background: #2e2c2b;
+}
+#jmslideshow {
+  position: relative;
+  background: url("../../templates/providores/images/frame-slideshow.png") no-repeat center top;
+  margin: 20px auto 30px auto;
+  padding: 40px 30px 60px 30px;
+  width: 1000px;
+}
+#jmslideshow #jmslideshow-inner {
+  width: 934px;
+  margin-left: 43px;
+  background: black;
+}
+#jmslideshow-inner .jmslideshow .cycle-pager {
+  left: 50% !important;
+  margin-left: -85px;
+  background: url("../../templates/providores/images/navigation-slider.png") no-repeat center top;
+  min-width: 160px;
+  text-align: center;
+  min-height: 51px;
+  bottom: -40px !important;
+}
+#jmslideshow-inner .jmslideshow .cycle-pager span {
+  background-image: url("../../templates/providores/images/bullet.png");
+  background-position: -3px 20px;
+  background-repeat: repeat;
+  color: rgba(0,0,0,0);
+  cursor: pointer;
+  display: inline-block;
+  float: none;
+  margin-top: 17px;
+  width: 15px;
+}
+#jmslideshow-inner .jmslideshow .cycle-pager span.cycle-pager-active {
+  background-position: -3px 0px;
+}
+#jmslideshow-inner  .slideshow-content p,
+#jmslideshow-inner .jmslideshow .slideshow-content a {
+  display: inline-block;
+  background: rgba(0,0,0,0.9);
+  font-size: 20px;
+  color: white;
+  padding: 5px 30px;
+  font-family: "QlassikMediumRegular";
+  font-weight: bold;
+}
+#jmslideshow-inner  .slideshow-content {
+  background: none;
+  border-radius: 0;
+  text-align: center;
+}
+.copyright  .caret {
+  display: none !important;
+}
+.copyright .nav > li > a:active,
+.copyright .nav > li > a:hover,
+.copyright .nav > li > a:focus,
+.copyright  .nav li.dropdown.active a {
+  background: none !important;
+  color: #F29400 !important;
+}
 

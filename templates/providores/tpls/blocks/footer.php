@@ -24,8 +24,8 @@ defined('_JEXEC') or die;
           <jdoc:include type="modules" name="<?php $this->_p('footer') ?>" />
         </div>
         <?php if($this->getParam('t3-rmvlogo', 1)): ?>
-        <div class="span4 poweredby">
-          <a class="t3-logo t3-logo-light" href="http://t3-framework.org" title="Powered By T3 Framework" target="_blank">Powered by <strong>T3 Framework</strong></a>
+        <div class="span4 poweredbys">
+          <a class="t3-logos" href="" title="" target="_blank">Web Design Melbourne by  <strong>  Earthlink Design</strong></a>
         </div>
         <?php endif; ?>
       </div>

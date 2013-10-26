@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension 
+	type="module" 
+	version="2.5"
+	client="site"
+	method="upgrade">
+	
+	<name>JA Side News</name>
+	<author>Joomlart.com</author>
+	<creationDate>26 April 2013</creationDate>
+    <authorEmail>webmaster@joomlart.com</authorEmail>
+    <authorUrl>http://www.joomlart.com</authorUrl>
+	<copyright>Copyright (C), J.O.O.M Solutions Co., Ltd. All Rights Reserved.</copyright>
+	<license>license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html</license>
+    <version>2.6.1</version>
+    <updateservers>
+	    <server type="collection">http://update.joomlart.com/service/tracking/list.xml</server>
+	</updateservers>
+	<description>
+		<![CDATA[
+			<span style="color: #008000;"><strong>JA Side News Module for Joomla 2.5</strong></span><br />
+			<p><img alt="JA Side News Module" src="http://static.joomlart.com/images/stories/extensions/joomla/ja_sidenews.png" /></p>
+			<div style="font-weight:normal">
+			JA Side News module allows to display a list of articles with meta keyword ''Featured'' (this word is declared in the ''Keyword'' parameter inside the Metadata Information of each article).
+			<p>Otherwise, it displays articles from one or many categories. The list can be sorted by Date, Order or Hits.</p>
+			
+			<br />
+			<span style="color: #ff6600;"><strong>Features:</strong></span><br/>
+			<ul>
+			  <li>2 display layouts to choose from.</li>
+			  <li>Configure image sizes, dates and even read more button.</li>
+			  <li>Choose sidenews layout for text overlay effect.</li>
+			  <li>Easy to configure colors for overlay, text. Control animation with easy dimensions.</li>
+			</ul>
+			
+			<br />
+			<strong><span style="color: #ff0000;">Upgrade Methods:</span></strong><br />
+
+			<ul>
+			   <li>You can install new version directly over this version. Uninstallation is not required. Backup any customized files before upgrading OR</li>
+			  <li>Use <strong><a href="http://extensions.joomla.org/extensions/core-enhancements/installers/12077" target="_blank">JA Extensions Manager</a></strong> Component for easy upgrades and rollbacks. <strong><a href="http://www.youtube.com/user/JoomlArt#p/c/BC9B0C0BFE98657E/2/mNAuJRmifG8" target="_blank">Watch Video.</a></strong></li>
+			</ul>
+			<br/>
+			<span style="color: #008000;"><strong>Links:</strong></span>
+			<ul>
+			  <li><a target='_blank' href='http://update.joomlart.com/'>Updates &amp; Versions</a></li><li><a target='_blank' href='http://www.joomlart.com/forums/showthread.php?49940'>General Userguide</a></li>
+			  <li>For more details on Thumbnail modes read this <a href="http://www.joomlart.com/forums/showthread.php?50325" title="JA thumbanil modes" target="_blank"><strong>tutorial</strong></a></li>
+			</ul>
+			<p>Copyright 2004 - 2012 <a href="http://www.joomlart.com/" title="Visit Joomlart.com!">JoomlArt.com</a>.</p>
+			</div>
+
+		]]>
+	</description>
+	  
+	<files>
+		<filename module="mod_jasidenews">mod_jasidenews.php</filename>
+		<filename>helper.php</filename>
+		<filename>jaimage.php</filename>
+		<filename>index.html</filename>
+		<folder>asset</folder>
+		<folder>tmpl</folder>
+	</files>
+	<languages>
+   		<language tag="en-GB">en-GB.mod_jasidenews.ini</language>
+	</languages>
+	<config>
+		<fields 
+			name="params"
+			addfieldpath="/modules/mod_jasidenews/asset/elements" >	
+			<fieldset 
+				name="Content Settings"
+				label="Content Settings">
+				<field type="japanel" path="/modules/mod_jasidenews/asset/elements/" />
+				<field 
+					name="group" 
+					type="japanel" 
+					function="depend" 
+					hidden="true">
+						<option for="using_mode" value="k2" hideRow="true">k2catsid</option>
+						<option for="using_mode" value="article" hideRow="true">display_model-modcats-category</option>
+				</field>
+				<field 
+					name="using_mode" 
+					type="radio" 
+					default="article" 
+					level="3"
+					class="btn-group"
+					label="CONTENT_SOURCE" 
+					description="CONTENT_SOURCE_DESC">
+					<option value="article">JOOMLA_CONTENT</option>
+					<option value="k2">K2</option>
+				</field>
+				
+				<field 
+					name="display_model-modcats-category" 
+					extension="com_content"
+					type="category"
+					published="1"
+					class="mselect"
+					multiple="true" 
+					size="5"					
+					default="" 
+					label="CATEGORIES_SELECTION"  
+					description="CATEGORIES_SELECTION_DESC">
+					<option value="">JOPTION_ALL_CATEGORIES</option>
+				</field>
+				<field 
+					name="k2catsid" 
+					type="k2category"
+					class="mselect"
+					multiple="true" 
+					size="5"			
+					default=""
+					published="1"
+					level="3" 
+					label="K2_CATEGORIES_SELECTION" 
+					description="K2_CATEGORIES_SELECTION_DESC" />	
+				<field 
+					name="show_featured" 
+					type="list"
+					class="mselect"
+					default="1"
+					label="FEATURED_ITEMS" 
+					description="FEATURED_ITEMS_DESC">
+						<option value="1">Show</option>
+						<option value="2">Show only featured articles</option>
+						<option value="0">Hide</option>
+				</field>
+				<field 
+					name="sort_order_field" 
+					type="list" 
+					default="created" 
+					label="SORT_ORDER_BY" 
+					description="SORT_ORDER_BY_DESC">
+						<option value="random">RANDOM</option>
+						<option value="created">DATE</option>
+						<option value="ordering">ORDER</option>
+						<option value="hits">HITS</option>
+				</field>
+				<field 
+					name="sort_order" 
+					type="list" 
+					default="DESC"
+					label="ASC_OR_DESC" 
+					description="ASC_OR_DESC_DESC">
+						<option value="ASC">ASC</option>
+						<option value="DESC">DESC</option>
+				</field>
+				<field  
+					type="text" 
+					default="5" 
+					size="5"
+					name="max_items" 
+					filter="integer"
+					class="validate-numeric"
+					label="MAX_ARTICLES_DISPLAY" 
+					description="MAX_ARTICLES_DISPLAY_DESC" />
+				<field 
+					name="title_max_chars" 
+					type="text" 
+					default="200" 
+					filter="integer"
+					size="5"
+					class="validate-numeric"
+					label="TITLE_MAX_LENGTH" 
+					description="TITLE_MAX_LENGTH_DESC" />
+				<field 
+					name="maxchars" 
+					type="text" 
+					default="60" 
+					size="5"
+					filter="integer"
+					class="validate-numeric"
+					label="MAX_CHARS" 
+					description="MAX_CHARS_DESC" />
+			</fieldset>
+			<fieldset 
+				name="TITLE_LAYOUT_DEFAULT_LABEL"
+				label="TITLE_LAYOUT_DEFAULT_LABEL">
+				<field 
+					name="group2" 
+					type="japanel" 
+					function="depend" hidden="true">
+						<option for="layout" value="default" hideRow="true">layout-default-showdate,layout-default-show_moredetail,layout-default-showimage</option>
+						<option for="layout" value="sidenews" hideRow="true">layout-sidenews-play_mode, layout-sidenews-height,layout-sidenews-textcolor,layout-sidenews-bgcolor,layout-sidenews-transparent,layout-sidenews-element_apply_side,layout-sidenews-animation_transition,layout-sidenews-textcolor,layout-sidenews-bgcolor</option>						
+						<option for="layout-sidenews-play_mode" value="caption" hideRow="true">layout-sidenews-play_mode-caption-expandheight, layout-sidenews-play_mode-caption-collapseheight</option>
+				</field>
+				<field 
+					name="layout" 
+					type="list" 
+					default="default"  
+					label="LAYOUT_STYLE" 
+					description="LAYOUT_STYLE_DESC">
+						<option value="default">Default</option>
+						<option value="sidenews">Side News</option>
+				</field>
+				 <field 
+					 name="layout-default-showdate" 
+					 type="radio" 
+					class="btn-group"
+					 default="1" 
+					 label="SHOW_DATE" 
+					 description="SHOW_DATE_DESC">
+						<option value="1">JYES</option>
+						<option value="0">JNO</option>
+				</field>
+				<field 
+					name="layout-default-show_moredetail" 
+					type="radio" 
+					class="btn-group"
+					default="1" 
+					label="SHOW_MOREDATAIL_LINK" 
+					description="SHOW_MOREDATAIL_DESC">
+						<option value="1">JYES</option>
+						<option value="0">JNO</option>
+				</field>
+				<field 
+					name="layout-default-showimage" 
+					type="radio" 
+					class="btn-group"
+					default="1" 
+					label="SHOW_IMAGE" 
+					description="SHOW_IMAGE_DESC">
+						<option value="1">JYES</option>
+						<option value="0">JNO</option>
+				</field>
+				<field 
+					name="layout-sidenews-height" 
+					type="text" 
+					default="200"
+					size="5"
+					class="validate-numeric" 
+					label="MODULE_HEIGHT" 
+					description="MODULE_HEIGHT_DESC" />
+				<field 
+					name="layout-sidenews-textcolor" 
+					type="color" 
+					default="#FFFFFF" 
+					size="8"
+					label="TEXT_COLOR" 
+					description="TEXT_COLOR_DESC" />	
+				<field 
+					name="layout-sidenews-bgcolor" 
+					type="color" 
+					default="#4F4F4F" 
+					size="8"
+					label="BACKGROUND_COLOR" 
+					description="BACKGROUND_COLOR_DESC" />
+				<field 
+					name="layout-sidenews-transparent" 
+					type="text" 
+					default="80" 
+					label="BACKGROUND_TRANSPARENT" 
+					description="BACKGROUND_TRANSPARENT_DESC" />
+			
+				<field 
+					name="layout-sidenews-element_apply_side" 
+					type="radio" 
+					default="content" 
+					class="btn-group"
+					label="USE_AMAINTION" 
+					description="USE_ANIMATION_DESC">
+						<option value="image">WITH_IMAGE</option>
+						<option value="content">WITH_CONTENT</option>
+				</field>
+				<field 
+					name="layout-sidenews-play_mode" 
+					type="list" 
+					default="caption" 
+					label="PLAY_MODE" 
+					description="PLAY_MODE_DESC">
+						<option value="caption">CAPTION</option>
+						<option value="sidedown">SIDE_DOWN</option>
+						<option value="sidetop">SIDE_UP</option>
+						<option value="sideleft">SIDE_LEFT</option>
+						<option value="sideright">SIDE_RIGHT</option>
+				</field>
+				<field 
+					name="layout-sidenews-play_mode-caption-expandheight" 
+					type="text" 
+					default="150"
+					size="5"
+					class="validate-numeric" 
+					label="EXPAND_HEIGHT" 
+					description="EXPAND_HEIGHT_DESC" />
+				<field 
+					name="layout-sidenews-play_mode-caption-collapseheight" 
+					type="text" 
+					default="30"
+					size="5"
+					class="validate-numeric" 
+					label="COLLAPSE_HEIGHT" 
+					description="COLLAPSE_HEIGHT_DESC" />
+				<field 
+					name="layout-sidenews-animation_transition" 
+					type="list" 
+					default="Fx.Transitions.Expo.easeOut" 
+					label="ANIMATION_TRANSITION" 
+					description="ANIMATION_TRANSITION_DESC">
+						<option value="Fx.Transitions.linear">linear</option>
+						<option value="Fx.Transitions.Quad.easeIn">Quad.easeIn</option>
+						<option value="Fx.Transitions.Quad.easeOut">Quad.easeOut</option>
+						<option value="Fx.Transitions.Quad.easeInOut">Quad.easeInOut</option>
+						<option value="Fx.Transitions.Cubic.easeIn">Cubic.easeIn</option>
+						<option value="Fx.Transitions.Cubic.easeOut">Cubic.easeOut</option>
+						<option value="Fx.Transitions.Cubic.easeInOut">Cubic.easeInOut</option>
+						<option value="Fx.Transitions.Quart.easeIn">Quart.easeIn</option>
+						<option value="Fx.Transitions.Quart.easeOut">Quart.easeOut</option>
+						<option value="Fx.Transitions.Quart.easeInOut">Quart.easeInOut</option>
+						<option value="Fx.Transitions.Quint.easeIn">Quint.easeIn</option>
+						<option value="Fx.Transitions.Quint.easeOut">Quint.easeOut</option>
+						<option value="Fx.Transitions.Quint.easeInOut">Quint.easeInOut</option>
+						<option value="Fx.Transitions.Pow.easeIn">Pow.easeIn</option>
+						<option value="Fx.Transitions.Pow.easeOut">Pow.easeOut</option>
+						<option value="Fx.Transitions.Pow.easeInOut">Pow.easeInOut</option>
+						<option value="Fx.Transitions.Expo.easeIn">Expo.easeIn</option>
+						<option value="Fx.Transitions.Expo.easeOut">Expo.easeOut</option>
+						<option value="Fx.Transitions.Expo.easeInOut">Expo.easeInOut</option>
+						<option value="Fx.Transitions.Circ.easeIn">Circ.easeIn</option>
+						<option value="Fx.Transitions.Circ.easeOut">Circ.easeOut</option>
+						<option value="Fx.Transitions.Circ.easeInOut">Circ.easeInOut</option>
+						<option value="Fx.Transitions.Sine.easeIn">Sine.easeIn</option>
+						<option value="Fx.Transitions.Sine.easeOut">Sine.easeOut</option>
+						<option value="Fx.Transitions.Sine.easeInOut">Sine.easeInOut</option>
+						<option value="Fx.Transitions.Back.easeIn">Back.easeIn</option>
+						<option value="Fx.Transitions.Back.easeOut">Back.easeOut</option>
+						<option value="Fx.Transitions.Back.easeInOut">Back.easeInOut</option>
+						<option value="Fx.Transitions.Bounce.easeIn">Bounce.easeIn</option>
+						<option value="Fx.Transitions.Bounce.easeOut">Bounce.easeOut</option>
+						<option value="Fx.Transitions.Bounce.easeInOut">Bounce.easeInOut</option>
+						<option value="Fx.Transitions.Elastic.easeIn">Elastic.easeIn</option>
+						<option value="Fx.Transitions.Elastic.easeOut">Elastic.easeOut</option>
+						<option value="Fx.Transitions.Elastic.easeInOut">Elastic.easeInOut</option>
+				</field>				
+			</fieldset>
+			<fieldset 
+				name="IMAGE_SETTING"
+				label="IMAGE_SETTING">
+				<field 
+					name="group1" 
+					type="japanel" 
+					function="depend" hidden="true">
+						<option for="thumbnail_mode" value="none" hideRow="true"></option>
+						<option for="thumbnail_mode" value="resize" hideRow="true">thumbnail_mode-resize-use_ratio</option>
+						<option for="thumbnail_mode" value="crop" hideRow="true"></option>
+				</field>
+				<field 
+					name="thumbnail_mode" 
+					type="list" 
+					default="crop" 
+					label="THUMBNAIL_MODE" 
+					description="THUMBNAIL_MODE_DESC">
+						<option value="none">USING_IMAGE_SOURCE</option>
+						<option value="resize">USING_RESIZE</option>
+						<option value="crop">USING_CROP</option>
+				</field>
+				<field 
+					name="thumbnail_mode-resize-use_ratio" 
+					type="radio" 
+					class="btn-group"
+					default="1" 
+					label="RESIZE_WITH_THE_RATIO" 
+					description="RESIZE_WITH_THE_RATIO_DESC">
+						<option value="1">JYES</option>
+						<option value="0">JNO</option>
+				</field>
+				<field 
+					name="iwidth" 
+					type="text" 
+					default="152" 
+					size="5"
+					filter="integer"
+					class="validate-numeric"
+					label="IMAGE_WIDTH" 
+					description="IMAGE_WIDTH_DESC" />
+				<field 
+					name="iheight" 
+					type="text" 
+					default="200" 
+					size="5"
+					filter="integer"
+					class="validate-numeric"
+					label="IMAGE_HEIGHT" 
+					description="IMAGE_HEIGHT_DESC" />
+				<field 
+					name="image_alignment" 
+					type="radio" 
+					default="left" 				
+					class="btn-group"
+					label="IMAGE_ALIGNMENT" 
+					description="IMAGE_ALIGNMENT_DESC">
+						<option value="left">LEFT</option>
+						<option value="right">RIGHT</option>
+						<option value="auto">AUTO</option>
+				</field>				
+			</fieldset>
+							
+				
+			<fieldset 
+				name="advanced">
+				<field 
+					name="moduleclass_sfx" 
+					type="text" 
+					default="" 
+					label="MODULE_CLASS_SUFFIX" 
+					description="PARAMMODULECLASSSUFFIX" />	
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+						value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

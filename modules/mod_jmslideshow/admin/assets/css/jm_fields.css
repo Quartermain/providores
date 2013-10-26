@@ -1,0 +1,497 @@
+/*
+#------------------------------------------------------------------------
+# Package - JoomlaMan JMSlideShow
+# Version 1.0
+# -----------------------------------------------------------------------
+# Author - JoomlaMan http://www.joomlaman.com
+# Copyright © 2012 - 2013 JoomlaMan.com. All Rights Reserved.
+# @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+# Websites: http://www.JoomlaMan.com
+#------------------------------------------------------------------------
+*/
+.width-40 ul.adminformlist > li{
+	border-top: 1px solid #EDEDED;
+	padding:6px 0 36px 0 !important;
+}
+.width-40 ul.adminformlist > li label{
+	font-weight:bold !important;
+	font-size: 16px;
+}
+#module-sliders{
+	font-family:"Myriad Pro" !important;
+}
+.clear{
+	clear:both;
+}
+ul.adminformlist, ul.adminformlist li{
+	clear: both;
+}
+h3.title{
+	background: url("../images/h3-title.png") no-repeat scroll 100% 2px #eef3f4 !important;
+	border-radius: 5px 5px 5px 5px;
+	line-height: 29px;
+	margin: 5px !important;
+	color:#000 !important;
+}
+.title span{
+	color:#000 !important;
+	text-transform:uppercase;
+	font-size: 16px;
+}
+.pane-toggler-down span,.pane-toggler span{
+	background-image:none !important;
+	padding-left: 10px !important;
+}
+.pane-sliders .panel{
+	background-color: #fff;
+}
+.pane-toggler-down{
+	bolder-bottom: none !important;
+}
+input[type=text].jm-field{
+	font-family: "Myriad Pro";
+	font-size: 16px;
+	font-weight: lighter;
+	line-height: 29px;
+	padding: 0 10px;
+}
+.jmlist-multipe div.option{
+	font-family: "Myriad Pro";
+	font-size: 16px;
+	font-weight: lighter;
+	line-height: 29px;
+	padding: 0 10px;
+}
+input[type=text].jm-field{
+	width: 260px;
+	height: 29px;
+	border: 1px solid #E5E5E5;
+}
+input[disabled=disabled].jm-field{
+	background: #f3f3f3;
+	color: #d3d3d3;
+}
+input[type=text].jm-field:focus{
+	box-shadow: 0 0 3px 2px #FFCB32;
+}
+input[type=text].jm-field.required{
+	background-color: #FFF;
+}
+input[type=text].jm-field.invalid{
+	background-color: #FFF;
+	box-shadow: 0 0 3px 2px #BA212D;
+	border: none;
+}
+/*List*/
+fieldset select.jmselectoption{
+	margin:0 !important;
+}
+select.jmselectoption option{
+	background: #fff;
+	line-height: 29px;
+}
+.jmselect {
+	background-image: url(../images/jmeslect-bg.png);
+	background-repeat: no-repeat;
+	background-position: 100% 0;
+	width: 280px;
+	height: 29px;
+	border: 1px solid #e5e5e5;
+}
+.jmselect.customSelectHover {
+/* Styles for when the select box is hovered */
+}
+.jmselect.customSelectOpen {
+	background-position: 100% -58px;
+}
+.jmselect.customSelectFocus {
+/* Styles for when the select box is in focus */
+}
+.customSelectInner {
+/* You can style the inner box too */
+}
+/*#List*/
+/*Start typesex*/
+.jform_params_sex{
+	display:-moz-inline-stack;
+	width:16px;
+	height:16px;
+	background-color:#e5e5e5;
+	border-radius:11px;
+	float:left;
+	margin:5px 50px 15px 0;
+}
+.radio-custom-inner{
+	width:8px;
+	height:8px;
+	background-color:#000;
+	border-radius:4px;
+	display:-moz-inline-stack;
+	margin:4px;
+}
+/*Start checkbox custom*/
+.jform_params_jquery{
+	width:22px;
+	height:22px;
+	background-color:#e5e5e5;
+	float:left;
+}
+.checkbox-checked{
+	background: url('../images/Untitled-16.16.png') no-repeat;
+	background-color:#e5e5e5;
+	background-position: 3px 3px;
+}
+.jform_params_jquery_status{
+	font-size: 13px;
+    line-height: 2;
+    margin-left: 10px;
+	float:left;
+}
+/*Start calendar custom*/
+#jform_params_mycalendardatetime_img{
+	height:25px;
+}
+#jform_params_mycalendardatetime{
+	height:23px;
+	width:190px;
+	margin-right:0px !important;
+	font-size: 15px;
+	padding-left: 10px;
+}
+/*Start radio custom 2*/
+.jform_params_display{
+	float:left;
+	font-weight:bold;
+	margin-bottom: 5px;
+}
+.jform_params_display .typedisplay-button0,.jform_params_display .typedisplay-button1{
+	background:#e5e5e5;
+	padding:6px;
+	display: inline-block;
+	width:40px;
+	text-align:center;
+	cursor:pointer;
+}
+.jform_params_display .typedisplay-button0{
+	margin-right:1px;
+	border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+}
+.jform_params_display .typedisplay-button1{
+	margin-right:1px;
+    border-bottom-right-radius: 6px;
+	border-top-right-radius: 6px;
+}
+.typedisplay-active{
+	background:#ffcd19 !important;
+}
+/*type media*/
+.typemedia-preview{
+	display: inline-block;
+	background-color:#e5e5e5;
+	background-image:url('../images/media.png');
+	background-repeat:no-repeat;
+	height:25px;
+	width:30px;
+	background-position:3px 6px;
+}
+.typemedia-preview  img{
+	display:none;
+}
+.typemedia-text-field{
+	height:21px;
+	margin-top:0;
+	width:153px;
+	margin-right:0px !important;
+	font-size: 15px;
+	padding-left: 10px;
+}
+.typemedia-upload{
+	background-color:#e5e5e5;
+	height:25px !important;
+	width:30px !important;
+	padding:0 !important;
+}
+.typemedia-upload{
+	display: inline-block;
+	background-color:#e5e5e5;
+	background-image:url('../images/upload.png');
+	background-repeat:no-repeat;
+	height:25px;
+	width:30px;
+	background-position:3px 3px;
+}
+.typemedia-clear{
+	background-color:#e5e5e5;
+	margin-left:-8.5px !important;
+	height:25px;
+	width:20px;
+	text-align:center;
+	float:left;
+}
+.typemedia-link-clear{
+	font-weight:bold;
+	color:#000 !important;
+	line-height: 2;
+}
+/*Start list option*/
+.jform_params_mylistvalue{
+	overflow-x:hidden;
+	width:156px;
+	float:left;
+	position: relative;
+}
+#jform_params_mylistvalue{
+	width:156px;
+}
+#jform_params_mylistvalue:focus{
+	background-color:#FFF;
+}
+#jform_params_mylistvalue option{
+	padding:2px;
+	font-size:14px;
+}
+#jform_params_mylistvalue option:focus{
+	background-color:#ffcb32 !important;
+}
+.jform_params_mylistvalue .typelist-custom-btnup{
+	background: url('../images/select.png');
+	background-repeat:no-repeat;
+	width:29px;
+	height:29px;
+	position: absolute;
+	top:5px;
+	right:0;
+	
+}
+.jform_params_mylistvalue .typelist-custom-btndown{
+	background: url('../images/select-down.png');
+	background-repeat:no-repeat;
+	width:29px;
+	height:29px;
+	position: absolute;
+	bottom:5px;
+	right:0;
+}
+.jform_params_mylistvalue .typelist-col-right{
+	background: #e5e5e5;
+	background-repeat:repeat-y;
+	background-position:100% 100%;
+	position: absolute;
+	top:33px;
+	right:0;
+	width:29px;
+	height:70%;
+}
+/*start select clecked*/
+.jform_params_mylist{
+	overflow-x:hidden;
+	width:156px;
+	float:left;
+	position: relative;
+	margin-top: -7px;
+}
+#jform_params_mylist{
+	width:156px;
+	padding:2px;
+	font-size:14px;
+	height: 30px;
+}
+#jform_params_mylist:focus{
+	background-color:#FFF;
+}
+#jform_params_mylist option{
+	padding:2px;
+	font-size:14px;
+}
+.jform_params_mylist .typelist-custom-btndown{
+	display:none;
+	
+}
+.jform_params_mylist .typelist-custom-btnup{
+	background: url('../images/select-down.png');
+	background-repeat:no-repeat;
+	width:29px;
+	height:29px;
+	position: absolute;
+	top:5px;
+	right:0;
+}
+.typelist-up{
+	background: url('../images/select.png');
+	background-repeat:no-repeat;
+	width:29px;
+	height:29px;
+	position: absolute;
+	top:5px;
+	right:0;
+}
+/************************/
+.jmlist-multipe{
+	width: 280px;
+	border-right: 1px solid #e5e5e5;
+	height: 167px;
+}
+.jmlist-multipe div.option{
+	line-height: 32px;
+	
+}
+.jmlist-multipe div.option.selected{
+	background-color: #ffcb32;
+}
+.jScrollPaneContainer {
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	margin-bottom:5px;
+	border: 1px solid #e5e5e5;
+}
+.jScrollPaneTrack {
+	position: absolute;
+	cursor: pointer;
+	right: 0;
+	top: 0;
+	height: 100%;
+	background: #e5e5e5;
+}
+.jScrollPaneDrag {
+	position: absolute;
+	background: #666;
+	cursor: pointer;
+	overflow: hidden;
+}
+.jScrollPaneDragTop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+.jScrollPaneDragBottom {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+}
+a.jScrollArrowUp{
+	background: url("../images/arrow-up.png") no-repeat scroll center center #E5E5E5;
+	display: block;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	text-indent: -2000px;
+	overflow: hidden;
+	/*background-color: #666;*/
+	height: 27px;
+}
+a.jScrollArrowUp:hover {
+	/*background-color: #f60;*/
+}
+a.jScrollArrowDown {
+	background: url("../images/arrow-down.png") no-repeat scroll center center #E5E5E5;
+	display: block;
+	position: absolute;
+	z-index: 1;
+	bottom: 0;
+	right: 0;
+	text-indent: -2000px;
+	overflow: hidden;
+	/*background-color: #666;*/
+	height: 27px;
+}
+a.jScrollArrowDown:hover {
+	/*background-color: #f60;*/
+}
+a.jScrollActiveArrowButton, a.jScrollActiveArrowButton:hover {
+	/*background-color: #f00;*/
+}
+/*Checkbox*/
+.jmcheckbox{
+	background-color: #eff3f4;
+	width: 28px;
+	height: 28px;
+	display: block;
+	float: left;
+}
+.jmcheckbox.checked{
+	background-image: url(../images/tick.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+/*Radio*/
+.jmradio{
+	background-image: url(../images/radio-bg.png);
+	background-repeat: no-repeat;
+	width: 28px;
+	height: 28px;
+	display: block;
+	float: left;
+}
+.jmradio.checked{
+	background-position: -119px 0;
+}
+/*OnOff/ShowHide*/
+.jmonoff{
+	background-image: url(../images/on-off.png);
+	background-position: 0 -120px;
+	width: 115px;
+	height: 30px;
+}
+.jmonoff.checked{
+	background-position: 0 0;
+}
+.jmonoff.showhide{
+	background-position: 0 30px;
+}
+.jmonoff.showhide.checked{
+	background-position: 0 -60px;
+}
+.jmonoff span.jmonoff-on{
+	display: block;
+	float: left;
+	width: 57px;
+	height: 30px;
+	cursor: pointer;
+}
+.jmonoff span.jmonoff-off{
+	display: block;
+	float: right;
+	width: 57px;
+	height: 30px;
+	cursor: pointer;
+}
+.jmlist-single{
+	width: 260px;
+	height: 29px;
+	border: 1px solid #e5e5e5;
+	font-family: "Myriad Pro";
+	font-size: 16px;
+	font-weight: lighter;
+	line-height: 29px;
+	padding: 0 10px;
+	cursor: pointer;
+}
+.jmlist-single.slideUp{
+	background-image: url("../images/jmselect-bg.png");
+	background-position: 100% 0;
+	background-repeat: no-repeat;
+}
+.jmlist-single.slideDown{
+	background-image: url("../images/jmselect-bg.png");
+	background-repeat: no-repeat;
+	background-position:100% -58px;
+}
+.jmlist-single-options{
+	background-color: #fff;
+	width: 280px;
+}
+.jmlist-single-options .option{
+	font-family: "Myriad Pro";
+	font-size: 16px;
+	font-weight: lighter;
+	line-height: 29px;
+	padding: 0 10px;
+}
+.jmlist-single-options .option.selected{
+	background-color: #FFCB32;
+}

@@ -1,0 +1,77 @@
+/**
+ * ------------------------------------------------------------------------
+ * JA SideNews Module for J25 & J31
+ * ------------------------------------------------------------------------
+ * Copyright (C) 2004-2011 J.O.O.M Solutions Co., Ltd. All Rights Reserved.
+ * @license - GNU/GPL, http://www.gnu.org/licenses/gpl.html
+ * Author: J.O.O.M Solutions Co., Ltd
+ * Websites: http://www.joomlart.com - http://www.joomlancers.com
+ * ------------------------------------------------------------------------
+ */
+
+.ja-slidenews-item {
+	border-bottom: 1px dotted #ccc;
+	padding: 8px 0;
+	float:left;
+	clear:both;
+	width:100%;
+}
+
+.ja-slidenews-item .ja-title {
+	display: block;
+	font-weight: bold;
+}
+
+.ja-slidenews-item .ja-createdate {
+	color: #666;
+	font-size: 92%;
+	font-weight: bold;
+	padding: 2px 5px 2px 0;
+}
+.ja-sidenews-title{ font-weight:bold }
+.ja-sidenews-postdate{ font-size:85%; }
+/*****STYLE FOR SIDENEWS LAYOUT******/
+.ja-sidenews{ 
+		width: 100%; 
+	/*	float:left; */
+		overflow: hidden; 
+		position: relative;
+		padding:0;
+		margin:0;
+		cursor:pointer;
+}
+.ja-sidenews-display {
+	position: absolute; 
+	top: 0;
+	z-index:1;
+	height: 100%;
+	width:100%
+}
+.ja-sidenews-desc{
+	padding: 0px 3px 0px 3px;
+}
+.ja-slidenews-cover{
+		float: left; 
+		position: absolute; 
+		width: 100%;
+		z-index:3;
+		overflow: hidden;
+		left:0; 
+		bottom:0;	
+}
+.ja-slidenews-item img {
+	border:1px solid #21211C;
+	margin-right:10px;
+	margin-top:3px;
+}
+.ja-slidenews-item img[align="left"] {
+	float: left;
+	margin-right: 10px;
+	margin-left: 0;
+}
+
+.ja-slidenews-item img[align="right"] {
+	float: right;
+	margin-left: 10px;
+	margin-right: 0;
+}

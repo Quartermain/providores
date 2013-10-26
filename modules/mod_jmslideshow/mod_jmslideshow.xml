@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" method="upgrade">
+	<name>JM Slideshow Responsive</name>
+	<creationDate>Sep 2013</creationDate>
+	<author>JoomlaMan.com</author>
+	<copyright>© 2012-2013 JoomlaMan.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>info@joomlaman.com</authorEmail>
+	<authorUrl>www.joomlaman.com</authorUrl>
+	<version>1.3.6</version>
+	<scriptfile>script.php</scriptfile>  
+    <description>
+        <![CDATA[
+		<style type="text/css">
+			span.readonly { padding: 10px; font-family: Arial; font-size:13px !important; font-weight: normal !important; text-align: justify; color: #4d4d4d; line-height: 24px; }
+			span.readonly h1 { clear:both; font-family: Georgia, sans-serif; font-size:38px; margin:30px 20px 23px; padding:0px 0px 24px 10px; color:#333; border-bottom: 1px solid #eee; font-weight: normal; }
+			span.readonly p { margin: 0 26px 10px }
+			span.readonly p a { color: #8e0b8c }
+			span.readonly p.homepage { margin-top: 30px }
+			span.readonly p.license { border-top: 1px solid #eee; font-size: 11px; margin: 30px 26px 0; padding: 6px 0; }
+		</style>
+		<span class="readonly"><h1>JM Slideshow<small> ver. 1.3.6</small></h1><p>JMS is new generation of our extensions dedicated to Joomla 1.6+.</p><p>With JMS module, you can create slideshow on a site which include various images and article fragments or texts defined by a user. Thanks to slide management system integrated in the module, its support is very easy, intuitive and fast. With the new method of creating module styles you can easily move your slideshow style from one template to other template.</p> <p class='homepage'><a href='http://www.joomlaman.com/joomla-extensions/22-jm-slideshow.html' target='_blank'>Learn more at the JMS project website.</a></p><p class='license'>JMS is released under the <a target="_blank" href="http://www.gnu.org/licenses/gpl-2.0.html">GNU/GPL v2 license.</a></p></span>
+		]]>
+    </description>
+    <files folder="site">
+        <filename>CHANGELOG.php</filename>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <filename>mod_jmslideshow.xml</filename>
+        <filename module="mod_jmslideshow">mod_jmslideshow.php</filename>
+        <folder>admin</folder>
+        <folder>assets</folder>
+        <folder>classes</folder>
+        <folder>elements</folder>
+        <folder>images</folder>
+        <folder>language</folder>
+        <folder>tmpl</folder>
+    </files>
+    <params/>
+    <config>
+        <fields name="params" addfieldpath="/modules/mod_jmslideshow/elements">
+            <fieldset name="basic">
+                <field type="asset" path="modules/mod_jmslideshow/admin/assets/"></field>
+                <field name="jmslideshow_responsive" class="jm-field" type="radio" default="1" label="MOD_JMSLIDESHOW_RESPONSIVE_LBL" description="MOD_JMSLIDESHOW_RESPONSIVE_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>                  
+                </field>
+                <field type="text" class="jm-field" name="jmslideshow_width" label="MOD_JMSLIDESHOW_WIDTH_LBL" default="700" description="MOD_JMSLIDESHOW_WIDTH_DESC"/>
+                <field type="text" class="jm-field" name="jmslideshow_image_width" label="MOD_JMSLIDESHOW_IMAGE_WIDTH_LBL" description="MOD_JMSLIDESHOW_IMAGE_WIDTH_DESC" default="700"/>
+                <field type="text" class="jm-field" name="jmslideshow_image_height" label="MOD_JMSLIDESHOW_IMAGE_HEIGHT_LBL" description="MOD_JMSLIDESHOW_IMAGE_HEIGHT_DESC" default="400"/>
+                <field name="jmslideshow_image_style" type="list" class="jm-field single" default="1" label="MOD_JMSLIDESHOW_IMAGE_STYLE_LBL" description="MOD_JMSLIDESHOW_IMAGE_STYLE_DESC">
+                    <option value="fill">MOD_JMSLIDESHOW_IMAGE_STYLE_FILL</option>
+                    <option value="fit">MOD_JMSLIDESHOW_IMAGE_STYLE_FIT</option>
+                    <option value="stretch">MOD_JMSLIDESHOW_IMAGE_STYLE_STRETCH</option>
+                </field>
+                <field name="class_sfx" type="text" class="jm-field" default="" label="MOD_JMSLIDESHOW_MODULE_CLASS_SFX_LBL" size="50" description="MOD_JMSLIDESHOW_MODULE_CLASS_SFX_DESC" />
+            </fieldset>
+            <fieldset name="source" label="MOD_JMSLIDESHOW_SOURCE_TAB_LBL">	
+                <field name="slider_source" type="SlideSource" class="jm-field single" default="0" label="MOD_JMSLIDESHOW_SLIDER_SOURCE_LBL" description="MOD_JMSLIDESHOW_SLIDER_SOURCE_DESC"/>
+                <field name="jmslideshow_categories" class="jm-field multi s1"  show_root="true" type="category" extension="com_content" multiple="true" size="10" label="MOD_JMSLIDESHOW_CATEGORY_LBL" description="MOD_JMSLIDESHOW_CATEGORY_DESC" />
+                <field name="jmslideshow_article_ids" show_root="true" type="text"  class="jm-field s2" label="MOD_JMSLIDESHOW_SPECIAL_ARTICLES_IDS_LBL" description="MOD_JMSLIDESHOW_SPECIAL_ARTICLES_IDS_DESC" />
+                <field name="jmslideshow_k2_categories" class="jm-field multi s3" type="k2multicategories" extension="k2multicategories" default="" size="10" multiple="multiple" label="MOD_JMSLIDESHOW_K2_CATEGORY_LBL" description="MOD_JMSLIDESHOW_K2_CATEGORY_DESC" />
+                <field name="jmslideshow_k2_ids" show_root="true" type="text" class="jm-field s4" label="MOD_JMSLIDESHOW_K2_SPECIAL_ARTICLES_IDS_LBL" description="MOD_JMSLIDESHOW_K2_SPECIAL_ARTICLES_IDS_DESC" />
+                <field name="jmslideshow_hikashop_categories" class="jm-field multi s5" type="hikashopmulticategories" extension="hikashopmulticategories" default="" size="10" multiple="multiple" label="MOD_JMSLIDESHOW_HIKASHOP_CATEGORY_LBL" description="MOD_JMSLIDESHOW_HIKASHOP_CATEGORY_DESC" />
+                <field name="jmslideshow_hikashop_ids" show_root="true" type="text" class="jm-field s6" label="MOD_JMSLIDESHOW_PRODUCT_IDS_LBL" description="MOD_JMSLIDESHOW_PRODUCT_IDS_DESC" />
+                <field name="jmslideshow_foder_image" show_root="true" type="text" class="jm-field s9" label="MOD_JMSLIDESHOW_FODER_IMAGE_LBL" description="MOD_JMSLIDESHOW_FODER_IMAGE_DESC" />
+                <field name="jmslideshow_image_source" type="list" class="jm-field single s3 s4 s8" default="0" label="MOD_JMSLIDESHOW_K2_IMAGE_SOURCE_LBL" description="MOD_JMSLIDESHOW_K2_IMAGE_SOURCE_DESC">
+                    <option value="0">MOD_JMSLIDESHOW_K2_IMAGE_SOURCE_FIELD</option>
+                    <option value="1">MOD_JMSLIDESHOW_K2_IMAGE_SOURCE_CONTENT</option>
+                </field>
+                <field name="jmslideshow_article_image_source" type="list" class="jm-field single s1 s2 s7" default="3" label="MOD_JMSLIDESHOW_ARTICLE_IMAGE_SOURCE_LBL" description="MOD_JMSLIDESHOW_ARTICLE_IMAGE_SOURCE_DESC">
+                    <option value="1">MOD_JMSLIDESHOW_ARTICLE_IMAGE_SOURCE_INTRO_FIELD</option>
+                    <option value="2">MOD_JMSLIDESHOW_ARTICLE_IMAGE_SOURCE_FULL_FIELD</option>
+                    <option value="3">MOD_JMSLIDESHOW_IMAGE_SOURCE_CONTENT</option>
+                </field>
+                <field name="jmslideshow_ordering" type="list" class="jm-field single s1 s2 s3 s4 s5 s6 s7 s8" default="0" label="MOD_JMSLIDESHOW_ORDERING_LBL" description="MOD_JMSLIDESHOW_ORDERING_DESC">
+                    <option value="ASC">JASC</option>
+                    <option value="DESC">JDESC</option>
+                </field>
+                <field name="jmslideshow_orderby" type="list" class="jm-field single s1 s2 s3 s4 s5 s6 s7 s8" default="0" label="MOD_JMSLIDESHOW_ORDER_BY_LBL" description="MOD_JMSLIDESHOW_ORDER_BY_DESC">
+                    <option value="1">JTITLE</option>
+                    <option value="2">JORDERING</option>                    
+                </field>
+                <field name="jmslideshow_count" default="5" type="text" class="jm-field s1 s2 s3 s4 s5 s6 s7 s8 s9" label="MOD_JMSLIDESHOW_COUNT_LBL" description="MOD_JMSLIDESHOW_COUNT_DESC" />
+            </fieldset>
+            <!-- Profile tab -->
+            <fieldset name="profile" label="MOD_JMSLIDESHOW_PROFILE_TAB_LBL">
+                <field name="jmslideshow_layout" type="layout" default="default" class="jm-field" label="MOD_JMSLIDESHOW_SLIDER_THEME_LBL" description="MOD_JMSLIDESHOW_SLIDER_THEME_DESC"/>
+                <field name="jmslideshow_effect" type="list" class="jm-field single" default="fade" label="MOD_JMSLIDESHOW_EFFECT_LBL" description="MOD_JMSLIDESHOW_EFFECT_DESC">
+                    <option value="fade">MOD_JMSLIDESHOW_EFFECT_FADE</option>
+                    <option value="fadeout">MOD_JMSLIDESHOW_EFFECT_FADE_OUT</option>
+                    <option value="scrollHorz">MOD_JMSLIDESHOW_EFFECT_SCROLLHORZ</option>
+                    <option value="tileSlide">MOD_JMSLIDESHOW_EFFECT_TITLE_SLIDE</option>
+                    <option value="tileBlind">MOD_JMSLIDESHOW_EFFECT_TITLE_BLIND</option>
+                </field>
+				
+                <field name="jmslideshow_speed" type="text" class="jm-field" default="500" label="MOD_JMSLIDESHOW_SPEED_LBL" description="MOD_JMSLIDESHOW_SPEED_DESC"/>
+                <field name="jmslideshow_auto" type="list" class="jm-field single" default="1" label="MOD_JMSLIDESHOW_AUTO_LBL" description="MOD_JMSLIDESHOW_AUTO_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="jmslideshow_timeout" type="text" class="jm-field" default="5000" label="MOD_JMSLIDESHOW_TIMEOUT_LBL" description="MOD_JMSLIDESHOW_TIMEOUT_DESC"/>
+                <field name="jmslideshow_pause_onhover" type="checkbox" class="jm-field onoff" value="1" label="MOD_JMSLIDESHOW_PAUSE_ONHOVER_LBL" description="MOD_JMSLIDESHOW_PAUSE_ONHOVER_DESC"/>
+                <field name="jmslideshow_caption_position" type="list" class="jm-field single s1 s2 s3 s4 s5 s6 s7 s8" default="topleft" label="MOD_JMSLIDESHOW_CAPTION_POSITION_LBL" description="MOD_JMSLIDESHOW_CAPTION_POSITION_DESC">
+                    <option value="topleft">MOD_JMSLIDESHOW_POSITION_TOP_LEFT</option>
+                    <option value="topright">MOD_JMSLIDESHOW_POSITION_TOP_RIGHT</option>
+                    <option value="bottomleft">MOD_JMSLIDESHOW_POSITION_BOTTOM_LEFT</option>
+                    <option value="bottomright">MOD_JMSLIDESHOW_POSITION_BOTTOM_RIGHT</option>
+                </field>
+                <field name="jmslideshow_caption_left" type="text" class="jm-field s1 s2 s3 s4 s5 s6 s7 s8" default="30" label="MOD_JMSLIDESHOW_CAPTION_LEFT_LBL" description="MOD_JMSLIDESHOW_CAPTION_LEFT_DESC"/>
+                <field name="jmslideshow_caption_top" type="text" class="jm-field s1 s2 s3 s4 s5 s6 s7 s8" default="30" label="MOD_JMSLIDESHOW_CAPTION_TOP_LBL" description="MOD_JMSLIDESHOW_CAPTION_TOP_DESC"/>
+                <field name="jmslideshow_caption_right" type="text" class="jm-field s1 s2 s3 s4 s5 s6 s7 s8" default="30" label="MOD_JMSLIDESHOW_CAPTION_RIGHT_LBL" description="MOD_JMSLIDESHOW_CAPTION_RIGHT_DESC"/>
+                <field name="jmslideshow_caption_bottom" type="text" class="jm-field s1 s2 s3 s4 s5 s6 s7 s8" default="30" label="MOD_JMSLIDESHOW_CAPTION_BOTTOM_LBL" description="MOD_JMSLIDESHOW_CAPTION_BOTTOM_DESC"/>
+                <field name="jmslideshow_caption_width" type="text" class="jm-field s1 s2 s3 s4 s5 s6 s7 s8" default="500" label="MOD_JMSLIDESHOW_CAPTION_WIDTH_LBL" description="MOD_JMSLIDESHOW_CAPTION_WIDTH_DESC"/>
+                <field name="jmslideshow_show_title" type="checkbox" class="jm-field showhide s1 s2 s3 s4 s5 s6 s7 s8"  value="1" label="MOD_JMSLIDESHOW_SHOW_TITLE_LBL" description="MOD_JMSLIDESHOW_SHOW_TITLE_DESC"/>
+                <field name="jmslideshow_title_link" type="checkbox" class="jm-field onoff s1 s2 s3 s4 s5 s6 s7 s8"  value="1" label="MOD_JMSLIDESHOW_TITLE_LINK_LBL" description="MOD_JMSLIDESHOW_TITLE_LINK_DESC"/>
+                <field name="jmslideshow_show_desc" type="checkbox" class="jm-field showhide s1 s2 s3 s4 s5 s6 s7 s8"  value="1" label="MOD_JMSLIDESHOW_SHOW_DESC_LBL" description="MOD_JMSLIDESHOW_SHOW_DESC_DESC"/>
+                <field name="jmslideshow_desc_length" type="text" class="jm-field s1 s2 s3 s4 s5 s6 s7 s8" default="150" label="MOD_JMSLIDESHOW_DESC_LENGTH_LBL" description="MOD_JMSLIDESHOW_DESC_LENGTH_DESC"/>
+                <field name="jmslideshow_desc_html" type="text" class="jm-field s1 s2 s3 s4 s5 s6 s7 s8" default="" label="MOD_JMSLIDESHOW_DESC_HTML_LBL" description="MOD_JMSLIDESHOW_DESC_HTML_DESC"/>
+                <field name="jmslideshow_show_readmore" type="checkbox" class="jm-field showhide s1 s2 s3 s4 s5 s6 s7 s8"  value="1" label="MOD_JMSLIDESHOW_SHOW_READMORE_LBL" description="MOD_JMSLIDESHOW_SHOW_READMORE_DESC"/>
+                <field name="jmslideshow_readmore_text" type="text" class="jm-field s1 s2 s3 s4 s5 s6 s7 s8" default="Read more" label="MOD_JMSLIDESHOW_READMORE_TEXT_LBL" description="MOD_JMSLIDESHOW_READMORE_TEXT_DESC"/>
+            </fieldset>
+            <!-- Navigator tab -->
+            <fieldset name="navigator" label="MOD_JMSLIDESHOW_NAVIGATOR_TAB_LBL">
+                <field name="jmslideshow_show_nav_buttons" class="jm-field" type="radio" default="1" label="MOD_JMSLIDESHOW_SHOW_NAV_BUTTONS_LBL" description="MOD_JMSLIDESHOW_SHOW_NAV_BUTTONS_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="jmslideshow_show_pager" class="jm-field" type="radio" default="1" label="MOD_JMSLIDESHOW_SHOW_PAGER_LBL" description="MOD_JMSLIDESHOW_SHOW_PAGER_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="jmslideshow_pager_type" class="jm-field single" type="list" default="1" label="MOD_JMSLIDESHOW_PAGER_TYPE_LBL" description="MOD_JMSLIDESHOW_PAGER_TYPE_DESC">
+                    <option value="1">JMBULLET</option>
+                    <option value="2">JMNUMBER</option>
+                </field>
+                <field name="jmslideshow_pager_position" type="list" class="jm-field single" default="bottomleft" label="MOD_JMSLIDESHOW_PAGER_POSITION_LBL" description="MOD_JMSLIDESHOW_PAGER_POSITION_DESC">
+                    <option value="topleft">MOD_JMSLIDESHOW_POSITION_TOP_LEFT</option>
+                    <option value="topright">MOD_JMSLIDESHOW_POSITION_TOP_RIGHT</option>
+                    <option value="bottomleft">MOD_JMSLIDESHOW_POSITION_BOTTOM_LEFT</option>
+                    <option value="bottomright">MOD_JMSLIDESHOW_POSITION_BOTTOM_RIGHT</option>
+                </field>
+                <field name="jmslideshow_pager_left" type="text" class="jm-field" default="30" label="MOD_JMSLIDESHOW_PAGER_LEFT_LBL" description="MOD_JMSLIDESHOW_PAGER_LEFT_DESC"/>
+                <field name="jmslideshow_pager_top" type="text" class="jm-field" default="30" label="MOD_JMSLIDESHOW_PAGER_TOP_LBL" description="MOD_JMSLIDESHOW_PAGER_TOP_DESC"/>
+                <field name="jmslideshow_pager_right" type="text" class="jm-field" default="30" label="MOD_JMSLIDESHOW_PAGER_RIGHT_LBL" description="MOD_JMSLIDESHOW_PAGER_RIGHT_DESC"/>
+                <field name="jmslideshow_pager_bottom" type="text" class="jm-field" default="30" label="MOD_JMSLIDESHOW_PAGER_BOTTOM_LBL" description="MOD_JMSLIDESHOW_PAGER_BOTTOM_DESC"/>
+            </fieldset>
+            <fieldset name="advanced">
+                <field name="jmslideshow_include_jquery" class="jm-field single" type="list" default="2" label="MOD_JMSLIDESHOW_INCLUDE_JQUERY_LBL" description="MOD_JMSLIDESHOW_INCLUDE_JQUERY_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                    <option value="2">JMAUTO</option>
+                </field>
+            </fieldset>
+            <fieldset name="about" label="MOD_JMSLIDESHOW_ABOUT_TAB_LBL">
+                <field name="jmslideshow_about" type="jeabout" default="MOD_JMSLIDESHOW_ABOUT_TAB_DESC" size="50" />
+            </fieldset>
+            <fieldset name="update" label="MOD_JMSLIDESHOW_UPDATE_TAB_LBL">
+                <field name="jmslideshow_update" type="jeupdate" default="UPDATE will be revealed later!" size="50" label="MOD_JEIMAGESLIDER_UPDATE" description="MOD_JEIMAGESLIDER_UPDATE_DESC" />
+            </fieldset>
+        </fields>
+    </config>
+			<updateservers>
+        <server type="extension" name="JM Slideshow Responsive" priority="1">http://extensions.joomlaman.com/jmslideshow/update.xml</server>
+	</updateservers>
+</extension>
