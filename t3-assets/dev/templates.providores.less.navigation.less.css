@@ -2,6 +2,8 @@
 
 .t3-mainnav {
   
+  background: #212121;
+  
   background: -moz-linear-gradient(left,rgba(255,255,255,0) 0%,#212121 10%,#212121 90%,rgba(255,255,255,0) 100%);
   
   background: -webkit-gradient(linear,left top,right top,color-stop(0%,rgba(255,255,255,0)),color-stop(10%,#212121),color-stop(90%,#212121),color-stop(100%,rgba(255,255,255,0)));

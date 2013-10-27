@@ -1088,7 +1088,16 @@ top: 120px;background-position: left bottom;
     line-height: 37px ;
     margin-bottom: 14px ;
 }
-
+.t3-megamenu .mega-nav, .t3-megamenu .dropdown-menu .mega-nav {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}.t3-megamenu .span12.mega-col-nav .mega-inner {
+    padding: 5px;
+}
+.jmslide-item  > img  {
+    max-width: none !important;
+}
 /* Overlay , enable it if display in header, and header{over-flow:hidden;} */
 #simplemodal-overlay {background-color:#000;}
 #simplemodal-container a.modalCloseImg {background:url(../images/close_bt.png) top no-repeat; width:26px; height:26px; display:inline; z-index:3200; position:absolute; top:6px; right:10px; cursor:pointer;}
@@ -1387,7 +1396,7 @@ div.btl-buttonsubmit{
   
 }
 
-.product-info > .left {float:none;width: 100%;}
+.product-info > .left {float:none;width: 100%;margin-bottom:15px;}
 .product-info > .right {float:none;width: 100%;}
 .container .ja-sidenews,#ja-sidenews-jasd-modid110, .customtitle-shop + .box_oc {background:white;}
 
@@ -1399,7 +1408,7 @@ div.btl-buttonsubmit{
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
 .row .head-search {
-    float: none !important;
+    float: left !important;
 }
 .row  .mijosearch_bg_module {
     border-bottom: 0px solid #C0B8AF;
@@ -1437,12 +1446,15 @@ div.btl-buttonsubmit{
  
 .pull-right[class*="span"], .row-fluid .pull-right[class*="span"] {float:none;}
 #tab-related .product-grid > div {width: 100%;}
-.product-info > .left {float:none;width: 100%;}
+.product-info > .left {float:none;width: 100%;margin-bottom:15px;}
 .product-info > .right {float:none;width: 100%;}
  }
  
 /* Landscape phones and down */
 @media (max-width: 480px) {
+.row .head-search {
+    float: none !important;
+}
 #tab-related .product-grid > div {width: 100%;}
 .pull-right[class*="span"], .row-fluid .pull-right[class*="span"] {float:none;}
 .row .mijosearch_bg_module ,.row .head-search p{text-align:center;}

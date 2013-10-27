@@ -1037,6 +1037,18 @@ h4 a {
   line-height: 37px;
   margin-bottom: 14px;
 }
+.t3-megamenu .mega-nav,
+.t3-megamenu .dropdown-menu .mega-nav {
+  list-style: none outside none;
+  margin: 0;
+  padding: 0;
+}
+.t3-megamenu .span12.mega-col-nav .mega-inner {
+  padding: 5px;
+}
+.jmslide-item  > img {
+  max-width: none !important;
+}
 #simplemodal-overlay {
   background-color: #000;
 }
@@ -1343,6 +1355,7 @@ div.btl-buttonsubmit {
   .product-info > .left {
     float: none;
     width: 100%;
+    margin-bottom: 15px;
   }
   .product-info > .right {
     float: none;
@@ -1361,7 +1374,7 @@ div.btl-buttonsubmit {
 }
 @media (max-width: 767px) {
   .row .head-search {
-    float: none !important;
+    float: left !important;
   }
   .row  .mijosearch_bg_module {
     border-bottom: 0px solid #C0B8AF;
@@ -1422,11 +1435,12 @@ div.btl-buttonsubmit {
     float: none;
   }
   #tab-related .product-grid > div {
-    width: 50%;
+    width: 100%;
   }
   .product-info > .left {
     float: none;
     width: 100%;
+    margin-bottom: 15px;
   }
   .product-info > .right {
     float: none;
@@ -1434,6 +1448,9 @@ div.btl-buttonsubmit {
   }
 }
 @media (max-width: 480px) {
+  .row .head-search {
+    float: none !important;
+  }
   #tab-related .product-grid > div {
     width: 100%;
   }
