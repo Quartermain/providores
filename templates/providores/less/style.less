@@ -623,7 +623,7 @@ top: 120px;background-position: left bottom;
  .box_oc .box-home .image img{border: 0;padding:0;}
  .box_oc .box-home > div {
 	
-	position: relative;margin:0;padding: 0 0 1px 1px;display:block;float:left;width: 162px;min-height: 162px;
+	position: relative;margin:0;padding: 0 0 0px 1px;display:block;float:left;width: 162px;min-height: 162px;
 }
  .box_oc .box-home > div:hover .name {
 	opacity: 1;
@@ -864,7 +864,7 @@ top: 120px;background-position: left bottom;
 	text-decoration: none;
 	position: absolute;
 	min-width: 300px;
-	top: 0;
+	top: 8px;
 	left: 110px;
 }
 #header_oc #cart .heading a span {
@@ -979,12 +979,115 @@ top: 120px;background-position: left bottom;
 	-moz-box-shadow: 0px 2px 0px #F0F0F0;
 	box-shadow: 0px 2px 0px #F0F0F0;
 }
+.product-info  {
+	.cart div {line-height: 28px; }
+	.price span ,.price{
+		font-size: 25px;
+		color:#1f1f1f;
+	}
+	.des {margin:0 0 10px 0;}
+	.cart {
+		border-left: 6px solid #fb9316;
+		padding-left: 1px;
+		.cart-inner {
+		background: #f3ede8;
+		padding: 4px 10px;
+		border: 1px solid #c0b8af;
+		}
+		.pull-right {width: 135px;color:#1f1f1f;font-size: 16px;
+		> span {position: relative; top: -3px;}
+			
+			input[type="text"] {
+			padding-left: 20px;
+			padding-top:10px;
+			padding-right: 15px;
+				border:none;box-shadow:0 0 0 transparent;margin: 0;background:url(../images/input-small.png) no-repeat left top;}
+			.btn {
+				float: right;margin: 0 0 0 10px;
+			}
+		}
+	}
+}
 
+.product-info > .left {
+	background: white;
+	padding: 13px;
+	width: 324px;
+	float:left;
+	margin-right: 22px;
+}
+.right h3 {margin: 0 0 10px 0;font-weight: normal;}
+.model-stock {
+	padding: 8px 0;
+	margin: 10px 0;
+	border: 1px solid #c5bfb8;border-left:0;border-right:0;
+}
+.model-stock span {
+	color:#333027;
+}
+.model {
+	margin-right: 10px;
+}
+.product-info .image {	
+	float: left;
+	margin-bottom: 2px;
+	text-align: center;
+}
+.product-info .image-additional {
+	width: 100%;
+	clear: both;
+	overflow: hidden;
+}
 
+.product-info .image-additional a {
+	float: left;
+	display: block;
+	margin-left: 1px;
+	margin-bottom: 1px;
+}
+.product-info > .right {
+    overflow: hidden;
+}
+.product-info .image {
+    border: 0px solid #E7E7E7;
+    padding: 0px;
+}
 
+.article-title, .article-header h1,.article-title, .article-header h1 a,h1{
+	 color: #202020 ;
+    font-size: 50px ;
+    line-height: 37px ;
+    margin-bottom: 14px ;
+}
+.article-content li {
+	color: #fb9316 ;
+}
+.article-content li a{
+	color: #202020 ;
+}
 
+#system-message {
+	 margin-top: -10px;
+}
 
-
+ h2, h2 a{
+	color: #fb9316 ;
+    font-size: 30px ;
+    line-height: 37px ;
+    margin-bottom: 14px ;
+}
+ h3, h3 a{
+	color: #202020 ;
+    font-size: 24px ;
+    line-height: 37px ;
+    margin-bottom: 14px ;
+}
+ h4, h4 a{
+	color: #202020 ;
+    font-size: 20px ;
+    line-height: 37px ;
+    margin-bottom: 14px ;
+}
 
 /* Overlay , enable it if display in header, and header{over-flow:hidden;} */
 #simplemodal-overlay {background-color:#000;}
