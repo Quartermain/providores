@@ -1340,6 +1340,14 @@ div.btl-buttonsubmit {
     padding: 0px;
     width: 100%;
   }
+  .product-info > .left {
+    float: none;
+    width: 100%;
+  }
+  .product-info > .right {
+    float: none;
+    width: 100%;
+  }
   .container .ja-sidenews,
   #ja-sidenews-jasd-modid110,
   .customtitle-shop + .box_oc {
@@ -1413,8 +1421,22 @@ div.btl-buttonsubmit {
   .row-fluid .pull-right[class*="span"] {
     float: none;
   }
+  #tab-related .product-grid > div {
+    width: 50%;
+  }
+  .product-info > .left {
+    float: none;
+    width: 100%;
+  }
+  .product-info > .right {
+    float: none;
+    width: 100%;
+  }
 }
 @media (max-width: 480px) {
+  #tab-related .product-grid > div {
+    width: 100%;
+  }
   .pull-right[class*="span"],
   .row-fluid .pull-right[class*="span"] {
     float: none;
