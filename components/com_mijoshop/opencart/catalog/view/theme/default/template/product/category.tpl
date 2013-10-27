@@ -6,7 +6,21 @@
 
   <?php if ($products) { ?>
   <div class="product-filter">
-       <div class="limit" style="display: none"><b><?php echo $text_limit; ?></b>
+       
+	<div class="top-box">
+		<div class="pagination pull-right"><?php echo $pagination; ?></div>
+		<div class="sort"><?php echo $text_sort; ?>
+		  <select onchange="location = this.value;">
+			<?php foreach ($sorts as $sorts) { ?>
+			<?php if ($sorts['value'] == $sort . '-' . $order) { ?>
+			<option value="<?php echo $sorts['href']; ?>" selected="selected"><?php echo $sorts['text']; ?></option>
+			<?php } else { ?>
+			<option value="<?php echo $sorts['href']; ?>"><?php echo $sorts['text']; ?></option>
+			<?php } ?>
+			<?php } ?>
+		  </select>
+		</div>
+		<div class="limit" ><?php echo $text_limit; ?>
 	    
       <select onchange="location = this.value;">
         <?php foreach ($limits as $limits) { ?>
@@ -18,19 +32,6 @@
         <?php } ?>
       </select>
     </div>
-	<div class="top-box">
-		<div class="pagination pull-right"><?php echo $pagination; ?></div>
-		<div class="sort"><b><?php echo $text_sort; ?></b>
-		  <select onchange="location = this.value;">
-			<?php foreach ($sorts as $sorts) { ?>
-			<?php if ($sorts['value'] == $sort . '-' . $order) { ?>
-			<option value="<?php echo $sorts['href']; ?>" selected="selected"><?php echo $sorts['text']; ?></option>
-			<?php } else { ?>
-			<option value="<?php echo $sorts['href']; ?>"><?php echo $sorts['text']; ?></option>
-			<?php } ?>
-			<?php } ?>
-		  </select>
-		</div>
     </div>
   </div>
   <div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>
@@ -144,11 +145,7 @@ function display(view) {
 				html += '<div class="price">' + price  + '</div>';
 			}
 			
-			var rating = $(element).find('.rating').html();
 			
-			if (rating != null) {
-				html += '<div class="rating">' + rating + '</div>';
-			}
 						
 			html += '<div class="cart">' + $(element).find('.cart').html() + '</div>';
 			html += '</div>';

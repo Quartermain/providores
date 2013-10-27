@@ -4,20 +4,10 @@
   <div class="box-heading"><h1 class="mijoshop_heading_h1"><?php echo $heading_title; ?></h1></div>
   <div class="box-content">
   <?php if ($products) { ?>
-  <div class="product-filter">
-    <div class="display"><b><?php echo $text_display; ?></b> <?php echo $text_list; ?> <b>/</b> <a onclick="display('grid');"><?php echo $text_grid; ?></a></div>
-    <div class="limit"><?php echo $text_limit; ?>
-      <select onchange="location = this.value;">
-        <?php foreach ($limits as $limits) { ?>
-        <?php if ($limits['value'] == $limit) { ?>
-        <option value="<?php echo $limits['href']; ?>" selected="selected"><?php echo $limits['text']; ?></option>
-        <?php } else { ?>
-        <option value="<?php echo $limits['href']; ?>"><?php echo $limits['text']; ?></option>
-        <?php } ?>
-        <?php } ?>
-      </select>
-    </div>
-    <div class="sort"><?php echo $text_sort; ?>
+  <div class="product-filter clearfix">
+   <div class="top-box">
+		<div class="pagination pull-right"><?php echo $pagination; ?></div>
+    <div class="sort pull-left"><?php echo $text_sort; ?>
       <select onchange="location = this.value;">
         <?php foreach ($sorts as $sorts) { ?>
         <?php if ($sorts['value'] == $sort . '-' . $order) { ?>
@@ -28,6 +18,18 @@
         <?php } ?>
       </select>
     </div>
+	 <div class="limit pull-left"><?php echo $text_limit; ?>
+      <select onchange="location = this.value;">
+        <?php foreach ($limits as $limits) { ?>
+        <?php if ($limits['value'] == $limit) { ?>
+        <option value="<?php echo $limits['href']; ?>" selected="selected"><?php echo $limits['text']; ?></option>
+        <?php } else { ?>
+        <option value="<?php echo $limits['href']; ?>"><?php echo $limits['text']; ?></option>
+        <?php } ?>
+        <?php } ?>
+      </select>
+    </div>
+	</div>
   </div>
   <div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>
   <div class="product-list">
@@ -130,20 +132,15 @@ function display(view) {
 			html += '<div class="description">' + $(element).find('.description').html() + '</div>';
 			
 			var price = $(element).find('.price').html();
-			
+			html += '<div class="grid-bottom">' ;
 			if (price != null) {
 				html += '<div class="price">' + price  + '</div>';
 			}
 						
-			var rating = $(element).find('.rating').html();
 			
-			if (rating != null) {
-				html += '<div class="rating">' + rating + '</div>';
-			}
 						
 			html += '<div class="cart">' + $(element).find('.cart').html() + '</div>';
-			html += '<div class="wishlist">' + $(element).find('.wishlist').html() + '</div>';
-			html += '<div class="compare">' + $(element).find('.compare').html() + '</div>';
+			html += '</div>';
 			
 			$(element).html(html);
 		});	
@@ -160,7 +157,7 @@ if (view) {
 	display(view);
 } else {
     <?php if(Mijoshop::get('base')->getConfig()->get('mijoshop_display', 0) == 0) { ?>
-        display('list');
+        display('grid');
     <?php } else { ?>
         display('grid');
     <?php } ?>
