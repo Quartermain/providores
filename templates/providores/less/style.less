@@ -539,6 +539,10 @@ top: 120px;background-position: left bottom;
 	display: block; padding: 10px 15px 8px;
 	background: url("../images/bg-menu-left.png") no-repeat left top;
 }
+
+.checkout label {display: inline;margin:0;vertical-align:middle;}
+.checkout input[type="checkbox"] ,.checkout input[type="radio"] {margin:0!important;}
+.checkout-product table {background:white;}
 /**
  * ------------------------------------------------------------------------
  * JA SideNews Module for J25 & J31
@@ -548,8 +552,21 @@ top: 120px;background-position: left bottom;
  * Author: J.O.O.M Solutions Co., Ltd
  * Websites: http://www.joomlart.com - http://www.joomlancers.com
  * ------------------------------------------------------------------------
- */
+ */.mijoshop_heading_h1 {
+	border-bottom: 1px solid #C5BFB8 !important;
+    padding-bottom: 20px !important;
 
+}
+ .cart-info tbody .quantity input {
+	background: url(../images/input-small-right.png) no-repeat left top;box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    padding:8px 18px;border: none;vertical-align:middle;
+ }
+td {
+    border-top: 1px solid #c5bfb8;
+}
+.highlight {
+    background-color: #FB9316;
+}
 .ja-slidenews-item {
 	border-bottom: 1px dotted #ccc;
 	padding: 8px 0;
@@ -1052,13 +1069,23 @@ top: 120px;background-position: left bottom;
     border: 0px solid #E7E7E7;
     padding: 0px;
 }
-
+.article-title, .article-header h1 {line-height: 50px ;padding-bottom:10px;
+	border-bottom: 1px solid #C5BFB8 ; 
+    margin-bottom: 14px ;}
 .article-title, .article-header h1,.article-title, .article-header h1 a,h1{
 	 color: #202020 ;
     font-size: 50px ;
-    line-height: 37px ;
-    margin-bottom: 14px ;
+   
+	
+}.mini-cart-info tr  {border-top: 0px solid #C5BFB8 ; }
+.mini-cart-info tr + tr {
+	border-top: 1px solid #C5BFB8 ; 
 }
+.t3-mainnav .nav li.dropdown.open > .dropdown-toggle,.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
+ background-color: #F29400;
+    color: #EEEEEE
+}
+.divider-vertical {  border-color: #1F1F1F -moz-use-text-color;}
 .article-content li {
 	color: #fb9316 ;
 }

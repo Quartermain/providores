@@ -15,22 +15,22 @@
     &nbsp;(<?php echo $weight; ?>)
     <?php } ?></h1></div>
   <div class="box-content">
-  <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+  <form style="margin:0" action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
     <div class="cart-info">
       <table>
         <thead>
           <tr>
             <td class="image"><?php echo $column_image; ?></td>
             <td class="name"><?php echo $column_name; ?></td>
-            <td class="model"><?php echo $column_model; ?></td>
+            <td class="model" style="display: none" ><?php echo $column_model; ?></td>
             <td class="quantity"><?php echo $column_quantity; ?></td>
             <td class="price"><?php echo $column_price; ?></td>
-            <td class="total"><?php echo $column_total; ?></td>
+            <td class="total" style="display: none" ><?php echo $column_total; ?></td>
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($products as $product) { ?>
-          <tr>
+          <?php $i=0; foreach ($products as $product) { $i++;?>
+          <tr class="<?php if($i%2) echo "even"; else echo "odd"; ?>">
             <td class="image"><?php if ($product['thumb']) { ?>
               <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
               <?php } ?></td>
@@ -46,30 +46,43 @@
               <?php if ($product['reward']) { ?>
               <small><?php echo $product['reward']; ?></small>
               <?php } ?></td>
-            <td class="model"><?php echo $product['model']; ?></td>
-            <td class="quantity"><input type="text" name="quantity[<?php echo $product['key']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" />
+            <td class="model" style="display: none" ><?php echo $product['model']; ?></td>
+            <td class="quantity">
+				<div><input type="text" name="quantity[<?php echo $product['key']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" />
               &nbsp;
-              <input type="image" src="catalog/view/theme/default/image/update.png" alt="<?php echo $button_update; ?>" title="<?php echo $button_update; ?>" />
-              &nbsp;<a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/default/image/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a></td>
+              <input style="display: none" type="image" src="catalog/view/theme/default/image/update.png" alt="<?php echo $button_update; ?>" title="<?php echo $button_update; ?>" />
+              &nbsp;<a href="<?php echo $product['remove']; ?>"><?php echo $button_remove; ?></a>
+			  </div>
+			  </td>
             <td class="price"><?php echo $product['price']; ?></td>
-            <td class="total"><?php echo $product['total']; ?></td>
+            <td class="total" style="display: none"  ><?php echo $product['total']; ?></td>
           </tr>
           <?php } ?>
-          <?php foreach ($vouchers as $vouchers) { ?>
-          <tr>
+          <?php  $i=0;  foreach ($vouchers as $vouchers) { $i++;?>
+          <tr class="<?php if($i%2) echo "even"; else echo "odd"; ?>">
             <td class="image"></td>
             <td class="name"><?php echo $vouchers['description']; ?></td>
-            <td class="model"></td>
+            <td class="model" style="display: none" ></td>
             <td class="quantity"><input type="text" name="" value="1" size="1" disabled="disabled" />
               &nbsp;<a href="<?php echo $vouchers['remove']; ?>"><img src="catalog/view/theme/default/image/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a></td>
             <td class="price"><?php echo $vouchers['amount']; ?></td>
-            <td class="total"><?php echo $vouchers['amount']; ?></td>
+            <td class="total" style="display: none" ><?php echo $vouchers['amount']; ?></td>
           </tr>
           <?php } ?>
         </tbody>
       </table>
     </div>
   </form>
+    <div class="cart-total">
+    <table id="total">
+      <?php foreach ($totals as $total) { ?>
+      <tr>
+        <td class="right"><b><?php echo $total['title']; ?>:</b></td>
+        <td class="right"><?php echo $total['text']; ?></td>
+      </tr>
+      <?php } ?>
+    </table>
+  </div>
   <?php if ($coupon_status || $voucher_status || $reward_status || $shipping_status) { ?>
   <h2><?php echo $text_next; ?></h2>
   <div class="content">
@@ -175,16 +188,7 @@
     </div>
   </div>
   <?php } ?>
-  <div class="cart-total">
-    <table id="total">
-      <?php foreach ($totals as $total) { ?>
-      <tr>
-        <td class="right"><b><?php echo $total['title']; ?>:</b></td>
-        <td class="right"><?php echo $total['text']; ?></td>
-      </tr>
-      <?php } ?>
-    </table>
-  </div>
+
   <div class="buttons">
     <div class="right"><a href="<?php echo $checkout; ?>" class="<?php echo MijoShop::getButton(); ?>"><?php echo $button_checkout; ?></a></div>
     <div class="center"><a href="<?php echo $continue; ?>" class="<?php echo MijoShop::getButton(); ?>"><?php echo $button_shopping; ?></a></div>
