@@ -1051,7 +1051,7 @@ h1 {
 .dropdown-menu li > a:hover,
 .dropdown-menu li > a:focus,
 .dropdown-submenu:hover > a {
-  background-color: #F29400;
+  background: #F29400;
   color: #EEEEEE;
 }
 .divider-vertical {
@@ -1395,6 +1395,22 @@ div.btl-buttonsubmit {
   padding-bottom: 20px;
   padding-top: 10px;
 }
+@media (max-width: 1116px) {
+  .jmslideshow .cycle-next,
+  .jmslideshow .cycle-next:hover,
+  .jmslideshow .cycle-next:visited,
+  .jmslideshow .cycle-next:active,
+  .jmslideshow .cycle-next:focus {
+    right: 10px !important;
+  }
+  .jmslideshow .cycle-prev,
+  .jmslideshow .cycle-prev:hover,
+  .jmslideshow .cycle-prev:visited,
+  .jmslideshow .cycle-prev:active,
+  .jmslideshow .cycle-prev:focus {
+    left: 10px !important;
+  }
+}
 @media (min-width: 768px) and (max-width: 979px) {
   #jmslideshow {
     background: none;
@@ -1496,6 +1512,32 @@ div.btl-buttonsubmit {
     float: none;
     width: 100%;
   }
+  .jmslideshow .cycle-next,
+  .jmslideshow .cycle-next:hover,
+  .jmslideshow .cycle-next:visited,
+  .jmslideshow .cycle-next:active,
+  .jmslideshow .cycle-next:focus {
+    right: 10px !important;
+  }
+  .jmslideshow .cycle-prev,
+  .jmslideshow .cycle-prev:hover,
+  .jmslideshow .cycle-prev:visited,
+  .jmslideshow .cycle-prev:active,
+  .jmslideshow .cycle-prev:focus {
+    left: 10px !important;
+  }
+  .mijosearch_bg_module,
+  .head-search p,
+  .row .mijosearch_bg_module {
+    text-align: center;
+  }
+  #header_oc #cart .heading a {
+    top: 0;
+  }
+  .account-login-shop {
+    margin: 0 auto;
+    width: 288px;
+  }
 }
 @media (max-width: 480px) {
   .row .head-search {
@@ -1531,7 +1573,7 @@ div.btl-buttonsubmit {
   }
   .jmslideshow .slideshow-content {
     left: 0 !important;
-    top: 30% !important;
+    top: 10% !important;
     width: auto !important;
   }
 }

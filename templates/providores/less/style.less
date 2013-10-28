@@ -1082,7 +1082,7 @@ td {
 	border-top: 1px solid #C5BFB8 ; 
 }
 .t3-mainnav .nav li.dropdown.open > .dropdown-toggle,.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
- background-color: #F29400;
+ background: #F29400;
     color: #EEEEEE
 }
 .divider-vertical {  border-color: #1F1F1F -moz-use-text-color;}
@@ -1414,7 +1414,16 @@ div.btl-buttonsubmit{
 
 
 /* Portrait tablet to landscape and desktop */
+@media (max-width: 1116px) { 
+.jmslideshow .cycle-next, .jmslideshow .cycle-next:hover, .jmslideshow .cycle-next:visited, .jmslideshow .cycle-next:active, .jmslideshow .cycle-next:focus {
+	right: 10px!important;
+}
+.jmslideshow .cycle-prev, .jmslideshow .cycle-prev:hover, .jmslideshow .cycle-prev:visited, .jmslideshow .cycle-prev:active, .jmslideshow .cycle-prev:focus {
+	   left: 10px!important;
+}
+}
 @media (min-width: 768px) and (max-width: 979px) {
+
 #jmslideshow{
   background:none;
   margin: 20px auto 30px auto;
@@ -1475,6 +1484,15 @@ div.btl-buttonsubmit{
 #tab-related .product-grid > div {width: 100%;}
 .product-info > .left {float:none;width: 100%;margin-bottom:15px;}
 .product-info > .right {float:none;width: 100%;}
+.jmslideshow .cycle-next, .jmslideshow .cycle-next:hover, .jmslideshow .cycle-next:visited, .jmslideshow .cycle-next:active, .jmslideshow .cycle-next:focus {
+	right: 10px!important;
+}
+.jmslideshow .cycle-prev, .jmslideshow .cycle-prev:hover, .jmslideshow .cycle-prev:visited, .jmslideshow .cycle-prev:active, .jmslideshow .cycle-prev:focus {
+	   left: 10px!important;
+}
+.mijosearch_bg_module, .head-search p ,.row .mijosearch_bg_module{text-align:center;}
+#header_oc #cart .heading a {top:0;}
+.account-login-shop {margin: 0 auto;width: 288px;}
  }
  
 /* Landscape phones and down */
@@ -1501,7 +1519,8 @@ div.btl-buttonsubmit{
 .jmslideshow .slideshow-content  * {font-size: 14px!important}
 .jmslideshow .slideshow-content {
 	left:0!important;
-    top: 30% !important;
+    top: 10% !important;
     width: auto !important;
 }
+
 }
