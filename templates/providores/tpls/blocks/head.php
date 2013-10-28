@@ -15,7 +15,8 @@ defined('_JEXEC') or die;
 <meta name="HandheldFriendly" content="true" />
 <meta name="apple-mobile-web-app-capable" content="YES" />
 <!-- //META FOR IOS & HANDHELD -->
-
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "2cc6a5b8-6f47-4831-95ae-8368305bb28f", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 <?php 
 // SYSTEM CSS
 $this->addStyleSheet(JURI::base(true).'/templates/system/css/system.css'); 

@@ -40,7 +40,6 @@
 // Logo Image
 // ----------
 .logo-image {
-  overflow: hidden;
   text-align: center;
 
   a {
@@ -234,6 +233,7 @@
 		background:#2e2c2b;
 		border-left: 6px solid #fb9316;
 		padding:0 10px;
+		font-weight:normal;
   }
 }
 
@@ -457,6 +457,7 @@ top: 120px;background-position: left bottom;
 }
 .t3-logos strong{
 	color:#dddfe4;
+	font-weight:normal;
 	display: inline-block;
 	padding: 1px 3px;margin-left: 4px;
 	background: #2e2c2b
@@ -497,8 +498,9 @@ top: 120px;background-position: left bottom;
 #jmslideshow-inner  .slideshow-content p ,#jmslideshow-inner .jmslideshow .slideshow-content a{
 	display: inline-block;
 	background: rgba(0,0,0,0.9);
-	font-size: 20px;
-	color: white;padding: 5px 30px;font-family:"QlassikMediumRegular";font-weight: bold;
+	font-size: 30px;
+	line-height: 120%;
+	color: white;padding: 5px 30px;font-family:"QlassikMediumRegular";
 }
 #jmslideshow-inner  .slideshow-content   {
 	background: none;border-radius:0;text-align:center;
@@ -514,11 +516,13 @@ top: 120px;background-position: left bottom;
 .t3-sidebar .module-title {
 	background: #202020;
 	border-left: 6px solid #fb9316;
-	padding: 0px 0 0 5px;
+	padding: 2px 0 0 5px;
 	font-size:18px;
 	color:white;margin-bottom: 15px;
+	font-weight:normal;
 	text-transform: uppercase;
 }
+.box_oc .box-home > div .name a {text-transform: uppercase;}
 .t3-sidebar  .box-category {
 	list-style: none;
 	margin-left:0;
@@ -880,7 +884,7 @@ td {
 #header_oc #cart .heading a {
 	text-decoration: none;
 	position: absolute;
-	min-width: 300px;
+	min-width: 140px;
 	top: 8px;
 	left: 110px;
 }
@@ -1072,9 +1076,10 @@ td {
 .article-title, .article-header h1 {line-height: 50px ;padding-bottom:10px;
 	border-bottom: 1px solid #C5BFB8 ; 
     margin-bottom: 14px ;}
-.article-title, .article-header h1,.article-title, .article-header h1 a,h1{
+.article-title, .article-header h1,.article-title, .article-header h1 a,h1,.mijoshop_heading_h1{
 	 color: #202020 ;
     font-size: 50px ;
+		text-transform: uppercase!important;
    
 	
 }.mini-cart-info tr  {border-top: 0px solid #C5BFB8 ; }
@@ -1422,8 +1427,41 @@ div.btl-buttonsubmit{
 	   left: 10px!important;
 }
 }
-@media (min-width: 768px) and (max-width: 979px) {
+@media (min-width: 980px) and (max-width: 1024px) {
+#jmslideshow{
+  width: 100%;
+  padding: 40px 0 60px 0;
+  background-position: -56px center;
+}
+#btl-content #btl-content-profile {right: 0 !important;
+left: 10px;
+width: 150px;}
+#jmslideshow #jmslideshow-inner {
+	margin-top: -7px;margin-left: 43px;
+}
+	.product-grid > div {width: 208px;}
+	.box_oc .box-home > div {width: 183px;}
+.container .ja-sidenews {height: 353px!important;}
 
+ }
+ 
+@media (min-width: 768px) and (max-width: 979px) {
+#btl-content #btl-content-profile {right: 0 !important;
+left: 10px;
+width: 150px;}
+.logo-image a {
+	width: 230px;background-size: 101%;
+}
+	.product-grid > div {width: 220px;}
+.t3-mainnav .navbar .nav > li > a {padding: 12px 10px;}
+.container .ja-sidenews {height: 300px!important;}
+#ja-sidenews-jasd-modid110, .customtitle-shop + .box_oc {padding-bottom: 0!important;}
+#jmslideshow-inner .slideshow-content {
+    left: 50px !important;
+}
+.box_oc .box-home > div {
+width: 183px;
+}
 #jmslideshow{
   background:none;
   margin: 20px auto 30px auto;
@@ -1443,6 +1481,14 @@ div.btl-buttonsubmit{
  
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
+#btl-content #btl-content-profile {right: 0 !important;
+left: 00px;
+width: 300px;}
+#jmslideshow-inner .slideshow-content p, #jmslideshow-inner .jmslideshow .slideshow-content a {font-size: 20px;}
+#jmslideshow-inner .slideshow-content {
+    left: 50px !important;
+}
+.t3-mainnav .navbar .nav > li > a {padding: 12px 10px;}
 .row .head-search {
     float: left !important;
 }
@@ -1497,6 +1543,12 @@ div.btl-buttonsubmit{
  
 /* Landscape phones and down */
 @media (max-width: 480px) {
+.checkout-content .right ,.checkout-content .left{
+	float: none;width: 100%;
+	input[type="text"],input[type="password"]  {
+		width: 95%!important;
+	}
+}
 .row .head-search {
     float: none !important;
 }

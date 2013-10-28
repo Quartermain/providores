@@ -1,7 +1,7 @@
 <?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
   <div class="box">
-  
+
   <div class="box-contents">
   <div class="product-info">
     <?php if ($thumb || $images) { ?>
@@ -222,6 +222,14 @@
        <?php if ($minimum > 1) { ?>
         <div class="minimum"><?php echo $text_minimum; ?></div>
         <?php } ?>
+		<div class="share">
+		<span class='st_facebook_hcount' displayText='Facebook'></span>
+<span class='st_twitter_hcount' displayText='Tweet'></span>
+<span class='st_plusone_hcount' displayText='Google +1'></span>
+
+
+		</div>
+
     </div>
   </div>
   <div id="tabs" class="htabs"><a href="#tab-description"><?php echo $tab_description; ?></a>
