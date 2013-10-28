@@ -9,7 +9,6 @@ h1, .welcome {
 .mijoshop_heading_h1 {
 	border: 0px !important;
     font-size: 14px !important;
-   	font-weight: bold !important;
    	margin: 0px !important;
    	padding: 0px !important;
    	text-transform: none !important;
@@ -413,7 +412,6 @@ label {
 }
 .required {
 	color: #FF0000;
-	font-weight: bold;
 }
 .error {
 	display: block;
@@ -461,7 +459,6 @@ table.list thead td {
 table.list thead td a, .list thead td {
 	text-decoration: none;
 	color: #222222;
-	font-weight: bold;
 }
 table.list tbody td a {
 	text-decoration: underline;
@@ -549,7 +546,6 @@ a.button_oc, input.button_oc {
 	color: #FFFFFF !important;
 	line-height: 12px;
 	
-	font-weight: bold;
 	background: url('../image/button.png') top left repeat-x;
 	-webkit-border-radius: 7px 7px 7px 7px;
 	-moz-border-radius: 7px 7px 7px 7px;
@@ -631,7 +627,6 @@ a.button_oc:hover, input.button_oc:hover {
 	
 	padding: 8px 10px 7px 10px;
 	font-size: 14px;
-	font-weight: bold;
 	line-height: 14px;
 	color: #333;
 }
@@ -717,6 +712,8 @@ a.button_oc:hover, input.button_oc:hover {
 .box-category > ul > li ul > li > a.active {
 	font-weight: bold;
 }
+.option b{font-weight: normal;}
+.share {margin: 10px 0;}
 /* box filter */
 ul.box-filter, ul.box-filter ul {
 	list-style: none;
@@ -781,7 +778,6 @@ ul.box-filter > li ul {
 .manufacturer-heading {
 	background: #F8F8F8;
 	font-size: 15px;
-	font-weight: bold;
 	padding: 5px 8px;
 	margin-bottom: 6px;
 }
@@ -806,9 +802,6 @@ ul.box-filter > li ul {
 	margin-right: 15px;
 	float: left;
 	padding-top: 4px;
-}
-.product-filter .display a {
-	font-weight: bold;
 }
 .product-filter .sort {
 	float: left;
@@ -844,18 +837,15 @@ ul.box-filter > li ul {
 .product-compare {
 	padding-top: 6px;
 	margin-bottom: 25px;
-	font-weight: bold;
 }
 .product-compare a {
 	text-decoration: none;
-	font-weight: bold;
 	display: none;
 }
 .product-list > div {
 	overflow: auto;
 	margin-bottom: 15px;
 }
-.product-list  {display: none;}
 .product-list .right {
 	float: right;
 	margin-left: 15px;
@@ -880,7 +870,6 @@ ul.box-filter > li ul {
 	margin-bottom: 3px;
 }
 .product-list .name a {
-	font-weight: bold;
 	text-decoration: none;
 }
 .product-list .description {
@@ -900,9 +889,7 @@ ul.box-filter > li ul {
 .product-list .price-old {
 	text-decoration: line-through;
 }
-.product-list .price-new {
-	font-weight: bold;
-}
+
 .product-list .price-tax {
 	
 	font-weight: normal;
@@ -1009,9 +996,8 @@ background: white;
 }
 .product-grid .price-old {
 	text-decoration: line-through;
-	color: #fa9215;
 }
-.share {margin: 10px 0;}
+
 .product-grid .price .price-tax {
 	display: none;
 }
@@ -1144,13 +1130,11 @@ background: white;
 .attribute thead td, .attribute thead tr td:first-child {
 	color: #000000;
 	font-size: 14px;
-	font-weight: bold;
 	background: #F7F7F7;
 	text-align: left;
 }
 .attribute tr td:first-child {
 	color: #000000;
-	font-weight: bold;
 	text-align: right;
 	width: 20%;
 }
@@ -1172,13 +1156,11 @@ background: white;
 .compare-info thead td, .compare-info thead tr td:first-child {
 	color: #000000;
 	font-size: 14px;
-	font-weight: bold;
 	background: #F7F7F7;
 	text-align: left;
 }
 .compare-info tr td:first-child {
 	color: #000000;
-	font-weight: bold;
 	text-align: right;
 }
 .compare-info td {
@@ -1191,14 +1173,12 @@ background: white;
 	border-bottom: 1px solid #c5bfb8;
 }
 .compare-info .name a {
-	font-weight: bold;
+	
 }
 .compare-info .price-old {
-	font-weight: bold;
 	text-decoration: line-through;
 }
 .compare-info .price-new {
-	font-weight: bold;
 }
 /* wishlist */
 .wishlist-info table {
@@ -1214,7 +1194,6 @@ background: white;
 }
 .wishlist-info thead td {
 	color: #4D4D4D;
-	font-weight: bold;
 	background-color: #F7F7F7;
 	border-bottom: 1px solid #c5bfb8;
 }
@@ -1296,7 +1275,6 @@ background: white;
 }
 .order-detail {
 	background: #EFEFEF;
-	font-weight: bold;
 }
 /* returns */
 .return-list {
@@ -1483,7 +1461,6 @@ background: white;
 .checkout-heading {
 	border: 1px solid #DBDEE1;
 	padding: 8px;
-	font-weight: bold;
 	font-size: 13px;
 	margin-bottom: 15px;
 }
@@ -1529,7 +1506,6 @@ background: white;
     text-transform: uppercase;}
 .checkout-product thead td {
 	color: #4D4D4D;
-	font-weight: bold;
 	background-color: #F29400;
 	border-bottom: 1px solid #c5bfb8;
 }
@@ -1699,10 +1675,12 @@ background: white;
 }
 #module_cart .empty {
     text-align: center;
-}@media (max-width: 480px) {
-.checkout-content .right ,.checkout-content .left{
-	float: none;width: 100%;
-	input[type="text"],input[type="password"]  {
-		width: 95%!important;
-	}
-}}
+}
+
+@media (max-width: 480px) {
+.checkout-content .right ,.checkout-content .left{	float: none;width: 100%;}
+.checkout-content .right input[type="text"],
+.checkout-content .right input[type="password"],
+.checkout-content .left input[type="text"],
+.checkout-content .left  .right input[type="password"]{width: 95%!important;}
+}
